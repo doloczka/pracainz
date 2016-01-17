@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lesson_id: 
+  number: 1
+  reward: 1
+  story: MyText
+  content: MyText
+  hint: MyText
+
+two:
+  lesson_id: 
+  number: 1
+  reward: 1
+  story: MyText
+  content: MyText
+  hint: MyText

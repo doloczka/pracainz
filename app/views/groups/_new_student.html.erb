@@ -1,0 +1,19 @@
+<%= form_for @student, url: group_students_path(params[:id]) do |f| %>
+  <% if @student.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@student.errors.count, "error") %> prohibited this grupy from being saved:</h2>
+      <ul>
+      <% @student.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+  <%=f.label :Nr_albumu %>
+  <%=f.text_field :albumnumber %>
+</div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

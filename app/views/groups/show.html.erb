@@ -1,0 +1,38 @@
+<p>
+  <strong>Name:</strong>
+  <%= @group.name %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @group.date %>
+</p>
+
+<%=render 'new_student' %>
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Name</th>
+      <th>Lastname</th>
+      <th>Albumnumber</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= student.email %></td>
+        <td><%= student.name %></td>
+        <td><%= student.lastname %></td>
+        <td><%= student.albumnumber %></td>
+        <td><%= link_to 'Show', student %></td>
+        <td><%= link_to 'Edit', edit_student_path(student) %></td>
+        <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'Edit', edit_group_path(@group) %> |
+<%= link_to 'Back', teacher_groups_path(session[:user_id]) %>
