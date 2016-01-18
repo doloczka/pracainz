@@ -1,0 +1,45 @@
+<%= form_for(@sidequest) do |f| %>
+  <% if @sidequest.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sidequest.errors.count, "error") %> prohibited this sidequest from being saved:</h2>
+
+      <ul>
+      <% @sidequest.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :teacher_id %><br>
+    <%= f.text_field :teacher_id %>
+  </div>
+  <div class="field">
+    <%= f.label :level %><br>
+    <%= f.number_field :level %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </div>
+  <div class="field">
+    <%= f.label :challenger_id %><br>
+    <%= f.number_field :challenger_id %>
+  </div>
+  <div class="field">
+    <%= f.label :challenger_answer %><br>
+    <%= f.text_area :challenger_answer %>
+  </div>
+  <div class="field">
+    <%= f.label :recipient %><br>
+    <%= f.number_field :recipient %>
+  </div>
+  <div class="field">
+    <%= f.label :recipient_answer %><br>
+    <%= f.text_area :recipient_answer %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :sidequests
   root 'session#index'
   resources :answers
   resources :messages

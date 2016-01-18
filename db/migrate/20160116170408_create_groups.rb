@@ -7,6 +7,7 @@ class CreateGroups < ActiveRecord::Migration
       t.date :zajecia3
       t.date :zajecia4
       t.date :zajecia5
+      t.date :zajecia6
       t.references :teacher, index: true, foreign_key: true
       t.timestamps null: false
     end

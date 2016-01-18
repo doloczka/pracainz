@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Teacher:</strong>
+  <%= @sidequest.teacher %>
+</p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @sidequest.level %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @sidequest.content %>
+</p>
+
+<p>
+  <strong>Challenger:</strong>
+  <%= @sidequest.challenger_id %>
+</p>
+
+<p>
+  <strong>Challenger answer:</strong>
+  <%= @sidequest.challenger_answer %>
+</p>
+
+<p>
+  <strong>Recipient:</strong>
+  <%= @sidequest.recipient %>
+</p>
+
+<p>
+  <strong>Recipient answer:</strong>
+  <%= @sidequest.recipient_answer %>
+</p>
+
+<%= link_to 'Edit', edit_sidequest_path(@sidequest) %> |
+<%= link_to 'Back', sidequests_path %>

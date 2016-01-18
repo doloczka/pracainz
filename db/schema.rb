@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160116175432) do
+ActiveRecord::Schema.define(version: 20160118180757) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "teacher_id"
@@ -27,17 +27,14 @@ ActiveRecord::Schema.define(version: 20160116175432) do
   add_index "answers", ["teacher_id"], name: "index_answers_on_teacher_id"
 
   create_table "exercises", force: :cascade do |t|
-    t.integer  "lesson_id"
+    t.integer  "level"
     t.integer  "number"
     t.integer  "reward"
-    t.text     "story"
     t.text     "content"
     t.text     "hint"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  add_index "exercises", ["lesson_id"], name: "index_exercises_on_lesson_id"
 
   create_table "groups", force: :cascade do |t|
     t.string   "name"
@@ -46,6 +43,7 @@ ActiveRecord::Schema.define(version: 20160116175432) do
     t.date     "zajecia3"
     t.date     "zajecia4"
     t.date     "zajecia5"
+    t.date     "zajecia6"
     t.integer  "teacher_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -53,23 +51,15 @@ ActiveRecord::Schema.define(version: 20160116175432) do
 
   add_index "groups", ["teacher_id"], name: "index_groups_on_teacher_id"
 
-  create_table "lessons", force: :cascade do |t|
-    t.integer  "number"
-    t.integer  "teacher_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "lessons", ["teacher_id"], name: "index_lessons_on_teacher_id"
-
   create_table "messages", force: :cascade do |t|
     t.string   "subject"
     t.text     "content"
     t.boolean  "read"
-    t.integer  "sender"
-    t.integer  "recipient"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "direction"
+    t.integer  "student_id_id"
+    t.integer  "teacher_id_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "progres", force: :cascade do |t|
@@ -83,6 +73,20 @@ ActiveRecord::Schema.define(version: 20160116175432) do
   end
 
   add_index "progres", ["student_id"], name: "index_progres_on_student_id"
+
+  create_table "sidequests", force: :cascade do |t|
+    t.integer  "teacher_id"
+    t.integer  "level"
+    t.text     "content"
+    t.integer  "challenger_id"
+    t.text     "challenger_answer"
+    t.integer  "recipient_id"
+    t.text     "recipient_answer"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "sidequests", ["teacher_id"], name: "index_sidequests_on_teacher_id"
 
   create_table "students", force: :cascade do |t|
     t.string   "login"

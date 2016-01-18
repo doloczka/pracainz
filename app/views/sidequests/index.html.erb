@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Sidequests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Teacher</th>
+      <th>Level</th>
+      <th>Content</th>
+      <th>Challenger</th>
+      <th>Challenger answer</th>
+      <th>Recipient</th>
+      <th>Recipient answer</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sidequests.each do |sidequest| %>
+      <tr>
+        <td><%= sidequest.teacher %></td>
+        <td><%= sidequest.level %></td>
+        <td><%= sidequest.content %></td>
+        <td><%= sidequest.challenger_id %></td>
+        <td><%= sidequest.challenger_answer %></td>
+        <td><%= sidequest.recipient %></td>
+        <td><%= sidequest.recipient_answer %></td>
+        <td><%= link_to 'Show', sidequest %></td>
+        <td><%= link_to 'Edit', edit_sidequest_path(sidequest) %></td>
+        <td><%= link_to 'Destroy', sidequest, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sidequest', new_sidequest_path %>

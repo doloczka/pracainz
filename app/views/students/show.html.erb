@@ -1,15 +1,4 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Login:</strong>
-  <%= @student.login %>
-</p>
-
-<p>
-  <strong>Password digest:</strong>
-  <%= @student.password_digest %>
-</p>
-
+<% if logged_as_student?%>
 <p>
   <strong>Email:</strong>
   <%= @student.email %>
@@ -31,13 +20,35 @@
 </p>
 
 <p>
-  <strong>Authenticated:</strong>
-  <%= @student.authenticated %>
+  <strong>Group:</strong>
+  <%= @student.group.name %>
+</p>
+<% end %>
+<% if logged_as_teacher?%>
+<%= link_to :back%>
+<%= link_to 'Edit', edit_student_path(@student) %> |
+<p>
+  <strong>Email:</strong>
+  <%= @student.email %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @student.name %>
+</p>
+
+<p>
+  <strong>Lastname:</strong>
+  <%= @student.lastname %>
+</p>
+
+<p>
+  <strong>Albumnumber:</strong>
+  <%= @student.albumnumber %>
 </p>
 
 <p>
   <strong>Group:</strong>
-  <%= @student.group %>
+  <%= @student.group.name %>
 </p>
-
-<%= link_to 'Edit', edit_student_path(@student) %> |
+<% end %>
