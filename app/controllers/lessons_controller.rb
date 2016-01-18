@@ -4,7 +4,9 @@ class LessonsController < ApplicationController
   # GET /lessons
   # GET /lessons.json
   def index
-    @lessons = Lesson.all
+    teacher=Teacher.find(session[:user_id])
+    @lesson = teacher.lessons.build
+    @lessons = Lesson.where(teacher_id: params[:teacher_id])
   end
 
   # GET /lessons/1
@@ -13,9 +15,9 @@ class LessonsController < ApplicationController
   end
 
   # GET /lessons/new
-  def new
-    @lesson = Lesson.new
-  end
+  # def new
+  #   @lesson = Lesson.new
+  # end
 
   # GET /lessons/1/edit
   def edit
@@ -24,7 +26,8 @@ class LessonsController < ApplicationController
   # POST /lessons
   # POST /lessons.json
   def create
-    @lesson = Lesson.new(lesson_params)
+    teacher = Teacher.find(curent_user_id)
+    @lesson = teacher.lessons.create(lesson_params)
 
     respond_to do |format|
       if @lesson.save
@@ -69,6 +72,6 @@ class LessonsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lesson_params
-      params.require(:lesson).permit(:number, :teacher_id)
+      params.require(:lesson).permit(:number)
     end
 end

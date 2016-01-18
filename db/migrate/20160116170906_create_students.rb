@@ -9,6 +9,7 @@ class CreateStudents < ActiveRecord::Migration
       t.integer :albumnumber
       t.boolean :authenticated
       t.references :group, index: true, foreign_key: true
+      t.integer :presence
 
       t.timestamps null: false
     end

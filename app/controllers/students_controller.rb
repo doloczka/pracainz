@@ -41,6 +41,7 @@ class StudentsController < ApplicationController
       if logged_as_student?
         @student.authenticated = true
         @student.password_digest = BCrypt::Password.create(params[:student][:albumnumber])
+        
       if @student.update(student_params)
         format.html { redirect_to @student, notice: 'Student was successfully updated.' }
         format.json { render :show, status: :ok, location: @student }

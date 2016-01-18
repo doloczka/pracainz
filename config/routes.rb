@@ -6,10 +6,9 @@ Rails.application.routes.draw do
     resources :groups, shallow: true do
       resources :students
     end
-    resources :lessons, shallow: true do
-      resources :exercises
-    end
+    resources :exercises
   end
+  
   get 'login' => 'session#new'
   post 'login' => 'session#create'
   delete 'logout' => 'session#destroy'

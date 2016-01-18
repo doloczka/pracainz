@@ -4,7 +4,7 @@ class CreateGroups < ActiveRecord::Migration
       t.string :name
       t.date :date
       t.references :teacher, index: true, foreign_key: true
-
+      t.boolean :active
       t.timestamps null: false
     end
   end
