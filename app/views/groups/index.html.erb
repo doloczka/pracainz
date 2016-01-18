@@ -7,8 +7,6 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Date</th>
-      <th>Teacher</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,8 +15,6 @@
     <% @groups.each do |group| %>
       <tr>
         <td><%= group.name %></td>
-        <td><%= group.date %></td>
-        <td><%= group.teacher.name %></td>
         <td><%= link_to 'Show', group %></td>
         <td><%= link_to 'Edit', edit_group_path(group) %></td>
         <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -9,6 +9,9 @@
 </p>
 
 <%=render 'new_student' %>
+<%=  form_for @group do |f| %>
+  <%= check_box_tag :active%>
+<% end %>
 <table>
   <thead>
     <tr>
@@ -19,7 +22,6 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @students.each do |student| %>
       <tr>

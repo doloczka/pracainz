@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20160116175432) do
     t.string   "name"
     t.date     "date"
     t.integer  "teacher_id"
+    t.boolean  "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -89,6 +90,7 @@ ActiveRecord::Schema.define(version: 20160116175432) do
     t.integer  "albumnumber"
     t.boolean  "authenticated"
     t.integer  "group_id"
+    t.integer  "presence"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
