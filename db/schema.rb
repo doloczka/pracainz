@@ -41,9 +41,12 @@ ActiveRecord::Schema.define(version: 20160116175432) do
 
   create_table "groups", force: :cascade do |t|
     t.string   "name"
-    t.date     "date"
+    t.date     "zajecia1"
+    t.date     "zajecia2"
+    t.date     "zajecia3"
+    t.date     "zajecia4"
+    t.date     "zajecia5"
     t.integer  "teacher_id"
-    t.boolean  "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
