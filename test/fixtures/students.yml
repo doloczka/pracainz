@@ -6,9 +6,9 @@ one:
   email: MyString
   name: MyString
   lastname: MyString
-  albumnumber: 1
-  authenticated: false
+  album_number: MyString
   group_id: 
+  autenticated: MyString
 
 two:
   login: MyString
@@ -16,6 +16,6 @@ two:
   email: MyString
   name: MyString
   lastname: MyString
-  albumnumber: 1
-  authenticated: false
+  album_number: MyString
   group_id: 
+  autenticated: MyString

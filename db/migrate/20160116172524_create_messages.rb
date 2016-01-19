@@ -5,8 +5,8 @@ class CreateMessages < ActiveRecord::Migration
       t.text :content
       t.boolean :read
       t.boolean :direction
-      t.references :student_id 
-      t.references :teacher_id
+      t.references :student 
+      t.references :teacher
 
       t.timestamps null: false
     end

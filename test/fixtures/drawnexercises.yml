@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  student_id: 
+  level: 1
+  number: 1
+  exercise_id: 
+
+two:
+  student_id: 
+  level: 1
+  number: 1
+  exercise_id: 

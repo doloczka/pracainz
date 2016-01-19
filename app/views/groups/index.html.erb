@@ -22,6 +22,28 @@
     <% end %>
   </tbody>
 </table>
+<h2>wszyscy twoi studentci</h2>
+<table><thead>
+  <tr><th>
+    Imie
+  </th>
+  <th>Nazwisko</th>
+  <th>nralbumu</th></tr>
+</thead>
+  <tbody>
+    <% @students.each do |student|%>
+        <tr>
+        <td><%= student.name %></td>
+        <td><%= student.lastname %></td>
+        <td><%= student.albumnumber%></td>
+        <td><%= link_to 'Show', student %></td>
+        <td><%= link_to 'Edit', edit_student_path(student) %></td>
+        <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to'wiadomosci', message_path(student.id) %></td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>
 
 <br>
 

@@ -1,6 +1,7 @@
 class CreateExercises < ActiveRecord::Migration
   def change
     create_table :exercises do |t|
+      t.references :teacher, index: true, foreign_key: true
       t.integer :level
       t.integer :number
       t.integer :reward

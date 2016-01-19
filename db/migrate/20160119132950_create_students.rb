@@ -6,12 +6,12 @@ class CreateStudents < ActiveRecord::Migration
       t.string :email
       t.string :name
       t.string :lastname
-      t.integer :albumnumber
-      t.boolean :authenticated
+      t.string :album_number
       t.references :group, index: true, foreign_key: true
-      t.integer :presence
+      t.string :autenticated
 
       t.timestamps null: false
     end
+    add_index :students, :login, unique: true
   end
 end

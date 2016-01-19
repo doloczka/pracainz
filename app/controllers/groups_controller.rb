@@ -7,6 +7,7 @@ class GroupsController < ApplicationController
     teacher = Teacher.find(curent_user_id)
     @group= teacher.groups.build
     @groups = Group.where(teacher_id: params[:teacher_id])
+    @students = Student.where(group_id:  @groups)
   end
 
   # GET /groups/1

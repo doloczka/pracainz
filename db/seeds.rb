@@ -32,3 +32,15 @@ end
                       recipient_answer: "odpowiedz wyzywanego"
                       )
 end
+Message.create!(subject: "temat",
+                content: "tresc",
+                read: false,
+                direction: 0,
+                student_id: 1,
+                teacher_id: 1 )
+Message.create!(subject: "temat",
+                content: "tresc",
+                read: false,
+                direction: 1,
+                student_id: 1,
+                teacher_id: 1 )

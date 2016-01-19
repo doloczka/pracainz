@@ -8,7 +8,7 @@ class CreateSidequests < ActiveRecord::Migration
       t.text :challenger_answer
       t.integer :recipient_id
       t.text :recipient_answer
-
+      t.integer :status
       t.timestamps null: false
     end
   end
