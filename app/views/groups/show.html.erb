@@ -2,6 +2,29 @@
   <strong>Name:</strong>
   <%= @group.name %>
 </p>
+<p><strong>Daty spotkan</strong>
+</p>
+<%= form_for :clas, :url => classes_update_path, :html => { :method => :put } do %>
+  <table>
+    <tr>
+      <th>Nr zajec</th>
+      <th>Start</th>
+      <th>Koniec</th>
+    </tr>
+    <% @classes.each do |clas| %>
+     <%= fields_for "clas[]", clas do |clas_fields| %>
+     <tr>
+       <td><%= clas.classes_number %></td>
+       <td><%= clas_fields.datetime_local_field :start %> </td>
+       <td><%= clas_fields.datetime_local_field :end %></td>
+     </tr>
+     <%end%>
+    <%end%>
+  </table>
+  <div class="actions">
+    <%= submit_tag %>
+  </div>
+<%end%>
 <%=render 'new_student' %>
 <table>
   <thead>

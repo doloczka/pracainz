@@ -48,6 +48,7 @@ class StudentsController < ApplicationController
         format.json { render json: @student.errors, status: :unprocessable_entity }
       end
       end
+      
       if logged_as_teacher?
         if @student.update(student_params)
           format.html { redirect_to :back, notice: 'Student was successfully updated.' }

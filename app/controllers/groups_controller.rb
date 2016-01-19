@@ -15,6 +15,7 @@ class GroupsController < ApplicationController
   def show
     @student = @group.students.build
     @students = Student.where(group_id: params[:id])
+    @classes = Classescalendar.where(group_id: params[:id])
   end
 
   # GET /groups/new
@@ -31,6 +32,12 @@ class GroupsController < ApplicationController
   def create
     teacher = Teacher.find(curent_user_id)
     @group = teacher.groups.create(group_params)
+    6.times do |class_nr|
+      meeting_date_start = Time.now + (7.days * class_nr)
+      meeting_date_end = meeting_date_start + 5400 # 1,5h w sekundach
+      meeting = Classescalendar.new(group_id: @group.id, classes_number: class_nr+=1,start: meeting_date_start, end: meeting_date_end)
+      meeting.save
+    end
     respond_to do |format|
       if @group.save
         format.html { redirect_to teacher_groups_path(session[:user_id]), notice: 'Group was successfully created.' }
