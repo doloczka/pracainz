@@ -1,16 +1,24 @@
 class MessagesController < ApplicationController
-  before_action :set_message, only: [:show, :edit, :update, :destroy]
+  before_action :set_message, only: [:edit, :update, :destroy]
 
   # GET /messages
   # GET /messages.json
   def index
-    @messages = Message.all
+    if logged_as_student?
+      @messages = Message.all
+    end
+    if logged_as_teacher?
+      
+    end
   end
 
   # GET /messages/1
   # GET /messages/1.json
   def show
-  end
+    if logged_as_teacher?
+      @message = Message.new
+      @messages = Message.where(teacher_id: session[:user_id], direction: true)  
+    
 
   # GET /messages/new
   def new

@@ -56,10 +56,10 @@ ActiveRecord::Schema.define(version: 20160118180757) do
     t.text     "content"
     t.boolean  "read"
     t.boolean  "direction"
-    t.integer  "student_id_id"
-    t.integer  "teacher_id_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "student_id"
+    t.integer  "teacher_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "progres", force: :cascade do |t|

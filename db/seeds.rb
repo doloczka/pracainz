@@ -32,7 +32,22 @@ end
                       recipient_answer: "odpowiedz wyzywanego"
                       )
 end
+<<<<<<< HEAD
 
 Group.create!(teacher_id: 1,
             name: "grupa testowa"    
             )
+=======
+Message.create!(subject: "temat",
+                content: "tresc",
+                read: false,
+                direction: 0,
+                student_id: 1,
+                teacher_id: 1 )
+Message.create!(subject: "temat",
+                content: "tresc",
+                read: false,
+                direction: 1,
+                student_id: 1,
+                teacher_id: 1 )
+>>>>>>> bea62accb3991d5c374ce1b369a5b71cf43011a9

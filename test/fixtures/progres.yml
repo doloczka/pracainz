@@ -4,12 +4,16 @@ one:
   student_id: 
   points: 1
   hp: 1
-  exp: 1
+  expe: 1
   lvl: 1
+  won_challenges: 1
+  lost_challenges: 1
 
 two:
   student_id: 
   points: 1
   hp: 1
-  exp: 1
+  expe: 1
   lvl: 1
+  won_challenges: 1
+  lost_challenges: 1
