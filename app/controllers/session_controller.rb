@@ -19,7 +19,7 @@ class SessionController < ApplicationController
         teacher = Teacher.find_by(login: params[:session][:login])
         if student && student.authenticate(params[:session][:password])
             log_in(student)
-            if student.authenticated
+            if student.autenticated
                 redirect_to student_path(student.id)
             else
                 redirect_to edit_student_path(student.id)
