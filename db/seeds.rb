@@ -32,3 +32,7 @@ end
                       recipient_answer: "odpowiedz wyzywanego"
                       )
 end
+
+Group.create!(teacher_id: 1,
+            name: "grupa testowa"    
+            )

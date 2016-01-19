@@ -52,10 +52,10 @@ class StudentsController < ApplicationController
       end
       if logged_as_teacher?
         if @student.update(student_params)
-        format.html { redirect_to :back, notice: 'Student was successfully updated.' }
-      else
-        format.html { render :edit }
-      end
+          format.html { redirect_to :back, notice: 'Student was successfully updated.' }
+        else
+          format.html { render :edit }
+        end
       end
     end
   end

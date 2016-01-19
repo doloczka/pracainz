@@ -8,7 +8,7 @@ module SessionHelper
         session.delete(:login)
     end
     def logged_as_student?
-        Student.find_by(login: session[:login])
+        Student.find_by(login: session[:user_id])
     end
     def logged_as_teacher?
         Teacher.find_by(login: session[:login])
