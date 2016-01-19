@@ -22,8 +22,8 @@ class StudentsController < ApplicationController
   def create
     group = Group.find(params[:group_id])
     @student = group.students.create(new_student_params)
-    @student.login = params[:student][:albumnumber]
-    @student.password_digest = BCrypt::Password.create(params[:student][:albumnumber])
+    @student.login = params[:student][:album_number]
+    @student.password_digest = BCrypt::Password.create(params[:student][:album_number])
       if @student.save
         progrs = Progre.new(student_id: @student.id, points: 0, hp: 100, expe: 0, lvl: 1)
         progrs.save
@@ -40,7 +40,7 @@ class StudentsController < ApplicationController
     respond_to do |format|
       if logged_as_student?
         @student.autenticated = true
-        @student.password_digest = BCrypt::Password.create(params[:student][:albumnumber])
+        @student.password_digest = BCrypt::Password.create(params[:student][:album_number])
         
       if @student.update(student_params)
         format.html { redirect_to @student, notice: 'Student was successfully updated.' }

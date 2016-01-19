@@ -4,8 +4,8 @@ module SessionHelper
         session[:user_id] = user.id
     end
     def log_out
-        session.delete(:user_id)
         session.delete(:login)
+        session.delete(:user_id)
     end
     def logged_as_student?
         Student.find_by(login: session[:login])
