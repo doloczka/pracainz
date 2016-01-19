@@ -1,11 +1,10 @@
 class SessionController < ApplicationController
-    include SessionHelper
     
     def index
-        if logged_as_teacher?
+        if logged_as_student?
+            redirect_to student_path(session[:user_id])
+        elsif logged_as_teacher? 
             redirect_to teacher_path(session[:user_id])
-        elsif logged_as_student?
-             redirect_to student_path(session[:user_id])
         else
             redirect_to login_path
         end
@@ -19,7 +18,7 @@ class SessionController < ApplicationController
         teacher = Teacher.find_by(login: params[:session][:login])
         if student && student.authenticate(params[:session][:password])
             log_in(student)
-            if student.authenticated
+            if student.autenticated
                 redirect_to student_path(student.id)
             else
                 redirect_to edit_student_path(student.id)

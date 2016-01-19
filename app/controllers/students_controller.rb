@@ -39,7 +39,7 @@ class StudentsController < ApplicationController
   def update
     respond_to do |format|
       if logged_as_student?
-        @student.authenticated = true
+        @student.autenticated = true
         @student.password_digest = BCrypt::Password.create(params[:student][:albumnumber])
         
       if @student.update(student_params)
@@ -81,6 +81,6 @@ class StudentsController < ApplicationController
       params.require(:student).permit(:login, :email, :name, :lastname)
     end
     def new_student_params
-      params.require(:student).permit(:albumnumber)
+      params.require(:student).permit(:album_number)
     end
 end
