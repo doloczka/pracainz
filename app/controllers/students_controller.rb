@@ -40,8 +40,6 @@ class StudentsController < ApplicationController
     respond_to do |format|
       if logged_as_student?
         @student.autenticated = true
-        @student.password_digest = BCrypt::Password.create(params[:student][:album_number])
-        
       if @student.update(student_params)
         format.html { redirect_to @student, notice: 'Student was successfully updated.' }
         format.json { render :show, status: :ok, location: @student }
@@ -78,7 +76,7 @@ class StudentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      params.require(:student).permit(:login, :email, :name, :lastname)
+      params.require(:student).permit(:login, :password, :email, :name, :lastname)
     end
     def new_student_params
       params.require(:student).permit(:album_number)
