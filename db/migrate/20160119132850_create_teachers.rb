@@ -2,8 +2,7 @@ class CreateTeachers < ActiveRecord::Migration
   def change
     create_table :teachers do |t|
       t.string :login
-      t.string :password_diggest
-      t.string :
+      t.string :password_digest
       t.string :name
       t.string :lastname
       t.string :email

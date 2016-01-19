@@ -11,22 +11,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160118180757) do
+ActiveRecord::Schema.define(version: 20160119133006) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "teacher_id"
     t.integer  "student_id"
-    t.text     "exercise"
-    t.text     "content"
+    t.integer  "exercise_id"
+    t.text     "solution"
+    t.integer  "reward"
     t.boolean  "read"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
+  add_index "answers", ["exercise_id"], name: "index_answers_on_exercise_id"
   add_index "answers", ["student_id"], name: "index_answers_on_student_id"
   add_index "answers", ["teacher_id"], name: "index_answers_on_teacher_id"
 
+  create_table "classescalendars", force: :cascade do |t|
+    t.integer  "group_id"
+    t.integer  "classes_number"
+    t.datetime "start"
+    t.datetime "end"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "classescalendars", ["group_id"], name: "index_classescalendars_on_group_id"
+
+  create_table "drawnexercises", force: :cascade do |t|
+    t.integer  "student_id"
+    t.integer  "level"
+    t.integer  "number"
+    t.integer  "exercise_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "drawnexercises", ["exercise_id"], name: "index_drawnexercises_on_exercise_id"
+  add_index "drawnexercises", ["student_id"], name: "index_drawnexercises_on_student_id"
+
   create_table "exercises", force: :cascade do |t|
+    t.integer  "teacher_id"
     t.integer  "level"
     t.integer  "number"
     t.integer  "reward"
@@ -36,20 +62,25 @@ ActiveRecord::Schema.define(version: 20160118180757) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "exercises", ["teacher_id"], name: "index_exercises_on_teacher_id"
+
   create_table "groups", force: :cascade do |t|
-    t.string   "name"
-    t.date     "zajecia1"
-    t.date     "zajecia2"
-    t.date     "zajecia3"
-    t.date     "zajecia4"
-    t.date     "zajecia5"
-    t.date     "zajecia6"
     t.integer  "teacher_id"
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_index "groups", ["teacher_id"], name: "index_groups_on_teacher_id"
+
+  create_table "medals", force: :cascade do |t|
+    t.integer  "student_id"
+    t.integer  "medal_number"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "medals", ["student_id"], name: "index_medals_on_student_id"
 
   create_table "messages", force: :cascade do |t|
     t.string   "subject"
@@ -62,17 +93,41 @@ ActiveRecord::Schema.define(version: 20160118180757) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "presences", force: :cascade do |t|
+    t.integer  "student_id"
+    t.integer  "classes_number"
+    t.boolean  "present"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "presences", ["student_id"], name: "index_presences_on_student_id"
+
   create_table "progres", force: :cascade do |t|
     t.integer  "student_id"
     t.integer  "points"
     t.integer  "hp"
     t.integer  "expe"
     t.integer  "lvl"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "won_challenges"
+    t.integer  "lost_challenges"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_index "progres", ["student_id"], name: "index_progres_on_student_id"
+
+  create_table "results", force: :cascade do |t|
+    t.integer  "student_id"
+    t.integer  "level"
+    t.integer  "exercise_id"
+    t.integer  "earned_points"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "results", ["exercise_id"], name: "index_results_on_exercise_id"
+  add_index "results", ["student_id"], name: "index_results_on_student_id"
 
   create_table "sidequests", force: :cascade do |t|
     t.integer  "teacher_id"
@@ -82,6 +137,7 @@ ActiveRecord::Schema.define(version: 20160118180757) do
     t.text     "challenger_answer"
     t.integer  "recipient_id"
     t.text     "recipient_answer"
+    t.integer  "status"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end
@@ -94,21 +150,21 @@ ActiveRecord::Schema.define(version: 20160118180757) do
     t.string   "email"
     t.string   "name"
     t.string   "lastname"
-    t.integer  "albumnumber"
-    t.boolean  "authenticated"
+    t.string   "album_number"
     t.integer  "group_id"
-    t.integer  "presence"
+    t.string   "autenticated"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
   add_index "students", ["group_id"], name: "index_students_on_group_id"
+  add_index "students", ["login"], name: "index_students_on_login", unique: true
 
   create_table "teachers", force: :cascade do |t|
-    t.string   "name"
-    t.string   "lastname"
     t.string   "login"
     t.string   "password_digest"
+    t.string   "name"
+    t.string   "lastname"
     t.string   "email"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false

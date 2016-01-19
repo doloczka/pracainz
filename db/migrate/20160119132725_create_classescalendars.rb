@@ -4,7 +4,7 @@ class CreateClassescalendars < ActiveRecord::Migration
       t.references :group, index: true, foreign_key: true
       t.integer :classes_number
       t.datetime :start
-      t.tatetime :end
+      t.datetime :end
 
       t.timestamps null: false
     end

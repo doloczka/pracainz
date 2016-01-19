@@ -8,7 +8,7 @@ Student.create!(login: "st",
                 email: "st@exam.com", 
                 name: "St1Im", 
                 lastname: "StNAz", 
-                albumnumber: "111", 
+                album_number: "111", 
                 group_id: "1"
                 )
 
@@ -32,12 +32,10 @@ end
                       recipient_answer: "odpowiedz wyzywanego"
                       )
 end
-<<<<<<< HEAD
 
 Group.create!(teacher_id: 1,
             name: "grupa testowa"    
             )
-=======
 Message.create!(subject: "temat",
                 content: "tresc",
                 read: false,
@@ -50,4 +48,3 @@ Message.create!(subject: "temat",
                 direction: 1,
                 student_id: 1,
                 teacher_id: 1 )
->>>>>>> bea62accb3991d5c374ce1b369a5b71cf43011a9

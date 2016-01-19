@@ -3,7 +3,7 @@ class CreatePresences < ActiveRecord::Migration
     create_table :presences do |t|
       t.references :student, index: true, foreign_key: true
       t.integer :classes_number
-      t.bool :present
+      t.boolean :present
 
       t.timestamps null: false
     end
