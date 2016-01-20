@@ -18,7 +18,8 @@ class MessagesController < ApplicationController
     if logged_as_teacher?
       @message = Message.new
       @messages = Message.where(teacher_id: session[:user_id], direction: true)  
-    
+    end
+  end
 
   # GET /messages/new
   def new
