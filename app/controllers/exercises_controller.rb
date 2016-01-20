@@ -4,12 +4,16 @@ class ExercisesController < ApplicationController
   # GET /exercises
   # GET /exercises.json
   def index
-    @exercises = Exercise.all
+    @exercises = Exercise.where(teacher_id: session[:user_id])
   end
 
   # GET /exercises/1
   # GET /exercises/1.json
   def show
+    
+  end
+  def show_exe
+    @exercises = Exercise.where(teacher_id: session[:user_id],level: params[:lvl], number: params[:number])
   end
 
   # GET /exercises/new

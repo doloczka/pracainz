@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     end
     resources :exercises
   end
-  
+  get 'show_exe' => 'exercises#show_exe'
   get 'login' => 'session#new'
   post 'login' => 'session#create'
   delete 'logout' => 'session#destroy'

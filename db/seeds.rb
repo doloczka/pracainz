@@ -12,15 +12,16 @@ Student.create!(login: "st",
                 group_id: "1"
                 )
 
-6.times do |lvl=0|
-    5.times do |nr=0|
-Exercise.create!(level: lvl += 1,
-                 number: nr+=1,
+6.times do |lvl=1|
+    5.times do |nr=1|
+                Exercise.create!(teacher_id: 1,
+                 level: lvl,
+                 number: nr,
                  reward: 10,
                  content: "Treść Zajęcia #{lvl}, ćwiczenie nr: #{nr}.",
                  hint: "Hint Zajęcia #{lvl}, ćwiczenie nr: #{nr}."
                  )
-end
+    end
 end
 5.times do |n| 
     Sidequest.create!(teacher_id: 1,
