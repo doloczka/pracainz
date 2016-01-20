@@ -1,4 +1,3 @@
 class Exercise < ActiveRecord::Base
-  belongs_to :lesson
-  has_one :teacher, :through => :lesson
+  belongs_to :teacher
 end

@@ -12,7 +12,8 @@ class ExercisesController < ApplicationController
   def show
     
   end
-  def show_exe
+  def show_exe #funkcja wyświetla wszystkie warianty danego zadania + formular_tworzenia zadania
+    @exercise = Exercise.new
     @exercises = Exercise.where(teacher_id: session[:user_id],level: params[:lvl], number: params[:number])
   end
 
@@ -28,11 +29,11 @@ class ExercisesController < ApplicationController
   # POST /exercises
   # POST /exercises.json
   def create
-    @exercise = Exercise.new(exercise_params)
-
+    teacher = Teacher.find(session[:user_id])
+    @exercise = teacher.exercises.create(exercise_params)
     respond_to do |format|
       if @exercise.save
-        format.html { redirect_to @exercise, notice: 'Exercise was successfully created.' }
+        format.html { redirect_to :back, notice: 'Exercise was successfully created.' }
         format.json { render :show, status: :created, location: @exercise }
       else
         format.html { render :new }
@@ -46,7 +47,7 @@ class ExercisesController < ApplicationController
   def update
     respond_to do |format|
       if @exercise.update(exercise_params)
-        format.html { redirect_to @exercise, notice: 'Exercise was successfully updated.' }
+        format.html { redirect_to :back, notice: 'Exercise was successfully updated.' }
         format.json { render :show, status: :ok, location: @exercise }
       else
         format.html { render :edit }
@@ -60,7 +61,7 @@ class ExercisesController < ApplicationController
   def destroy
     @exercise.destroy
     respond_to do |format|
-      format.html { redirect_to exercises_url, notice: 'Exercise was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Exercise was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -73,6 +74,6 @@ class ExercisesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def exercise_params
-      params.require(:exercise).permit(:lesson_id, :number, :reward, :story, :content, :hint)
+      params.require(:exercise).permit(:level, :number, :reward, :content, :hint)
     end
 end

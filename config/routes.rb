@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :groups, shallow: true do
       resources :students
     end
-    resources :exercises
+    resources :exercises, shallow: true
   end
   get 'show_exe' => 'exercises#show_exe'
   get 'login' => 'session#new'
