@@ -2,49 +2,52 @@
 
 <br></br>
 <br>Zadanie 1</br>
-<% zadanie=Exercises.find_by(id: Drawnexercise.find_by(student_id: session[:user_id], level: "1", number: "1").exercise_id)%>
-<br><%= zadanie.tresc %></br>
-<%= form_for :zad, url: {action: "rozwiazanie"} do |f| %>
-  <%= f.hidden_field "level_zadania", :value => 1 %>
-  <%= f.hidden_field "nr_zadania", :value => 1 %>
-   <%= f.hidden_field "punkty", :value => zadanie.pkt_za_zadanie %>
+<% zadanie=Exercise.find_by(id: Drawnexercise.find_by(student_id: session[:user_id], level: "1", number: "1").exercise_id)%></br>
+<br><%= zadanie.content %></br>
+<%= form_for :zad, url: {action: "solution"} do |f| %>
+  <%= f.hidden_field "level", :value => 1 %>
+  <%= f.hidden_field "number", :value => 1 %>
+   <%= f.hidden_field "punkty", :value => zadanie.reward %>
   <%= f.text_area :odp, size: "60x5" %><br>
   <%= f.submit "Wyślij" %></br>
 <% end %>
+<br></br>
 
-<br></br>
 <br>Zadanie 2</br>
-<br><%=Exercises.find_by(id: Drawnexercise.find_by(student_id: session[:user_id], level: "1", number: "2").exercise_id).tresc%></br>
-<%= form_for :zad, url: {action: "rozwiazanie"} do |f| %>
- <%= f.hidden_field "level_zadania", :value => 1 %>
-  <%= f.hidden_field "nr_zadania", :value => 2 %>
+<br><%=Exercise.find_by(id: Drawnexercise.find_by(student_id: session[:user_id], level: "1", number: "2").exercise_id).content%></br>
+<%= form_for :zad, url: {action: "solution"} do |f| %>
+ <%= f.hidden_field "level", :value => 1 %>
+  <%= f.hidden_field "number", :value => 2 %>
   <%= f.text_area :odp, size: "60x5" %><br>
   <%= f.submit "Wyślij" %></br>
 <% end %>
 <br></br>
+
 <br>Zadanie 3</br>
-<br><%=Exercises.find_by(id: Drawnexercise.find_by(student_id: session[:user_id], level: "1", number: "3").exercise_id).tresc%></br>
-<%= form_for :zad, url: {action: "rozwiazanie"} do |f| %>
- <%= f.hidden_field "level_zadania", :value => 1 %>
-  <%= f.hidden_field "nr_zadania", :value => 3 %>
+<br><%=Exercise.find_by(id: Drawnexercise.find_by(student_id: session[:user_id], level: "1", number: "3").exercise_id).content%></br>
+<%= form_for :zad, url: {action: "solution"} do |f| %>
+ <%= f.hidden_field "level", :value => 1 %>
+  <%= f.hidden_field "number", :value => 3 %>
   <%= f.text_area :odp, size: "60x5" %><br>
   <%= f.submit "Wyślij" %></br>
 <% end %>
 <br></br>
+
 <br>Zadanie 4</br>
-<br><%=Exercises.find_by(id: Drawnexercise.find_by(student_id: session[:user_id], level: "1", number: "4").exercise_id).tresc%></br>
-<%= form_for :zad, url: {action: "rozwiazanie"} do |f| %>
- <%= f.hidden_field "level_zadania", :value => 1 %>
-  <%= f.hidden_field "nr_zadania", :value => 4 %>
+<br><%=Exercise.find_by(id: Drawnexercise.find_by(student_id: session[:user_id], level: "1", number: "4").exercise_id).content%></br>
+<%= form_for :zad, url: {action: "solution"} do |f| %>
+ <%= f.hidden_field "level", :value => 1 %>
+  <%= f.hidden_field "number", :value => 4 %>
   <%= f.text_area :odp, size: "60x5" %><br>
   <%= f.submit "Wyślij" %></br>
 <% end %>
 <br></br>
+
 <br>Zadanie 5</br>
-<br><%=Exercises.find_by(id: Drawnexercise.find_by(student_id: session[:user_id], level: "1", number: "5").exercise_id).tresc%></br>
-<%= form_for :zad, url: {action: "rozwiazanie"} do |f| %>
- <%= f.hidden_field "level_zadania", :value => 1 %>
-  <%= f.hidden_field "nr_zadania", :value => 5 %>
+<br><%=Exercise.find_by(id: Drawnexercise.find_by(student_id: session[:user_id], level: "1", number: "5").exercise_id).content%></br>
+<%= form_for :zad, url: {action: "solution"} do |f| %>
+ <%= f.hidden_field "level", :value => 1 %>
+  <%= f.hidden_field "number", :value => 5 %>
   <%= f.text_area :odp, size: "60x5" %><br>
   <%= f.submit "Wyślij" %></br>
 <% end %>

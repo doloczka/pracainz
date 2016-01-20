@@ -1,5 +1,9 @@
-<h1>New Message</h1>
+<h1>New Wiadomosci</h1>
+<% if logged_as_student? %>
+    <%= render 'form' %>
+<%end %>
+<% if logged_as_teacher? %>
+    <%= render 'form1' %>
+<%end %>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', messages_path %>
+<%= link_to 'Back', message_path(session[:user_id]) %>
