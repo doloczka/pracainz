@@ -1,48 +1,58 @@
 <% if logged_as_student?%>
-<p>
-  <strong>Email:</strong>
-  <%= @student.email %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @student.name %>
-</p>
-
-<p>
-  <strong>Lastname:</strong>
-  <%= @student.lastname %>
-</p>
-
-<p>
-  <strong>album_number:</strong>
-  <%= @student.album_number %>
-</p>
-
-
+    <%= render 'panel' %>
 <% end %>
-<% if logged_as_teacher?%>
-<%= link_to :back%>
-<%= link_to 'Edit', edit_student_path(@student) %> |
-<p>
-  <strong>Email:</strong>
-  <%= @student.email %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @student.name %>
-</p>
-
-<p>
-  <strong>Lastname:</strong>
-  <%= @student.lastname %>
-</p>
-
-<p>
-  <strong>album_number:</strong>
-  <%= @student.album_number %>
-</p>
 
 
-<% end %>
+<%= link_to "zajecia1", l/student/lesson1(session[:user_id])  %>  <br></br>
+
+<%time = Time.new.in_time_zone("Warsaw").strftime("%Y-%m-%d %H:%M:%S") %>
+<%if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id , classes_number: 1).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 1).end.to_time.to_i %>
+    <%= link_to "zajecia1", student_lesson1_path(session[:user_id]) %>  <br></br>
+<%else%>
+    <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:1).end.to_time.to_i%>
+        zajecia1!! dostepne od <%=Classescalendar.find_by(group_id: @student.group_id, classes_number: 1).start.strftime("%Y-%m-%d %H:%M:%S")%><br></br>
+    <%else%>
+        zajecia1!! Etap zakończony!!<br></br>
+    <%end%>
+<%end%>
+
+<%if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 2).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 2).end.to_time.to_i %>
+    <%= link_to "zajecia2", student_lesson2_path(session[:user_id]) %>  <br></br>
+<%else%>
+    <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:2).end.to_time.to_i%>
+        zajecia2!! dostepne od <%=Classescalendar.find_by(group_id: @student.group_id, classes_number: 2).start.strftime("%Y-%m-%d %H:%M:%S")%><br></br>
+    <%else%>
+        zajecia2!! Etap zakończony!!<br></br>
+    <%end%>
+<%end%>
+
+<%if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 3).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 3).end.to_time.to_i %>
+    <%= link_to "zajecia3", student_lesson3_path(session[:user_id]) %>  <br></br>
+<%else%>
+    <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:3).end.to_time.to_i%>    
+        zajecia3!! dostepne od <%=Classescalendar.find_by(group_id: @student.group_id, classes_number: 3).start.strftime("%Y-%m-%d %H:%M:%S")%><br></br>
+    <%else%>
+        zajecia3!! Etap zakończony!!<br></br>
+    <%end%>    
+<%end%>
+<%if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 4).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 4).end.to_time.to_i %>
+    <%= link_to "zajecia4", student_lesson4_path(session[:user_id]) %>  <br></br>
+<%else%>
+    <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:4).end.to_time.to_i%>
+        zajecia4!! dostepne od <%=Classescalendar.find_by(group_id: @student.group_id, classes_number: 4).start.strftime("%Y-%m-%d %H:%M:%S")%><br></br>
+    <%else%>
+        zajecia4!! Etap zakończony!!<br></br>
+    <%end%>
+<%end%>
+
+<%if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 5).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 5).end.to_time.to_i %>
+    <%= link_to "zajecia5", student_lesson5_path(session[:user_id]) %> <br></br>
+<%else%>
+    <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:5).start.to_time.to_i%>    
+        zajecia5!! dostepne od <%=Classescalendar.find_by(group_id: @student.group_id, classes_number: 5).start.strftime("%Y-%m-%d %H:%M:%S")%><br></br>
+        
+    <%else%>
+        zajecia5!! Etap zakończony!!<br></br>
+    <%end%>
+<%end%>
+<br></br><br></br>

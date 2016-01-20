@@ -4,6 +4,7 @@ class CreateMessages < ActiveRecord::Migration
       t.string :subject
       t.text :content
       t.boolean :read
+      t.integer :direction
       t.boolean :direction
       t.references :student 
       t.references :teacher
