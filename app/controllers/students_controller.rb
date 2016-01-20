@@ -9,8 +9,102 @@ class StudentsController < ApplicationController
  
   # GET /students/1
   # GET /students/1.json
-  def show
-  end
+    def challenge
+        student=Student.find(session[:user_id])
+        @idgru=Student.where(group_id: student.group_id)
+    end
+    
+    def chosechallenge
+        poziom=Progre.find_by(student_id: session[:user_id])
+        @zadania=Exercise.where(level: poziom.lvl)   
+        @wyzwany=Student.find(params[:idst])
+    end
+    
+    def challengeconfirm2
+      wyzwanie=Sidequest.find(params[:zad][:wyzwanie])
+      wyzwanie.update_attributes(:recipient_id => params[:zad][:odp] , :status=>"1")
+      if wyzwanie.save
+        redirect_to   student_challengeinbox_path
+      end
+    end
+    
+    def challengeconfirm
+        student=Student.find(session[:user_id])
+        grupa=Group.find_by(student.group_id)
+        zadanie=Exercise.find(params[:zad][:zadanie])
+        data={
+            "teacher_id" => grupa.teacher_id ,
+            "level" => zadanie.level ,
+            "content" => zadanie.content ,
+            "challenger_id" => session[:user_id],
+            "challenger_answer" => params[:zad][:odp],
+            "recipient_id" => params[:zad][:wyzwany],
+            "recipient_answer" => "",
+            "status" => "0"  #status odpowiada stanom: 0 jak zadanie rozwiazane przez challengera
+            #1 jak recipient dodaje swoja odpowiedz i 2 kiedy zostaje sprawdzona
+        }
+        Sidequest.new(data).save
+        redirect_to  student
+    end
+    
+    def challengeinbox
+        @wyzwania=Sidequest.where(recipient_id: session[:user_id])
+    end
+    
+    def show
+        @student = Student.find_by(login: session[:login])
+        @progr=Progre.find_by(student_id: session[:user_id])
+
+        @zad=Drawnexercise.find_by(student_id: session[:user_id])
+        if @zad.nil?
+         @gr=Group.find_by(id: @student.group_id)
+         for j in 1..5 do
+          for i in 1..5 do
+            #zadania na dzien1
+            
+            wszystkiezadania=Exercise.where(teacher_id: @gr.teacher_id, level: j , number: i).count
+            los11= session[:user_id] % wszystkiezadania
+            if los11==0
+                los11=1
+            end
+            zad=Exercise.where(teacher_id: @gr.teacher_id, level: j , number: i).first(los11).last
+            data={
+                "student_id"=>session[:user_id],
+                "level"=>j,
+                "number"=>i,
+                "exercise_id"=>zad.id
+            }
+            @zad=Drawnexercise.new(data)
+            @zad.save
+          end
+         end
+        end
+       gr= Student.find(session[:user_id])
+       progresy=Progre.order(points: :desc)
+        i=1
+        k=0
+       progresy.each do |pr|
+       k=k+1
+            if pr.student_id==session[:user_id]
+                @ran=i
+                @j=k
+            end
+            gru=Student.find(pr.student_id)
+            if gru.group_id==gr.group_id
+                i=i+1
+            end
+       end
+    end
+    def solution
+       
+        @zad=Answer.find_by(student_id: session[:user_id])
+        idzadania=Drawnexercise.find_by(student_id: session[:user_id], level: params[:zad][:level], number: params[:zad][:number])
+        tre=Exercise.find_by(id: idzadania.exercise_id)
+        @zad.update_attributes(:solution => params[:zad][:odp], :exercise_id =>  tre.id, :reward => params[:zad][:punkty])
+        if @zad.save
+           redirect_to :back
+        end
+    end
 
 
   # GET /students/1/edit
@@ -75,7 +169,7 @@ class StudentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_student
-      @student = Student.find(1)
+     @student = Student.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

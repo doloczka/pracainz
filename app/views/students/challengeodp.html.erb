@@ -1,0 +1,8 @@
+<%= render "panel" %>
+<br><%=Exercise.find_by(id: params[:zada]).content%></br>
+<%= form_for :zad, url: {action: "challengeconfirm"} do |f| %>
+  <%= f.hidden_field "zadanie", :value => params[:zada] %>
+  <%= f.hidden_field "wyzwany", :value => params[:idst] %>
+  <%= f.text_area :odp, size: "60x5" %><br>
+  <%= f.submit "Wyślij" %></br>
+<% end %> 

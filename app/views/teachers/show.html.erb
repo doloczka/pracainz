@@ -10,4 +10,5 @@
 <%= link_to 'Grupy', teacher_groups_path(session[:user_id]) %>
 <%= link_to 'Ćwiczenia', teacher_exercises_path(session[:user_id]) %>
 <%= link_to 'Edit', edit_teacher_path(@teacher) %> |
-<%= link_to 'Back', teachers_path %>
+<%= link_to 'Back', teachers_path %> |
+<%= link_to 'Wiadomosci', messages_path(session[:user_id]) %><%= Message.where(student_id: session[:user_id], direction: "1").count%>

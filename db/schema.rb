@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20160119133006) do
     t.string   "subject"
     t.text     "content"
     t.boolean  "read"
-    t.boolean  "direction"
+    t.integer  "direction"
     t.integer  "student_id"
     t.integer  "teacher_id"
     t.datetime "created_at", null: false

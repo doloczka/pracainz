@@ -1,9 +1,9 @@
-<%= render "students/panel" %>
+<%#= render "student/panel" %>
 
 <%= form_for(@message) do |f| %>
   <% if @message.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@message.errors.count, "error") %> prohibited this wiadomosci from being saved:</h2>
+      <h2><%= pluralize(@message.errors.count, "error") %> prohibited this @message from being saved:</h2>
 
       <ul>
       <% @message.errors.full_messages.each do |message| %>
@@ -12,6 +12,7 @@
       </ul>
     </div>
   <% end %>
+  <%= f.hidden_field "id", :value => params[:iid] %>
   <%= f.label "temat" %><br>
   <%= f.text_field "subject" %><br>
   <%= f.label "tresc" %><br>

@@ -1,0 +1,7 @@
+<%= render "panel" %>
+<br><%=Sidequest.find(params[:idwyzwania]).content%></br>
+<%= form_for :zad, url: {action: "challengeconfirm2"} do |f| %>
+  <%= f.hidden_field "wyzwanie", :value => params[:idwyzwania] %>
+  <%= f.text_area :odp, size: "60x5" %><br>
+  <%= f.submit "Wyślij" %></br>
+<% end %> 
