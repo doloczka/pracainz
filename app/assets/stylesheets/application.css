@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+@font-face { 
+    font-family: Viking; 
+    src: url('VIKING-PL.otf');
+    src: url('VIKING-PL.ttf');
+}
