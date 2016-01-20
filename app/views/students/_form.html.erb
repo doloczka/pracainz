@@ -1,37 +1,45 @@
-<%= form_for(@student) do |f| %>
-  <% if @student.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
-
-      <ul>
-      <% @student.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :login %><br>
-    <%= f.text_field :login %>
+<div class="bg_login">
+  <%= link_to "Log out", logout_path, method: "delete"%>
+    <div class="login_axe">
+        <div class="form_login_first">
+          <%= form_for(@student) do |f| %>
+            <% if @student.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
+          
+                <ul>
+                <% @student.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+          
+            <div class="field">
+              <%= f.label :login, :class =>"label_font"%>
+              <%=f.text_field :login, :class =>"input_login"%>
+            </div>
+            <div class="field">
+              <%=f.label :hasło, :class =>"label_font"%>
+              <%=f.password_field :password, :class =>"input_password"%>
+            </div>
+            <div class="field">
+              <%= f.label :email, :class =>"label_font"%><br>
+              <%= f.text_field :email, :class =>"input_email" %>
+            </div>
+            <div class="field">
+              <%= f.label :name, :class =>"label_font"%><br>
+              <%= f.text_field :name, :class =>"input_name" %>
+            </div>
+            <div class="field">
+              <%= f.label :lastname, :class =>"label_font"%><br>
+              <%= f.text_field :lastname, :class =>"input_lastname"%>
+            </div>
+            <div class="actions">
+              <%= f.submit "zmień", :class =>"button_update label_font"%>
+            </div>
+            
+          <% end %>
+      </div>
   </div>
-  <div class="field">
-    <%= f.label :password %><br>
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :lastname %><br>
-    <%= f.text_field :lastname %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
