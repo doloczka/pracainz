@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   get 'student/lesson4'# =>'student#za4'
   get 'student/lesson5'# =>'student#za5'
   get 'student/lesson6'
-  post 'student/rozwiazanie'# => 'student#rozwiazanie'
+  post 'studen/rozwiazanie'# => 'student#rozwiazanie'
   get 'student/challenge'# =>'student#challenge'
   get 'student/chosechallenge'# =>'student#chosechallenge'
   get 'student/challengeodp' #=>'student#challengeodp'
