@@ -3,7 +3,7 @@
 <% end %>
 
 
-<%= link_to "zajecia1", l/student/lesson1(session[:user_id])  %>  <br></br>
+<%= link_to "zajecia1", student_lesson1_path  %>  <br></br>
 
 <%time = Time.new.in_time_zone("Warsaw").strftime("%Y-%m-%d %H:%M:%S") %>
 <%if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id , classes_number: 1).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 1).end.to_time.to_i %>
