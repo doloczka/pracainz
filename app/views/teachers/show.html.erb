@@ -9,5 +9,6 @@
 </p>
 <%= link_to 'Grupy', teacher_groups_path(session[:user_id]) %>
 <%= link_to 'Ćwiczenia', teacher_exercises_path(session[:user_id]) %>
+<%= link_to 'Rozwiązania', answers_path %>
+<p>TODO: Wiadomości</p>
 <%= link_to 'Edit', edit_teacher_path(@teacher) %> |
-<%= link_to 'Back', teachers_path %>

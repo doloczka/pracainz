@@ -20,22 +20,7 @@ Rails.application.routes.draw do
   post 'login' => 'session#create'
   delete 'logout' => 'session#destroy'
   put 'classes_update' => 'classescalendar#update'
-  
-  
-  get 'student/lesson1'# => 'students#lesson1'
-  get 'student/lesson2'# =>'student#za2'
-  get 'student/lesson3'# =>'student#za3'
-  get 'student/lesson4'# =>'student#za4'
-  get 'student/lesson5'# =>'student#za5'
-  get 'student/lesson6'
-  post 'student/rozwiazanie'# => 'student#rozwiazanie'
-  get 'student/challenge'# =>'student#challenge'
-  get 'student/chosechallenge'# =>'student#chosechallenge'
-  get 'student/challengeodp' #=>'student#challengeodp'
-  get 'student/challengeodp2'# =>'student#challengeodp2'
-  get 'student/challengeinbox'# =>'student#challengeinbox'
-  post 'student/challengeconfirm'# =>'student#challengeconfirm'
-  post 'student/challengeconfirm2'# =>'student#challengeconfirm2'
+  post 'new_result' => 'result#create'
   
   
   

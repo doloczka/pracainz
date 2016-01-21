@@ -1,29 +1,30 @@
-<p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Teacher:</strong>
-  <%= @answer.teacher %>
+  <strong>Treść:</strong>
+  <%= @exercise.content %>
 </p>
 
 <p>
-  <strong>Student:</strong>
-  <%= @answer.student %>
+  <strong>Rozwiązanie:</strong>
+  <%= @answer.solution %>
 </p>
+<%= form_for @result, url: new_result_path, method: :post  do |f| %>
+  <% if @result.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@result.errors.count, "error") %> prohibited this answer from being saved:</h2>
+      <ul>
+      <% @result.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <%=fields_for @result_percent do |u|%>
+      <%= u.numeric_field :prec%>
+    <%end %>
+    <%= f.hidden_field :student_id, value: @exercise.student_id  %>
+    <%= f.hidden_field :level, value: @exercise.level  %>
+    <%= f.hidden_field :number, value: @exercise.number  %>
+    <%= f.submit "submit" %>
+<% end %>
 
-<p>
-  <strong>Exercise:</strong>
-  <%= @answer.exercise %>
-</p>
-
-<p>
-  <strong>Content:</strong>
-  <%= @answer.content %>
-</p>
-
-<p>
-  <strong>Read:</strong>
-  <%= @answer.read %>
-</p>
-
-<%= link_to 'Edit', edit_answer_path(@answer) %> |
-<%= link_to 'Back', answers_path %>
