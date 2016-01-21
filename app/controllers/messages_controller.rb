@@ -1,82 +1,113 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:edit, :update, :destroy]
 
-  # GET /messages
-  # GET /messages.json
+  # GET /wiadomoscis
+  # GET /wiadomoscis.json
   def index
     if logged_as_student?
-      @messages = Message.all
+        @messages = Message.where(student_id: session[:user_id], direction: "0")
     end
     if logged_as_teacher?
-      
+       @messages = Message.where(teacher_id: session[:user_id], direction: "1")
     end
   end
 
-  # GET /messages/1
-  # GET /messages/1.json
+  # GET /wiadomoscis/1
+  # GET /wiadomoscis/1.json
   def show
-    if logged_as_teacher?
-      @message = Message.new
-      @messages = Message.where(teacher_id: session[:user_id], direction: true)  
-    
+   
+  end
 
-  # GET /messages/new
+  # GET /wiadomoscis/new
   def new
     @message = Message.new
   end
 
-  # GET /messages/1/edit
+  # GET /wiadomoscis/1/edit
   def edit
   end
 
-  # POST /messages
-  # POST /messages.json
+  # POST /wiadomoscis
+  # POST /wiadomoscis.json
   def create
-    @message = Message.new(message_params)
-
-    respond_to do |format|
-      if @message.save
-        format.html { redirect_to @message, notice: 'Message was successfully created.' }
-        format.json { render :show, status: :created, location: @message }
-      else
-        format.html { render :new }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
-      end
-    end
+     if logged_as_student?
+        createstu
+     end
+     if logged_as_teacher?
+        createwy
+     end
   end
-
-  # PATCH/PUT /messages/1
-  # PATCH/PUT /messages/1.json
+  
+  
+  
+  
+  # PATCH/PUT /wiadomoscis/1
+  # PATCH/PUT /wiadomoscis/1.json
   def update
     respond_to do |format|
-      if @message.update(message_params)
-        format.html { redirect_to @message, notice: 'Message was successfully updated.' }
-        format.json { render :show, status: :ok, location: @message }
+      if@message.update(wiadomosci_params)
+        format.html { redirect_to@message, notice: 'Message was successfully updated.' }
+        format.json { render :show, status: :ok, location:@message }
       else
         format.html { render :edit }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
+        format.json { render json:@message.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /messages/1
-  # DELETE /messages/1.json
+  # DELETE /wiadomoscis/1
+  # DELETE /wiadomoscis/1.json
   def destroy
-    @message.destroy
+   @message.destroy
     respond_to do |format|
-      format.html { redirect_to messages_url, notice: 'Message was successfully destroyed.' }
+      format.html { redirect_to wiadomoscis_url, notice: 'Message was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
-
+  def createstu
+    student=Student.find_by(id: session[:user_id])
+    gr=Group.find_by(student.group_id)
+   @message = Message.new(message_params)
+   @message.student_id=session[:user_id]
+   @message.teacher_id=gr.teacher_id
+   @message.direction="1"
+    
+      respond_to do |format|
+        if @message.save
+          format.html { redirect_to@message, notice: 'Message was successfully created.' }
+          format.json { render :index, status: :created, location:@message }
+        else
+          format.html { render :new }
+          format.json { render json:@message.errors, status: :unprocessable_entity }
+        end
+      end
+  end
+    def createwy 
+     @message = Message.new(message_params)
+     @message.teacher_id=session[:user_id]
+     @message.student_id=params[:message][:id]
+     @message.direction="0"
+     
+        respond_to do |format|
+          if @message.save
+            format.html { redirect_to @message, notice: 'Message was successfully created.' }
+            format.json { render :index, status: :created, location: @message }
+          else
+            format.html { render :new }
+            format.json { render json: @message.errors, status: :unprocessable_entity }
+          end
+        end
+    end
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_message
-      @message = Message.find(params[:id])
+    def set_wiadomosci
+      @message = Message.find(session[:user_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:subject, :content, :read, :sender, :recipient)
+      params.require(:message).permit(:subject, :content)
     end
+    
+    
 end

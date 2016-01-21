@@ -39,7 +39,7 @@
         <td><%= link_to 'Show', student %></td>
         <td><%= link_to 'Edit', edit_student_path(student) %></td>
         <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to'wiadomosci', message_path(student.id) %></td>
+        <td><%= link_to 'napisz', new_message_path(:iid => student.id) %></td>
       </tr>
     <%end%>
   </tbody>

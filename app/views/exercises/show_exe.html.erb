@@ -1,0 +1,25 @@
+<%= render 'form' %>
+<h3>warianty ćwiczenia : <%= params[:number]%></h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Tresc</th>
+            <th>Podpowiedz</th>
+            <th>Nagroda</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @exercises.each do |exercise| %>
+        <tr>
+            <td><%=exercise.content%></td>
+            <td><%=exercise.hint%></td>
+            <td><%=exercise.reward%></td>
+            <td><%= link_to 'edit', edit_exercise_path(exercise) %></td>
+            <td><%= link_to 'destroy', exercise, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+        <%end%>
+    </tbody>
+</table>
+
+
