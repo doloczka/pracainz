@@ -59,14 +59,15 @@ Progre.create!( student_id: "1",
                 lvl: "1")
 Answer.create!(teacher_id: "1",
                     student_id: "1",
-                    read: "0")
+                    exercise_id: 1,
+                    solution: "odpowiedz",
+                    read: "0"
+                    )
 Classescalendar.create!(group_id: "1", classes_number: "1", start: "2016-01-19 06:00:00" , end: "2016-01-19 12:00:00" )
 Classescalendar.create!(group_id: "1", classes_number: "2", start: "2016-01-20 06:00:00" , end: "2016-01-20 12:00:00" )
 Classescalendar.create!(group_id: "1", classes_number: "3", start: "2016-01-21 06:00:00" , end: "2016-01-21 12:00:00" )
 Classescalendar.create!(group_id: "1", classes_number: "4", start: "2016-01-22 06:00:00" , end: "2016-01-22 12:00:00" )
 Classescalendar.create!(group_id: "1", classes_number: "5", start: "2016-01-23 06:00:00" , end: "2016-01-23 12:00:00" )
-<<<<<<< HEAD
-=======
 
 Exercise.create!(teacher_id: "1",
                     level: "1",
@@ -225,4 +226,4 @@ Exercise.create!(teacher_id: "1",
                     reward: "10",
                     content: "zadanie piate dzien pierwszy"
                     )
->>>>>>> kopiowanie
+

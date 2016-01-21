@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+ post 'new_result' => 'result#create'
   
   get 'login' => 'session#new'
   post 'login' => 'session#create'
@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   get 'student/challengeinbox' =>'students#challengeinbox'
   post 'student/challengeconfirm' =>'students#challengeconfirm'
   post 'student/challengeconfirm2' =>'students#challengeconfirm2'
+
   
   
   

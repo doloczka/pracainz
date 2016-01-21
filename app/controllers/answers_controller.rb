@@ -4,18 +4,20 @@ class AnswersController < ApplicationController
   # GET /answers
   # GET /answers.json
   def index
-    @answers = Answer.all
+    @answers = Answer.where(teacher_id: session[:user_id],read: false).order(:updated_at)
   end
 
   # GET /answers/1
   # GET /answers/1.json
   def show
+    @exercise = Exercise.find(@answer.exercise_id)
+    @result = Result.new
   end
 
   # GET /answers/new
-  def new
-    @answer = Answer.new
-  end
+  # def new
+  #   @result = Result.new
+  # end
 
   # GET /answers/1/edit
   def edit

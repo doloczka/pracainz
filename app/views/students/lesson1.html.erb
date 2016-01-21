@@ -2,12 +2,14 @@
 
 <br></br>
 <br>Zadanie 1</br>
+
 <% zadanie=Exercise.find_by(id: Drawnexercise.find_by(student_id: session[:user_id], level: "1", number: "1").exercise_id)%></br>
 <br><%= zadanie.content %></br>
 <%= form_for :zad, url: {action: "solution"} do |f| %>
   <%= f.hidden_field "level", :value => 1 %>
   <%= f.hidden_field "number", :value => 1 %>
    <%= f.hidden_field "punkty", :value => zadanie.reward %>
+   <%= f.hidden_field "teacher_id", :value => zadanie.teacher_id %>
   <%= f.text_area :odp, size: "60x5" %><br>
   <%= f.submit "Wyślij" %></br>
 <% end %>
