@@ -1,0 +1,19 @@
+<%= render "panel" %>
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+ <% i=0%>
+  <tbody>
+    <% @idgru.each do |stud| %>
+      <tr>
+        <td><%= i=1+i %></td>
+        <td><%= stud.name %></td>
+        <td><%= stud.lastname %></td>
+        <td><%= link_to "wybierz zadanie", student_chosechallenge_path(:idst => stud.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
