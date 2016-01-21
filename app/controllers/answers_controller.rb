@@ -11,12 +11,13 @@ class AnswersController < ApplicationController
   # GET /answers/1.json
   def show
     @exercise = Exercise.find(@answer.exercise_id)
+    @result = Result.new
   end
 
   # GET /answers/new
-  def new
-    @result = Result.new
-  end
+  # def new
+  #   @result = Result.new
+  # end
 
   # GET /answers/1/edit
   def edit

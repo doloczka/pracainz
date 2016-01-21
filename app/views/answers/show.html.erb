@@ -8,10 +8,10 @@
   <strong>Rozwiązanie:</strong>
   <%= @answer.solution %>
 </p>
-<%= form_for @result, url: new_result_path, method: :post  do |f| %>
+<%= form_for @result, url: new_result_path do |f| %>
   <% if @result.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@result.errors.count, "error") %> prohibited this answer from being saved:</h2>
+      <h2><%= pluralize(@result.errors.count, "error") %> prohibited this result from being saved:</h2>
       <ul>
       <% @result.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -19,12 +19,12 @@
       </ul>
     </div>
   <% end %>
-    <%=fields_for @result_percent do |u|%>
-      <%= u.numeric_field :prec%>
-    <%end %>
-    <%= f.hidden_field :student_id, value: @exercise.student_id  %>
-    <%= f.hidden_field :level, value: @exercise.level  %>
-    <%= f.hidden_field :number, value: @exercise.number  %>
-    <%= f.submit "submit" %>
+  <%= f.label :earned_points%>
+<%= f.number_field :earned_points %>
+<%= f.hidden_field :student_id, :value => @answer.student_id %>
+<%= f.hidden_field :level, :value => @exercise.level %>
+<%= f.hidden_field :exercise_id, :value => @exercise.id %>
+    <div class="actions">
+    <%= f.submit %>
+  </div
 <% end %>
-
