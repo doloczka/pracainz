@@ -4,7 +4,7 @@ class AnswersController < ApplicationController
   # GET /answers
   # GET /answers.json
   def index
-    @answers = Answer.where(teacher_id: session[:user_id],read: false).order(:updated_at)
+    @answers = Answer.where(teacher_id: session[:user_id],read: false,).where.not(solution: nil).order(:updated_at)
   end
 
   # GET /answers/1

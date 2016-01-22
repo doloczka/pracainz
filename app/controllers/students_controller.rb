@@ -76,6 +76,16 @@ class StudentsController < ApplicationController
             }
             @zad=Drawnexercise.new(data)
             @zad.save
+            answer_data = {
+              "teacher_id" => @gr.teacher_id,
+              "student_id" => session[:user_id],
+              "exercise_id" => zad.id,
+              "read" => false
+            }
+            if !Answer.exists?(answer_data)
+              @answer = Answer.new(answer_data)
+              @answer.save
+            end
           end
          end
         end
@@ -98,8 +108,9 @@ class StudentsController < ApplicationController
     def solution
         idzadania=Drawnexercise.find_by(student_id: session[:user_id], level: params[:zad][:level], number: params[:zad][:number])
         tre=Exercise.find_by(id: idzadania.exercise_id)
-        @zad=Answer.where(student_id: session[:user_id], exercise_id: tre.id )
-        @zad.update_attributes(:teacher_id => params[:zad][:teacher_id], :student_id => session[:user_id], :exercise_id =>  tre.id, :solution => params[:zad][:odp], :reward => params[:zad][:punkty])
+        @zad=Answer.where(student_id: session[:user_id], exercise_id: tre.id ).first
+        @zad.update_column(:solution, params[:zad][:odp])
+        @zad.update_column(:reward , params[:zad][:reward])
         if @zad.save
            redirect_to :back
         end

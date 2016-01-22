@@ -53,9 +53,9 @@ Group.create!(teacher_id: "1",
                 name: "sroda 9:40")
                 
 Progre.create!( student_id: "1", 
-                points: "30", 
+                points: "0", 
                 hp: "100", 
-                expe: "50", 
+                expe: "0", 
                 lvl: "1")
 Classescalendar.create!(group_id: "1", classes_number: "1", start: "2016-01-19 06:00:00" , end: "2016-01-19 12:00:00" )
 Classescalendar.create!(group_id: "1", classes_number: "2", start: "2016-01-20 06:00:00" , end: "2016-01-20 12:00:00" )
