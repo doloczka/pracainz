@@ -96,11 +96,10 @@ class StudentsController < ApplicationController
        end
     end
     def solution
-       
-        @zad=Answer.find_by(student_id: session[:user_id])
         idzadania=Drawnexercise.find_by(student_id: session[:user_id], level: params[:zad][:level], number: params[:zad][:number])
         tre=Exercise.find_by(id: idzadania.exercise_id)
-        @zad.update_attributes(:teacher_id => tre.teacher_id, :solution => params[:zad][:odp], :exercise_id =>  tre.id, :reward => params[:zad][:punkty])
+        @zad=Answer.where(student_id: session[:user_id], exercise_id: tre.id )
+        @zad.update_attributes(:teacher_id => params[:zad][:teacher_id], :student_id => session[:user_id], :exercise_id =>  tre.id, :solution => params[:zad][:odp], :reward => params[:zad][:punkty])
         if @zad.save
            redirect_to :back
         end

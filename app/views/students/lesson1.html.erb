@@ -20,6 +20,8 @@
 <%= form_for :zad, url: {action: "solution"} do |f| %>
  <%= f.hidden_field "level", :value => 1 %>
   <%= f.hidden_field "number", :value => 2 %>
+     <%= f.hidden_field "punkty", :value => zadanie.reward %>
+   <%= f.hidden_field "teacher_id", :value => zadanie.teacher_id %>
   <%= f.text_area :odp, size: "60x5" %><br>
   <%= f.submit "Wyślij" %></br>
 <% end %>
@@ -30,6 +32,8 @@
 <%= form_for :zad, url: {action: "solution"} do |f| %>
  <%= f.hidden_field "level", :value => 1 %>
   <%= f.hidden_field "number", :value => 3 %>
+     <%= f.hidden_field "punkty", :value => zadanie.reward %>
+   <%= f.hidden_field "teacher_id", :value => zadanie.teacher_id %>
   <%= f.text_area :odp, size: "60x5" %><br>
   <%= f.submit "Wyślij" %></br>
 <% end %>
@@ -40,6 +44,8 @@
 <%= form_for :zad, url: {action: "solution"} do |f| %>
  <%= f.hidden_field "level", :value => 1 %>
   <%= f.hidden_field "number", :value => 4 %>
+     <%= f.hidden_field "punkty", :value => zadanie.reward %>
+   <%= f.hidden_field "teacher_id", :value => zadanie.teacher_id %>
   <%= f.text_area :odp, size: "60x5" %><br>
   <%= f.submit "Wyślij" %></br>
 <% end %>
@@ -50,6 +56,8 @@
 <%= form_for :zad, url: {action: "solution"} do |f| %>
  <%= f.hidden_field "level", :value => 1 %>
   <%= f.hidden_field "number", :value => 5 %>
+     <%= f.hidden_field "punkty", :value => zadanie.reward %>
+   <%= f.hidden_field "teacher_id", :value => zadanie.teacher_id %>
   <%= f.text_area :odp, size: "60x5" %><br>
   <%= f.submit "Wyślij" %></br>
 <% end %>
