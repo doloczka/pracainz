@@ -91,19 +91,34 @@ class StudentsController < ApplicationController
         end
     end
     def solution
-
         idzadania=Drawnexercise.find_by(student_id: session[:user_id], level: params[:zad][:level], number: params[:zad][:number])
-        
         tre=Exercise.find_by(id: idzadania.exercise_id)
         @zad=Answer.where(student_id: session[:user_id], exercise_id: tre.id ).first
         @zad.update_column(:solution, params[:zad][:odp])
         @zad.update_column(:reward , params[:zad][:reward])
+        #byebug
+        #@zad.update_column(:reward , params[:zad][:hint])
         if @zad.save
            redirect_to :back
         end
     end
-
-
+    def surender
+      wyzwanie=Sidequest.find_by(id: params[:idwyzwania])
+      
+      wyzwany=Student.find_by(id: wyzwanie.recipient_id)
+      wyzywjacy=Student.find_by(id: wyzwanie.challenger_id)
+      
+      wyzwany_progre=Progre.find_by(student_id: wyzwany.id)
+      
+      wyzwany_progre.update_column(:points , wyzwany_progre.points-5 )
+      wyzwany_progre.save
+      wyzywajacy_progre=Progre.find_by(student_id: wyzywjacy.id)
+      wyzywajacy_progre.update_column(:points , wyzywajacy_progre.points+5)
+      wyzywajacy_progre.save
+      wyzwanie.update_column(:status , 2)
+      wyzwanie.save
+      redirect_to :back
+    end
   # GET /students/1/edit
   def edit
   end

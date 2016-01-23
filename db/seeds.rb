@@ -12,17 +12,7 @@ Student.create!(login: "st",
                 group_id: "1"
                 )
 
-# 6.times do |lvl=1|
-#     5.times do |nr=1|
-#                 Exercise.create!(teacher_id: 1,
-#                  level: lvl,
-#                  number: nr,
-#                  reward: 10,
-#                  content: "Treść Zajęcia #{lvl}, ćwiczenie nr: #{nr}.",
-#                  hint: "Hint Zajęcia #{lvl}, ćwiczenie nr: #{nr}."
-#                  )
-#     end
-# end
+
 5.times do |n| 
     Sidequest.create!(teacher_id: 1,
                       level: n,
@@ -67,19 +57,22 @@ Exercise.create!(teacher_id: "1",
                     level: "1",
                     number: "1",
                     reward: "10",
-                    content: "zadanie pierwsze dzien pierwszy"
+                    content: "zadanie pierwsze dzien pierwszy",
+                    hint: "jeśli używasz podowiedzi to jestes slaby"
                     )
 Exercise.create!(teacher_id: "1",
                     level: "1",
                     number: "2",
                     reward: "10",
-                    content: "zadanie drugie dzien pierwszy"
+                    content: "zadanie drugie dzien pierwszy",
+                    hint: "12hint"
                     )
 Exercise.create!(teacher_id: "1",
                     level: "1",
                     number: "3",
                     reward: "10",
-                    content: "zadanie trzecie dzien pierwszy"
+                    content: "zadanie trzecie dzien pierwszy",
+                    hint: "13hint"
                     )
 Exercise.create!(teacher_id: "1",
                     level: "1",
