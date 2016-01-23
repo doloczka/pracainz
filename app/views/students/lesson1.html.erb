@@ -3,7 +3,33 @@
 <br></br>
 <br>Zadanie 1</br>
 <% zadanie=Exercise.find_by(id: Drawnexercise.find_by(student_id: session[:user_id], level: "1", number: "1").exercise_id)%></br>
-<br><%= zadanie.content %></br>
+<br><%= zadanie.content %>  Pkt: <%= pkt=zadanie.reward %></br>
+
+<!--------PROBY JAKO TAKIE -------------------------->
+<button onclick="buttonClick()">Podpowiedz</button>
+<input type="text" id="inc" value="0"></input>
+
+<script>
+    var i = 0;
+    function buttonClick() {
+        document.getElementById('inc').value  ++;
+        if(document.getElementById('inc').value>2){
+          <%= pkt=pkt / 2 %>
+        }
+        
+    }
+</script>
+<p></p>
+<script>
+function wstaw(){
+   document.getElementsByTagName("p")[0].innerHTML="<%= pkt=pkt / 2 %>";
+}
+
+</script>
+
+<a href="" onclick="wstaw();return false;">Wstaw tekst</a>
+
+<!--------PROBY JAKO TAKIE ------------------------>
 <%= form_for :zad, url: {action: "solution"} do |f| %>
   <%= f.hidden_field "level", :value => 1 %>
   <%= f.hidden_field "number", :value => 1 %>

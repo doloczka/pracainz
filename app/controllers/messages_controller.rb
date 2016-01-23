@@ -34,7 +34,12 @@ class MessagesController < ApplicationController
         createstu
      end
      if logged_as_teacher?
-        createwy
+        if params[:message][:id]!=nil
+          createwy
+        end
+        if params[:message][:idgrupy]!=nil
+          createwy2
+        end
      end
   end
   
@@ -88,6 +93,25 @@ class MessagesController < ApplicationController
      @message.student_id=params[:message][:id]
      @message.direction="0"
      
+        respond_to do |format|
+          if @message.save
+            format.html { redirect_to @message, notice: 'Message was successfully created.' }
+            format.json { render :index, status: :created, location: @message }
+          else
+            format.html { render :new }
+            format.json { render json: @message.errors, status: :unprocessable_entity }
+          end
+        end
+    end
+    def createwy2 
+     students=Student.where(group_id: params[:message][:idgrupy])
+     students.each do |student|
+      @message = Message.new(message_params)
+      @message.teacher_id=session[:user_id]
+      @message.student_id=student.id
+      @message.direction="0"
+      @message.save     
+     end
         respond_to do |format|
           if @message.save
             format.html { redirect_to @message, notice: 'Message was successfully created.' }
