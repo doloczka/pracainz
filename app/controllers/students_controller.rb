@@ -89,21 +89,6 @@ class StudentsController < ApplicationController
           end
          end
         end
-       gr= Student.find(session[:user_id])
-       progresy=Progre.order(points: :desc)
-        i=1
-        k=0
-       progresy.each do |pr|
-       k=k+1
-            if pr.student_id==session[:user_id]
-                @ran=i
-                @j=k
-            end
-            gru=Student.find(pr.student_id)
-            if gru.group_id==gr.group_id
-                i=i+1
-            end
-       end
     end
     def solution
         idzadania=Drawnexercise.find_by(student_id: session[:user_id], level: params[:zad][:level], number: params[:zad][:number])
@@ -128,7 +113,12 @@ class StudentsController < ApplicationController
     @student = group.students.create(new_student_params)
     @student.login = params[:student][:album_number]
     @student.password_digest = BCrypt::Password.create(params[:student][:album_number])
+
       if @student.save
+            for i in 1..5
+              presence = Presence.new(:student_id => @student.id, :classes_number => i, :present => true)
+              presence.save
+            end
         progrs = Progre.new(student_id: @student.id, points: 0, hp: 100, expe: 0, lvl: 1)
         progrs.save
         redirect_to :back

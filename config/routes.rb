@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'presence/update'
+
  post 'new_result' => 'result#create'
   
   get 'login' => 'session#new'
@@ -20,7 +22,7 @@ Rails.application.routes.draw do
   post 'login' => 'session#create'
   delete 'logout' => 'session#destroy'
   put 'classes_update' => 'classescalendar#update'
-  
+  put 'presences_update' => 'presence#update'
   get 'student/edit' => 'students#edit'
   get 'student/lesson1' => 'students#lesson1'
   get 'student/lesson2' =>'students#lesson2'

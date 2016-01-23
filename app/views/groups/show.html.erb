@@ -32,11 +32,13 @@
       <th>Name</th>
       <th>Lastname</th>
       <th>album_number</th>
-            <th>Email</th>
+      <th>Email</th>
+      <th>obecnosc</th>
       <th colspan="3"></th>
     </tr>
   </thead>
   <tbody>
+  <%= form_for :presence, :url => presences_update_path, :html => { :method => :put } do %>
     <% @students.each do |student| %>
       <tr>
         <td><%= student.name %></td>
@@ -47,9 +49,23 @@
         <td><%= link_to 'Edit', edit_student_path(student) %></td>
         <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td><%= link_to 'napisz', new_message_path(:iid => student.id) %></td>
+      <td>
+          <% @presence = Presence.where(student_id: student.id) %>
+          
+              <% @presence.each do |presence| %>
+                <%= fields_for "presence[]", presence do |presence_fields| %>
+                  <%= presence_fields.check_box :present %>
+                <%end%>
+              <%end%>
+      </td>
       </tr>
-    <% end %>
+      <% end %>
+
   </tbody>
+                <div class="actions">
+                <%= submit_tag %>
+           </div>
 </table>
+<% end %>
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', teacher_groups_path(session[:user_id]) %>
