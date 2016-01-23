@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   get 'student/challengeinbox' =>'students#challengeinbox'
   post 'student/challengeconfirm' =>'students#challengeconfirm'
   post 'student/challengeconfirm2' =>'students#challengeconfirm2'
+  get 'student/surender' =>  'students#surender'
 
   
   
