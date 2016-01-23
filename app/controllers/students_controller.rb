@@ -22,7 +22,7 @@ class StudentsController < ApplicationController
     
     def challengeconfirm2
       wyzwanie=Sidequest.find(params[:zad][:wyzwanie])
-      wyzwanie.update_attributes(:recipient_id => params[:zad][:odp] , :status=>"1")
+      wyzwanie.update_attributes(:recipient_answer => params[:zad][:odp] , :status=>"1")
       if wyzwanie.save
         redirect_to   student_challengeinbox_path
       end
@@ -79,11 +79,11 @@ class StudentsController < ApplicationController
             answer_data = {
               "teacher_id" => @gr.teacher_id,
               "student_id" => session[:user_id],
-              "exercise_id" => zad.id,
-              "read" => false
+              "exercise_id" => zad.id
             }
             if !Answer.exists?(answer_data)
               @answer = Answer.new(answer_data)
+              @anser.read = false
               @answer.save
             end
           end

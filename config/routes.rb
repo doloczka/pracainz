@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   get 'login' => 'session#new'
   post 'login' => 'session#create'
   delete 'logout' => 'session#destroy'
-  
   resources :sidequests
   root 'session#index'
   resources :answers
@@ -38,8 +37,9 @@ Rails.application.routes.draw do
   get 'student/challengeinbox' =>'students#challengeinbox'
   post 'student/challengeconfirm' =>'students#challengeconfirm'
   post 'student/challengeconfirm2' =>'students#challengeconfirm2'
-
-  
+  get 'challenges' => 'challenge#index'
+  post 'challenge_win' => 'challenge#win'
+  post 'challenge_draw' => 'challenge#draw'
   
   
   

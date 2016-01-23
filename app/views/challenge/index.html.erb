@@ -1,0 +1,22 @@
+<h3>Wyzwania</h3>
+<table><thead></thead></table>
+<% @challenges.each do |challenge| %>
+    <table class="tg">
+  <tr>
+    <th>Level : <%=challenge.level %></th>
+    <th>Treść : <%=challenge.content%></th>
+    <th>Wygrany</th>
+  </tr>
+  <tr>
+      <td></td>
+    <td><%=challenge.challenger_answer%></td>
+    <td><%= link_to 'WIN', challenge_win_path( :winner => challenge.challenger_id, :loser => challenge.recipient_id, :challenge_id =>challenge) %></td>
+    <td rowspan="2"><%= link_to 'REMIS', challenge_draw_path(:challenge => challenge)%></td>
+  </tr>
+  <tr>
+      <td></td>
+    <td><%=challenge.recipient_answer%></td>
+    <td><%= link_to 'WIN', challenge_win_path( :winner => challenge.recipient_id, :loser => challenge.challenger_id, :challenge_id =>challenge) %></td>
+  </tr>
+</table>
+<% end %>
