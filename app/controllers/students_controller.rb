@@ -76,33 +76,28 @@ class StudentsController < ApplicationController
             }
             @zad=Drawnexercise.new(data)
             @zad.save
+            answer_data = {
+              "teacher_id" => @gr.teacher_id,
+              "student_id" => session[:user_id],
+              "exercise_id" => zad.id,
+              "read" => false
+            }
+            if !Answer.exists?(answer_data)
+              @answer = Answer.new(answer_data)
+              @answer.save
+            end
           end
          end
         end
-       gr= Student.find(session[:user_id])
-       progresy=Progre.order(points: :desc)
-        i=1
-        k=0
-       progresy.each do |pr|
-       k=k+1
-            if pr.student_id==session[:user_id]
-                @ran=i
-                @j=k
-            end
-            gru=Student.find(pr.student_id)
-            if gru.group_id==gr.group_id
-                i=i+1
-            end
-       end
     end
     def solution
-       
-        
+
         idzadania=Drawnexercise.find_by(student_id: session[:user_id], level: params[:zad][:level], number: params[:zad][:number])
         
         tre=Exercise.find_by(id: idzadania.exercise_id)
-        @zad=Answer.find_by(student_id: session[:user_id], exercise_id: tre.id)
-        @zad.update_attributes(:solution => params[:zad][:odp], :exercise_id =>  tre.id, :reward => params[:zad][:punkty])
+        @zad=Answer.where(student_id: session[:user_id], exercise_id: tre.id ).first
+        @zad.update_column(:solution, params[:zad][:odp])
+        @zad.update_column(:reward , params[:zad][:reward])
         if @zad.save
            redirect_to :back
         end
@@ -120,7 +115,12 @@ class StudentsController < ApplicationController
     @student = group.students.create(new_student_params)
     @student.login = params[:student][:album_number]
     @student.password_digest = BCrypt::Password.create(params[:student][:album_number])
+
       if @student.save
+            for i in 1..5
+              presence = Presence.new(:student_id => @student.id, :classes_number => i, :present => true)
+              presence.save
+            end
         progrs = Progre.new(student_id: @student.id, points: 0, hp: 100, expe: 0, lvl: 1)
         progrs.save
         redirect_to :back
@@ -164,7 +164,6 @@ class StudentsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
   
   
   

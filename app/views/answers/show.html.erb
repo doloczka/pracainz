@@ -1,29 +1,30 @@
-<p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Teacher:</strong>
-  <%= @answer.teacher %>
+  <strong>Treść:</strong>
+  <%= @exercise.content %>
 </p>
 
 <p>
-  <strong>Student:</strong>
-  <%= @answer.student %>
+  <strong>Rozwiązanie:</strong>
+  <%= @answer.solution %>
 </p>
-
-<p>
-  <strong>Exercise:</strong>
-  <%= @answer.exercise %>
-</p>
-
-<p>
-  <strong>Content:</strong>
-  <%= @answer.content %>
-</p>
-
-<p>
-  <strong>Read:</strong>
-  <%= @answer.read %>
-</p>
-
-<%= link_to 'Edit', edit_answer_path(@answer) %> |
-<%= link_to 'Back', answers_path %>
+<%= form_for @result, url: new_result_path do |f| %>
+  <% if @result.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@result.errors.count, "error") %> prohibited this result from being saved:</h2>
+      <ul>
+      <% @result.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.label :earned_points%>
+<%= f.number_field :earned_points %>
+<%= f.hidden_field :student_id, :value => @answer.student_id %>
+<%= f.hidden_field :level, :value => @exercise.level %>
+<%= f.hidden_field :exercise_id, :value => @exercise.id %>
+    <div class="actions">
+    <%= f.submit %>
+  </div
+<% end %>
