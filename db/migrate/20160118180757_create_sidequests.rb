@@ -4,11 +4,9 @@ class CreateSidequests < ActiveRecord::Migration
       t.references :teacher, index: true, foreign_key: true
       t.integer :level
       t.text :content
-      t.integer :challenger_id
-      t.text :challenger_answer
-      t.integer :recipient_id
-      t.text :recipient_answer
-      t.integer :status
+      t.integer :reward
+      t.boolean :finished
+      t.datetime :finish
       t.timestamps null: false
     end
   end

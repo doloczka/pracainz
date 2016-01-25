@@ -12,18 +12,6 @@ Student.create!(login: "st",
                 group_id: "1"
                 )
 
-
-5.times do |n| 
-    Sidequest.create!(teacher_id: 1,
-                      level: n,
-                      content: "content zadania pobocznego #{n+=1}",
-                      challenger_id: 1,
-                      challenger_answer: "odpowiedz wyzywajacego",
-                      recipient_id: 2,
-                      recipient_answer: "odpowiedz wyzywanego"
-                      )
-end
-
 Group.create!(teacher_id: 1,
             name: "grupa testowa"    
             )

@@ -29,8 +29,7 @@ pozycja w rankingu grupy <%= @ran %><br></br>
 pozycja w rankingu światowym <%= @j %><br></br>
 <br>| <%= link_to "Mapa świata", student_path(session[:user_id]) %> | 
 <%= link_to "Wiadomosci", messages_path(session[:user_id]) %><%= Message.where(student_id: session[:user_id], direction: "0").count%> | 
-<%= link_to "challenge", student_challenge_path(session[:user_id]) %> |
-<%= link_to "challenge otrzymane", student_challengeinbox_path(session[:user_id]) %><%= Sidequest.where(recipient_id: session[:user_id], status: "0").count%> |
+<%= link_to "Wyzwania", sidequests_path(session[:user_id]) %><%= Sidequest.where(level: @progr.lvl, finished: false).count%> |
 <%= link_to "Edytuj profil", edit_student_path(session[:user_id]) %> | 
 </br>
 <br>---------------------------------------------------------------------------------------------------------------</br>

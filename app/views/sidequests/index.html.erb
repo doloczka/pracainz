@@ -1,17 +1,38 @@
-<p id="notice"><%= notice %></p>
+<%if logged_as_teacher?%>
+<h3>Wyzwania</h3>
+<%= form_for @sidequest, url: sidequests_path do |f|%>
+  <% if @sidequest.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sidequest.errors.count, "error") %> prohibited this exercise from being saved:</h2>
 
-<h1>Listing Sidequests</h1>
+      <ul>
+      <% @sidequest.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <%= f.label :Tresc%>
+  <%= f.text_area :content%>
+  <%= f.label :Poziom%>
+  <%= f.number_field :level%>
+  <%= f.label :Nagroda%>
+  <%= f.number_field :reward%>
+  <%= f.label :koniec %>
+  <%= f.datetime_select :finish%>
+  <%= f.hidden_field :finished, :value => false %>
+  <%= f.hidden_field :teacher_id, :value => session[:user_id] %>
+  <%= f.submit %>
+<%end%>
+
 
 <table>
   <thead>
     <tr>
-      <th>Teacher</th>
       <th>Level</th>
       <th>Content</th>
-      <th>Challenger</th>
-      <th>Challenger answer</th>
-      <th>Recipient</th>
-      <th>Recipient answer</th>
+      <th>Zakończone ?</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,13 +40,9 @@
   <tbody>
     <% @sidequests.each do |sidequest| %>
       <tr>
-        <td><%= sidequest.teacher %></td>
-        <td><%= sidequest.level %></td>
-        <td><%= sidequest.content %></td>
-        <td><%= sidequest.challenger_id %></td>
-        <td><%= sidequest.challenger_answer %></td>
-        <td><%= sidequest.recipient %></td>
-        <td><%= sidequest.recipient_answer %></td>
+        <td><%=sidequest.level%></td>
+        <td><%=sidequest.content%></td>
+        <td><%="zakończone" if sidequest.finished%></td>
         <td><%= link_to 'Show', sidequest %></td>
         <td><%= link_to 'Edit', edit_sidequest_path(sidequest) %></td>
         <td><%= link_to 'Destroy', sidequest, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -33,7 +50,20 @@
     <% end %>
   </tbody>
 </table>
+<%end%>
+<%if logged_as_student?%>
+<h3>Wyzwania</h3>
+<table><thead>
+  <tr>
+    <th>Czas zakończenia</th>
+  </tr>
+</thead><tbody>
+  <% @sidequests.each do |sidequest| %>
+    <tr>
+      <td><%=sidequest.finish.localtime%></td>
+      <td><%=link_to "Weź udział", url: sidequest%></td>
+    </tr>
+  <%end%>
+  </tbody></table>
+<%end%>
 
-<br>
-
-<%= link_to 'New Sidequest', new_sidequest_path %>

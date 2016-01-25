@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     end
     resources :exercises, shallow: true
   end
+  resources :sidequests
   get 'show_exe' => 'exercises#show_exe'
   get 'login' => 'session#new'
   post 'login' => 'session#create'

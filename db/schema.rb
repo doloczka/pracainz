@@ -134,13 +134,11 @@ ActiveRecord::Schema.define(version: 20160123115947) do
     t.integer  "teacher_id"
     t.integer  "level"
     t.text     "content"
-    t.integer  "challenger_id"
-    t.text     "challenger_answer"
-    t.integer  "recipient_id"
-    t.text     "recipient_answer"
-    t.integer  "status"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.integer  "reward"
+    t.boolean  "finished"
+    t.datetime "finish"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "sidequests", ["teacher_id"], name: "index_sidequests_on_teacher_id"

@@ -15,8 +15,8 @@
      <%= fields_for "clas[]", clas do |clas_fields| %>
      <tr>
        <td><%= clas.classes_number %></td>
-       <td><%= clas_fields.datetime_local_field :start %> </td>
-       <td><%= clas_fields.datetime_local_field :end %></td>
+       <td><%= clas_fields.datetime_select :start %> </td>
+       <td><%= clas_fields.datetime_select :end %></td>
      </tr>
      <%end%>
     <%end%>

@@ -79,12 +79,12 @@ class StudentsController < ApplicationController
             answer_data = {
               "teacher_id" => @gr.teacher_id,
               "student_id" => session[:user_id],
-              "exercise_id" => zad.id
+              "exercise_id" => zad.id,
+              "read" => false
             }
-            if !Answer.exists?(answer_data)
-              @answer = Answer.new(answer_data)
-              @anser.read = false
-              @answer.save
+            if !Answer.exists?(:teacher_id => @gr.teacher_id, :student_id => session[:user_id], :exercise_id =>zad.id)
+              answer = Answer.new(answer_data)
+              answer.save
             end
           end
          end
@@ -136,7 +136,7 @@ class StudentsController < ApplicationController
               presence = Presence.new(:student_id => @student.id, :classes_number => i, :present => true)
               presence.save
             end
-        progrs = Progre.new(student_id: @student.id, points: 0, hp: 100, expe: 0, lvl: 1)
+        progrs = Progre.new(student_id: @student.id, points: 0, hp: 100, expe: 0, lvl: 1, won_challenges: 0, lost_challenges: 0)
         progrs.save
         redirect_to :back
       else
