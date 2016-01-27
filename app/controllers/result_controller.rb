@@ -10,7 +10,7 @@ class ResultController < ApplicationController
     @points = @progres.points + @earned_points
     @progres.update_attributes(:expe => @expe, :points => @points)
     @progres.save
-    answer = Answer.where(student_id: params[:result][:student_id], exercise_id: params[:result][:exercise_id]).first 
+    answer = Answer.find_by(student_id: params[:result][:student_id], exercise_id: params[:result][:exercise_id])
     answer.read = true
     answer.save
     respond_to do |format|

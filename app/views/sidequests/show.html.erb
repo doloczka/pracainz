@@ -1,39 +1,53 @@
-<p id="notice"><%= notice %></p>
+<%if logged_as_student?%>
+<h3>Treść</h3>
+<p><%= @sidequest.content%></p>
+<%= form_for @sqanswer, url: sqanswer_update_path, :method => :put do |f| %>
+  <% if @sqanswer.errors.any? %> %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sqanswer.id.errors.count, "error") %> prohibited this sqanswer from being saved:</h2>
 
-<p>
-  <strong>Teacher:</strong>
- <%= #@sidequest.teacher %>
-</p>
+      <ul>
+      <% @sqanswer.id.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.label :Rozwiazanie%>
+  <%= f.text_area :solution%>
+  <%= f.hidden_field :id, :value => @sqanswer.id %>
+  <%= f.submit %>
 
-<p>
-  <strong>Level:</strong>
-  <%= @sidequest.level %>
-</p>
-
-<p>
-  <strong>Content:</strong>
-  <%= @sidequest.content %>
-</p>
-
-<p>
-  <strong>Challenger:</strong>
-  <%= @sidequest.challenger_id %>
-</p>
-
-<p>
-  <strong>Challenger answer:</strong>
-  <%= @sidequest.challenger_answer %>
-</p>
-
-<p>
-  <strong>Recipient:</strong>
-  <%= @sidequest.recipient %>
-</p>
-
-<p>
-  <strong>Recipient answer:</strong>
-  <%= @sidequest.recipient_answer %>
-</p>
-
-<%= link_to 'Edit', edit_sidequest_path(@sidequest) %> |
-<%= link_to 'Back', sidequests_path %>
+<%end%>
+<%end%>
+<%if logged_as_teacher?%>
+<h3>Treść:</h3>
+<p><%=@sidequest.content%></p>
+<h4>Odpowiedzi uczestników</h4>
+<table>
+    <thead>
+        <th>Imie</th>
+        <th>Nazwisko</th>
+        <th>Czas w sekundach</th>
+    </thead>
+    <tbody>
+        <% @sqanswers.each do |sqanswer| %>
+        <% student=Student.find(sqanswer.student_id)%>
+                <tr>
+                    <td>
+                        <%=student.name%>
+                    </td>
+                    <td>
+                        <%=student.lastname%>
+                    </td>
+                    <td>
+                        <%=sqanswer.time%>
+                    </td>
+                    <td>
+                        <%=link_to 'Show', sqanswer %>
+                    </td>
+                </tr>
+        <%end%>
+    </tbody>
+</table>
+<%end%>

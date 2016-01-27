@@ -93,7 +93,7 @@ class StudentsController < ApplicationController
     def solution
         idzadania=Drawnexercise.find_by(student_id: session[:user_id], level: params[:zad][:level], number: params[:zad][:number])
         tre=Exercise.find_by(id: idzadania.exercise_id)
-        @zad=Answer.where(student_id: session[:user_id], exercise_id: tre.id ).first
+        @zad=Answer.find_by(student_id: session[:user_id], exercise_id: tre.id )
         @zad.update_column(:solution, params[:zad][:odp])
         @zad.update_column(:reward , params[:zad][:reward])
         #byebug

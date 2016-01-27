@@ -26,7 +26,6 @@
   <%= f.submit %>
 <%end%>
 
-
 <table>
   <thead>
     <tr>
@@ -47,23 +46,37 @@
         <td><%= link_to 'Edit', edit_sidequest_path(sidequest) %></td>
         <td><%= link_to 'Destroy', sidequest, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end %>
+  <%end%>
   </tbody>
 </table>
 <%end%>
-<%if logged_as_student?%>
-<h3>Wyzwania</h3>
-<table><thead>
-  <tr>
-    <th>Czas zakończenia</th>
-  </tr>
-</thead><tbody>
-  <% @sidequests.each do |sidequest| %>
-    <tr>
-      <td><%=sidequest.finish.localtime%></td>
-      <td><%=link_to "Weź udział", url: sidequest%></td>
-    </tr>
-  <%end%>
-  </tbody></table>
-<%end%>
 
+<%if logged_as_student?%>
+  <h3>Wyzwania</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Czas zakończenia</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @sidequests.each do |sidequest| %>
+      <% sqresult = Sqresult.find_by(student_id: session[:user_id],sidequest_id: sidequest.id)
+          if !Sqresult.exists?(sqresult)
+      %>
+        <tr>
+          <td>
+            <%=sidequest.finish.localtime%>
+          </td>
+          <td>
+            <%=sidequest.reward%>
+          </td>
+          <td>
+            <%=link_to "Weź udział", sidequest %>
+          </td>
+        </tr>
+        <%end%>
+        <%end%>
+    </tbody>
+  </table>
+<%end%>

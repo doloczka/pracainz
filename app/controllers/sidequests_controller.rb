@@ -19,12 +19,34 @@ class SidequestsController < ApplicationController
   # GET /sidequests/1
   # GET /sidequests/1.json
   def show
+    if logged_as_student?
+      student = Student.find(session[:user_id])
+      group = Group.find(student.group_id)
+      if !Sqanswer.where(:teacher_id => group.teacher_id, :student_id => student.id, :sidequest_id => @sidequest.id, :reward => @sidequest.reward, :read => false).exists?
+        @sqanswer = Sqanswer.new(:teacher_id => group.teacher_id, :student_id => student.id, :sidequest_id => @sidequest.id, :reward => @sidequest.reward, :read => false)
+        @sqanswer.save
+      else
+        @sqanswer = Sqanswer.find_by(:student_id => student, :sidequest_id => @sidequest.id)
+      end
+    end
+    
+    if logged_as_teacher?
+        @sidequest = Sidequest.find(params[:id])
+        @sqanswers = Sqanswer.where(sidequest_id: @sidequest.id, read: false).sort_by{|e| e[:time]}.reverse 
+    end
   end
-
+  
+  def sqanswer_update
+    @sqanswer = Sqanswer.find(params[:sqanswer][:id])
+    @sqanswer.update(:solution => params[:sqanswer][:solution])
+    @sqanswer.save
+    redirect_to student_path(session[:user_id])
+  end
+  
   # GET /sidequests/1/edit
   def edit
   end
-
+  
   # POST /sidequests
   # POST /sidequests.json
   def create
