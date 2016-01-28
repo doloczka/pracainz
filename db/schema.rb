@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160127163720) do
+ActiveRecord::Schema.define(version: 20160128171840) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "teacher_id"
@@ -27,6 +27,15 @@ ActiveRecord::Schema.define(version: 20160127163720) do
   add_index "answers", ["exercise_id"], name: "index_answers_on_exercise_id"
   add_index "answers", ["student_id"], name: "index_answers_on_student_id"
   add_index "answers", ["teacher_id"], name: "index_answers_on_teacher_id"
+
+  create_table "awarded_medals", force: :cascade do |t|
+    t.integer  "student_id"
+    t.integer  "medal_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "awarded_medals", ["student_id", "medal_id"], name: "index_awarded_medals_on_student_id_and_medal_id", unique: true
 
   create_table "classescalendars", force: :cascade do |t|
     t.integer  "group_id"
@@ -74,13 +83,13 @@ ActiveRecord::Schema.define(version: 20160127163720) do
   add_index "groups", ["teacher_id"], name: "index_groups_on_teacher_id"
 
   create_table "medals", force: :cascade do |t|
-    t.integer  "student_id"
-    t.integer  "medal_number"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.text     "name"
+    t.text     "description"
+    t.string   "img"
+    t.integer  "value"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
-
-  add_index "medals", ["student_id"], name: "index_medals_on_student_id"
 
   create_table "messages", force: :cascade do |t|
     t.string   "subject"

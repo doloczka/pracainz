@@ -1,3 +1,3 @@
 class Medal < ActiveRecord::Base
-  belongs_to :student
+  has_many :awarded_medals
 end

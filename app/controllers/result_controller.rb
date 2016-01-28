@@ -1,5 +1,5 @@
 class ResultController < ApplicationController
-    
+    include ResultHelper
     def create
     @result = Result.new(result_params)
     @reward = Exercise.find(params[:result][:exercise_id]).reward
@@ -13,6 +13,11 @@ class ResultController < ApplicationController
     answer = Answer.find_by(student_id: params[:result][:student_id], exercise_id: params[:result][:exercise_id])
     answer.read = true
     answer.save
+    if !params[:medal_id].empty?
+      student = Student.find(params[:result][:student_id])
+      medal = Medal.find(params[:medal_id])
+      give_a_medal(medal,student)
+    end
     respond_to do |format|
       if @result.save
         format.html { redirect_to answers_path, notice: 'result was successfully created.' }

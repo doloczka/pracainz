@@ -23,6 +23,14 @@
       <% if logged_as_student? || logged_as_teacher? %>
       <%= link_to "Log out", logout_path, method: "delete"%>
       <%end%>
+      <%if logged_as_teacher?%>
+        <%= link_to 'Grupy', teacher_groups_path(session[:user_id]) %>
+    <%= link_to 'Ćwiczenia', teacher_exercises_path(session[:user_id]) %>
+<%= link_to 'Rozwiązania', answers_path %> | <%= Answer.where(teacher_id: session[:user_id], read: false).where.not(solution: nil).count%> |
+<%= link_to 'Wyzwania', sidequests_path %>
+<%= link_to 'Wiadomosci', messages_path(session[:user_id]) %><%= Message.where(teacher_id: session[:user_id], direction: "1").count%>
+<%= link_to 'Edit', edit_teacher_path(session[:user_id]) %>
+      <%end%>
       <%= yield %>
       <%= debug(params) if Rails.env.development? %>
     </div>

@@ -1,5 +1,5 @@
 class SqresultsController < ApplicationController
-  
+  include ResultHelper
   def create
     @sqresult = Sqresult.new(sqresult_params)
     reward = Sidequest.find(@sqresult.sidequest_id).reward
@@ -11,6 +11,11 @@ class SqresultsController < ApplicationController
     sqanswer = Sqanswer.find_by(student_id: @sqresult.student_id, sidequest_id: @sqresult.sidequest_id)
     sqanswer.read = true
     sqanswer.save
+    if !params[:medal_id].empty?
+      student = Student.find(params[:sqresult][:student_id])
+      medal = Medal.find(params[:medal_id])
+      give_a_medal(medal,student)
+    end
     message = Message.new(:subject => "Wyniki wyzwania", :content => "Zdobyłeś #{earned_points} punktów", :read => false, :direction => 0, :student_id => @sqresult.student_id, :teacher_id => session[:user_id])
     message.save
     respond_to do |format|

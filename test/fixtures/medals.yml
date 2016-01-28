@@ -2,8 +2,14 @@
 
 one:
   student_id: 
-  medal_number: 1
+  name: MyText
+  description: MyText
+  img: MyString
+  value: 1
 
 two:
   student_id: 
-  medal_number: 1
+  name: MyText
+  description: MyText
+  img: MyString
+  value: 1

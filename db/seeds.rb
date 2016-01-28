@@ -201,4 +201,12 @@ Exercise.create!(teacher_id: "1",
                     reward: "10",
                     content: "zadanie piate dzien pierwszy"
                     )
-
+Medal.create!(name: "Medal za wytrwałość",
+              description: "medal za 100% obecności",
+              img: "indeks.png",
+              value:5)
+              
+Medal.create!(name: "Puchar speedy gonzales'a ",
+              description: "puchar za najszybszą poprawną odpowiedź",
+              img: "indeks.png",
+              value:6)

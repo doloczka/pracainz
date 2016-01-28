@@ -16,5 +16,7 @@
 <%=f.hidden_field :student_id, :value => @sqanswer.student_id%>
 <%=f.hidden_field :level, :value => @sq.level%>
 <%=f.hidden_field :sidequest_id, :value => @sq.id%>
+<% @medals = Medal.where(value: 6)%>
+<%= select_tag 'medal_id', options_for_select(@medals.collect{ |u| [u.name, u.id] }), :prompt => "zasłużył na medal?"%>
 <%=f.submit%>
 <%end%>
