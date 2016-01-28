@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160119133006) do
+ActiveRecord::Schema.define(version: 20160127163720) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "teacher_id"
@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(version: 20160119133006) do
     t.integer  "lost_challenges"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "total"
   end
 
   add_index "progres", ["student_id"], name: "index_progres_on_student_id"
@@ -133,16 +134,41 @@ ActiveRecord::Schema.define(version: 20160119133006) do
     t.integer  "teacher_id"
     t.integer  "level"
     t.text     "content"
-    t.integer  "challenger_id"
-    t.text     "challenger_answer"
-    t.integer  "recipient_id"
-    t.text     "recipient_answer"
-    t.integer  "status"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.integer  "reward"
+    t.boolean  "finished"
+    t.datetime "finish"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "sidequests", ["teacher_id"], name: "index_sidequests_on_teacher_id"
+
+  create_table "sqanswers", force: :cascade do |t|
+    t.integer  "teacher_id"
+    t.integer  "student_id"
+    t.integer  "sidequest_id"
+    t.text     "solution"
+    t.integer  "reward"
+    t.boolean  "read"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "sqanswers", ["sidequest_id"], name: "index_sqanswers_on_sidequest_id"
+  add_index "sqanswers", ["student_id"], name: "index_sqanswers_on_student_id"
+  add_index "sqanswers", ["teacher_id"], name: "index_sqanswers_on_teacher_id"
+
+  create_table "sqresults", force: :cascade do |t|
+    t.integer  "student_id"
+    t.integer  "sidequest_id"
+    t.integer  "level"
+    t.integer  "earned_points"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "sqresults", ["sidequest_id"], name: "index_sqresults_on_sidequest_id"
+  add_index "sqresults", ["student_id"], name: "index_sqresults_on_student_id"
 
   create_table "students", force: :cascade do |t|
     t.string   "login"

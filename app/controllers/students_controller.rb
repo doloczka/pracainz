@@ -22,7 +22,7 @@ class StudentsController < ApplicationController
     
     def challengeconfirm2
       wyzwanie=Sidequest.find(params[:zad][:wyzwanie])
-      wyzwanie.update_attributes(:recipient_id => params[:zad][:odp] , :status=>"1")
+      wyzwanie.update_attributes(:recipient_answer => params[:zad][:odp] , :status=>"1")
       if wyzwanie.save
         redirect_to   student_challengeinbox_path
       end
@@ -76,37 +76,49 @@ class StudentsController < ApplicationController
             }
             @zad=Drawnexercise.new(data)
             @zad.save
+            answer_data = {
+              "teacher_id" => @gr.teacher_id,
+              "student_id" => session[:user_id],
+              "exercise_id" => zad.id,
+              "read" => false
+            }
+            if !Answer.exists?(:teacher_id => @gr.teacher_id, :student_id => session[:user_id], :exercise_id =>zad.id)
+              answer = Answer.new(answer_data)
+              answer.save
+            end
           end
          end
         end
-       gr= Student.find(session[:user_id])
-       progresy=Progre.order(points: :desc)
-        i=1
-        k=0
-       progresy.each do |pr|
-       k=k+1
-            if pr.student_id==session[:user_id]
-                @ran=i
-                @j=k
-            end
-            gru=Student.find(pr.student_id)
-            if gru.group_id==gr.group_id
-                i=i+1
-            end
-       end
     end
     def solution
-       
-        @zad=Answer.find_by(student_id: session[:user_id])
         idzadania=Drawnexercise.find_by(student_id: session[:user_id], level: params[:zad][:level], number: params[:zad][:number])
         tre=Exercise.find_by(id: idzadania.exercise_id)
-        @zad.update_attributes(:solution => params[:zad][:odp], :exercise_id =>  tre.id, :reward => params[:zad][:punkty])
+        @zad=Answer.find_by(student_id: session[:user_id], exercise_id: tre.id )
+        @zad.update_column(:solution, params[:zad][:odp])
+        @zad.update_column(:reward , params[:zad][:reward])
+        #byebug
+        #@zad.update_column(:reward , params[:zad][:hint])
         if @zad.save
            redirect_to :back
         end
     end
-
-
+    def surender
+      wyzwanie=Sidequest.find_by(id: params[:idwyzwania])
+      
+      wyzwany=Student.find_by(id: wyzwanie.recipient_id)
+      wyzywjacy=Student.find_by(id: wyzwanie.challenger_id)
+      
+      wyzwany_progre=Progre.find_by(student_id: wyzwany.id)
+      
+      wyzwany_progre.update_column(:points , wyzwany_progre.points-5 )
+      wyzwany_progre.save
+      wyzywajacy_progre=Progre.find_by(student_id: wyzywjacy.id)
+      wyzywajacy_progre.update_column(:points , wyzywajacy_progre.points+5)
+      wyzywajacy_progre.save
+      wyzwanie.update_column(:status , 2)
+      wyzwanie.save
+      redirect_to :back
+    end
   # GET /students/1/edit
   def edit
   end
@@ -118,8 +130,13 @@ class StudentsController < ApplicationController
     @student = group.students.create(new_student_params)
     @student.login = params[:student][:album_number]
     @student.password_digest = BCrypt::Password.create(params[:student][:album_number])
+
       if @student.save
-        progrs = Progre.new(student_id: @student.id, points: 0, hp: 100, expe: 0, lvl: 1)
+            for i in 1..5
+              presence = Presence.new(:student_id => @student.id, :classes_number => i, :present => true)
+              presence.save
+            end
+        progrs = Progre.new(student_id: @student.id, points: 0, hp: 100, expe: 0, lvl: 1, won_challenges: 0, lost_challenges: 0)
         progrs.save
         redirect_to :back
       else
@@ -162,7 +179,6 @@ class StudentsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
   
   
   

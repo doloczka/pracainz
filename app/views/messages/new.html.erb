@@ -3,7 +3,12 @@
     <%= render 'form' %>
 <%end %>
 <% if logged_as_teacher? %>
-    <%= render 'form1' %>
+    <% if params[:iid]!=nil %>
+        <%= render 'form1' %>
+    <% end %>
+    <% if params[:idg]!=nil %>
+        <%= render 'form2' %>
+    <% end %>
 <%end %>
 
 <%= link_to 'Back', message_path(session[:user_id]) %>

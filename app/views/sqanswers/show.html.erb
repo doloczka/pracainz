@@ -1,0 +1,20 @@
+<h3>Treść :</h3><p><%= @sq.content%></p>
+<h3>Rozwiazanie :</h3><p><%=@sqanswer.solution%></p>
+<%= form_for @sqresult, url: sqresults_path do |f|%>
+  <% if @sqresult.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sqresult.errors.count, "error") %> prohibited this result from being saved:</h2>
+      <ul>
+      <% @sqresult.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<%=f.label "Wynik w procentach"%>
+<%=f.number_field :earned_points%>
+<%=f.hidden_field :student_id, :value => @sqanswer.student_id%>
+<%=f.hidden_field :level, :value => @sq.level%>
+<%=f.hidden_field :sidequest_id, :value => @sq.id%>
+<%=f.submit%>
+<%end%>

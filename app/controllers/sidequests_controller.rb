@@ -1,26 +1,52 @@
 class SidequestsController < ApplicationController
   before_action :set_sidequest, only: [:show, :edit, :update, :destroy]
+  before_action :check_is_finished, only: :index
 
   # GET /sidequests
   # GET /sidequests.json
   def index
-    @sidequests = Sidequest.all
+    if logged_as_teacher?
+      @sidequest= Sidequest.new
+      @sidequests = Sidequest.where(teacher_id: session[:user_id])
+    end
+    if logged_as_student?
+      student = Student.find(session[:user_id])
+      progres = Progre.find(student.id)
+      @sidequests = Sidequest.where(level: progres.lvl, finished: false)
+    end
   end
 
   # GET /sidequests/1
   # GET /sidequests/1.json
   def show
+    if logged_as_student?
+      student = Student.find(session[:user_id])
+      group = Group.find(student.group_id)
+      if !Sqanswer.where(:teacher_id => group.teacher_id, :student_id => student.id, :sidequest_id => @sidequest.id, :reward => @sidequest.reward, :read => false).exists?
+        @sqanswer = Sqanswer.new(:teacher_id => group.teacher_id, :student_id => student.id, :sidequest_id => @sidequest.id, :reward => @sidequest.reward, :read => false)
+        @sqanswer.save
+      else
+        @sqanswer = Sqanswer.find_by(:student_id => student, :sidequest_id => @sidequest.id)
+      end
+    end
+    
+    if logged_as_teacher?
+        @sidequest = Sidequest.find(params[:id])
+        @sqanswers = Sqanswer.where(sidequest_id: @sidequest.id, read: false).sort_by{|e| e[:time]}.reverse 
+    end
   end
-
-  # GET /sidequests/new
-  def new
-    @sidequest = Sidequest.new
+  
+  def sqanswer_update
+    @sqanswer = Sqanswer.find(params[:sqanswer][:id])
+    @sqanswer.update(:solution => params[:sqanswer][:solution])
+    @sqanswer.save
+    redirect_to student_path(session[:user_id])
   end
-
+  
   # GET /sidequests/1/edit
   def edit
   end
-
+  
   # POST /sidequests
   # POST /sidequests.json
   def create
@@ -28,8 +54,8 @@ class SidequestsController < ApplicationController
 
     respond_to do |format|
       if @sidequest.save
-        format.html { redirect_to @sidequest, notice: 'Sidequest was successfully created.' }
-        format.json { render :show, status: :created, location: @sidequest }
+        format.html { redirect_to :back, notice: 'Sidequest was successfully created.' }
+        format.json { render :back, status: :created, location: @sidequest }
       else
         format.html { render :new }
         format.json { render json: @sidequest.errors, status: :unprocessable_entity }
@@ -69,6 +95,13 @@ class SidequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sidequest_params
-      params.require(:sidequest).permit(:teacher_id, :level, :content, :challenger_id, :challenger_answer, :recipient, :recipient_answer)
+      params.require(:sidequest).permit(:teacher_id, :level, :content, :reward, :finished, :finish)
+    end
+    def check_is_finished
+      now = Time.now
+      @sidequests = Sidequest.where(finished: false)
+      @sidequests.each do |sq|
+        sq.update_column(:finished, true)  if now.to_i > sq.finish.to_i
+      end
     end
 end

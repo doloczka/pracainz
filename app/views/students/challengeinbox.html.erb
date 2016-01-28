@@ -14,6 +14,7 @@
             <td><%= Student.find(wyzwanie.challenger_id).name %></td>
             <td><%= Student.find(wyzwanie.challenger_id).lastname %></td>
             <td><%= link_to "Rozwiaż", student_challengeodp2_path(:idwyzwania => wyzwanie.id)%></td>
+            <td><%= link_to "Oddaj walkower", student_surender_path(:idwyzwania => wyzwanie.id)%></td>
           <% end %>
       </tr>
     <% end %>
