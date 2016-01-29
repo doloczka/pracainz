@@ -116,7 +116,7 @@ ActiveRecord::Schema.define(version: 20160128171840) do
     t.integer  "student_id"
     t.integer  "points"
     t.integer  "hp"
-    t.integer  "expe"
+    t.integer  "gained_points"
     t.integer  "lvl"
     t.integer  "won_challenges"
     t.integer  "lost_challenges"

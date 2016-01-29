@@ -63,7 +63,8 @@ class StudentsController < ApplicationController
             #zadania na dzien1
             
             wszystkiezadania=Exercise.where(teacher_id: @gr.teacher_id, level: j , number: i).count
-            los11= session[:user_id] % wszystkiezadania
+            #los11= session[:user_id] % wszystkiezadania
+            los11 = rand(1..wszystkiezadania)
             if los11==0
                 los11=1
             end
@@ -80,11 +81,15 @@ class StudentsController < ApplicationController
               "teacher_id" => @gr.teacher_id,
               "student_id" => session[:user_id],
               "exercise_id" => zad.id,
+              "reward" => zad.reward,
               "read" => false
             }
             if !Answer.exists?(:teacher_id => @gr.teacher_id, :student_id => session[:user_id], :exercise_id =>zad.id)
               answer = Answer.new(answer_data)
               answer.save
+              
+              @progr.total += answer.reward
+              @progr.save
             end
           end
          end
@@ -136,7 +141,7 @@ class StudentsController < ApplicationController
               presence = Presence.new(:student_id => @student.id, :classes_number => i, :present => true)
               presence.save
             end
-        progrs = Progre.new(student_id: @student.id, points: 0, hp: 100, expe: 0, lvl: 1, won_challenges: 0, lost_challenges: 0)
+        progrs = Progre.new(student_id: @student.id, points: 0, hp: 100, gained_points: 0, total: 0, lvl: 1, won_challenges: 0, lost_challenges: 0)
         progrs.save
         redirect_to :back
       else

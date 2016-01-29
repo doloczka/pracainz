@@ -4,7 +4,7 @@ class CreateProgres < ActiveRecord::Migration
       t.references :student, index: true, foreign_key: true
       t.integer :points
       t.integer :hp
-      t.integer :expe
+      t.integer :gained_points
       t.integer :lvl
       t.integer :won_challenges
       t.integer :lost_challenges
