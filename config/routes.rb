@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   resources :sqanswers
   resources :sqresults
   get 'presence/update'
-
- post 'new_result' => 'result#create'
+  get 'lesson' => 'exercises#lesson'
+  post 'lesson' => 'exercises#lesson'
+  post 'new_result' => 'result#create'
   
   get 'login' => 'session#new'
   post 'login' => 'session#create'
@@ -34,7 +35,7 @@ Rails.application.routes.draw do
   get 'student/lesson4' =>'students#lesson4'
   get 'student/lesson5' =>'students#lesson5'
   get 'student/lesson6' =>'students#lesson6'
-  post 'student/solution' => 'students#solution'
+  patch 'student/solution' => 'students#solution'
   get 'student/challenge' =>'students#challenge'
   get 'student/chosechallenge' =>'students#chosechallenge'
   get 'student/challengeodp' =>'students#challengeodp'

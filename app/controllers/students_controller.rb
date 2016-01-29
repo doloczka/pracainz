@@ -54,53 +54,52 @@ class StudentsController < ApplicationController
     def show
         @student = Student.find_by(login: session[:login])
         @progr=Progre.find_by(student_id: session[:user_id])
-
-        @zad=Drawnexercise.find_by(student_id: session[:user_id])
-        if @zad.nil?
-         @gr=Group.find_by(id: @student.group_id)
-         for j in 1..5 do
-          for i in 1..5 do
-            #zadania na dzien1
+        # @zad=Drawnexercise.find_by(student_id: session[:user_id])
+        # if @zad.nil?
+        # @gr=Group.find_by(id: @student.group_id)
+        # for j in 1..5 do
+        #   for i in 1..5 do
+        #     #zadania na dzien1
             
-            wszystkiezadania=Exercise.where(teacher_id: @gr.teacher_id, level: j , number: i).count
-            #los11= session[:user_id] % wszystkiezadania
-            los11 = rand(1..wszystkiezadania)
-            if los11==0
-                los11=1
-            end
-            zad=Exercise.where(teacher_id: @gr.teacher_id, level: j , number: i).first(los11).last
-            data={
-                "student_id"=>session[:user_id],
-                "level"=>j,
-                "number"=>i,
-                "exercise_id"=>zad.id
-            }
-            @zad=Drawnexercise.new(data)
-            @zad.save
-            answer_data = {
-              "teacher_id" => @gr.teacher_id,
-              "student_id" => session[:user_id],
-              "exercise_id" => zad.id,
-              "reward" => zad.reward,
-              "read" => false
-            }
-            if !Answer.exists?(:teacher_id => @gr.teacher_id, :student_id => session[:user_id], :exercise_id =>zad.id)
-              answer = Answer.new(answer_data)
-              answer.save
+        #     wszystkiezadania=Exercise.where(teacher_id: @gr.teacher_id, level: j , number: i).count
+        #     #los11= session[:user_id] % wszystkiezadania
+        #     los11 = rand(1..wszystkiezadania)
+        #     if los11==0
+        #         los11=1
+        #     end
+        #     zad=Exercise.where(teacher_id: @gr.teacher_id, level: j , number: i).first(los11).last
+        #     data={
+        #         "student_id"=>session[:user_id],
+        #         "level"=>j,
+        #         "number"=>i,
+        #         "exercise_id"=>zad.id
+        #     }
+        #     @zad=Drawnexercise.new(data)
+        #     @zad.save
+        #     answer_data = {
+        #       "teacher_id" => @gr.teacher_id,
+        #       "student_id" => session[:user_id],
+        #       "exercise_id" => zad.id,
+        #       "reward" => zad.reward,
+        #       "read" => false
+        #     }
+        #     if !Answer.exists?(:teacher_id => @gr.teacher_id, :student_id => session[:user_id], :exercise_id =>zad.id)
+        #       answer = Answer.new(answer_data)
+        #       answer.save
               
-              @progr.total += answer.reward
-              @progr.save
-            end
-          end
-         end
-        end
+        #       @progr.total += answer.reward
+        #       @progr.save
+        #     end
+        #   end
+        # end
+        # end
     end
     def solution
-        idzadania=Drawnexercise.find_by(student_id: session[:user_id], level: params[:zad][:level], number: params[:zad][:number])
+        idzadania=Drawnexercise.find_by(student_id: session[:user_id], level: params[:answer][:level], number: params[:answer][:number])
         tre=Exercise.find_by(id: idzadania.exercise_id)
         @zad=Answer.find_by(student_id: session[:user_id], exercise_id: tre.id )
-        @zad.update_column(:solution, params[:zad][:odp])
-        @zad.update_column(:reward , params[:zad][:reward])
+        @zad.update_column(:solution, params[:answer][:solution])
+        @zad.update_column(:reward , params[:answer][:reward])
         #byebug
         #@zad.update_column(:reward , params[:zad][:hint])
         if @zad.save

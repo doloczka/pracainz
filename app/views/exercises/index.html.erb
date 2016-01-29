@@ -1,3 +1,4 @@
+<% if logged_as_teacher?%>
 <h1>Ćwiczenia</h1>
 <%6.times do |i=1| %>
 <h3>Zajęcia : <%=i+1%></h3>
@@ -5,4 +6,4 @@
     <%=link_to "ćwiczenie nr : #{j+1}", show_exe_path(:lvl => 1+i, :number => 1+j)%>
   <%end%>
 <%end%>
-
+<%end%>

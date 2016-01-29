@@ -5,7 +5,7 @@ class Progre < ActiveRecord::Base
     if self.total == 0
       return 0
     else
-      self.gained_points/self.total
+      self.gained_points.to_d/self.total.to_d
     end
   end
 end

@@ -1,8 +1,5 @@
-<% if logged_as_student?%>
-    <%= render 'panel' %>
-<% end %>
 
-
+<br>loko -> testy <%=link_to "Lekcja 1", lesson_path(level: 1), method: :post%>
 <br>moje do testow---> <%= link_to "zajecia1", student_lesson1_path(session[:user_id]) %>  </br><br> </br>
 
 <%time = Time.new.in_time_zone("Warsaw").strftime("%Y-%m-%d %H:%M:%S") %>
