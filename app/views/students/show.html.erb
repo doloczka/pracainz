@@ -1,8 +1,8 @@
 <% if logged_as_student?%>
     <%= render 'panel' %>
 <% end %>
-
-
+<br>
+<div>
 <br>moje do testow---> <%= link_to "zajecia1", student_lesson1_path(session[:user_id]) %>  </br><br> </br>
 
 <%time = Time.new.in_time_zone("Warsaw").strftime("%Y-%m-%d %H:%M:%S") %>
@@ -56,3 +56,4 @@
     <%end%>
 <%end%>
 <br></br><br></br>
+</div>

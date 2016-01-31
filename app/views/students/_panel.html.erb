@@ -18,18 +18,82 @@ gr= Student.find(session[:user_id])
             end
        end
 %>
- 
-<h1>zalogowano do kąta <%= @student.login%></h1>
-Imię i nazwisko: <%= @student.name %> <%= @student.lastname %><br></br>
-level <%=@progr.lvl %><br></br>
-zdrowie <%=@progr.hp %><br></br>
-doswiadczenie <%=@progr.expe %><br></br>
-punkty rankingowe <%=@progr.points%><br></br>
-pozycja w rankingu grupy <%= @ran %><br></br>
-pozycja w rankingu światowym <%= @j %><br></br>
-<br>| <%= link_to "Mapa świata", student_path(session[:user_id]) %> | 
-<%= link_to "Wiadomosci", messages_path(session[:user_id]) %><%= Message.where(student_id: session[:user_id], direction: "0").count%> | 
-<%= link_to "Wyzwania", sidequests_path %><%= Sidequest.where(level: @progr.lvl, finished: false).count%> |
-<%= link_to "Edytuj profil", edit_student_path(session[:user_id]) %> | 
-</br>
-<br>---------------------------------------------------------------------------------------------------------------</br>
+<div class="student_header">
+    <div class="student_avatar">
+        <div class="student_name">
+            <h2><%= @student.name %></h2>
+        </div>
+        <div class="student_lastname">
+            <h2><%= @student.lastname %></h2>
+        </div>
+    </div>
+    <div class="student_statistic">
+        <div>
+            <div class="student_hp">
+                <h3>hp: <%=@progr.hp %>/100</h3>
+            </div>
+            <div class="student_pustak"></div>
+            <div class="student_hp_potion">
+                <h3>+20 hp</h3>  <img src="/assets/student/hp_potion.png">
+            </div>
+        </div>
+        <div class="student_hp_bar_border">
+            <div class="student_hp_bar"></div>
+        </div>
+        <div>
+            <div class="student_exp">
+                <h3>exp: <%=@progr.expe %>/total_exp</h3>
+            </div>
+            
+            
+        </div>
+        <div class="student_exp_bar_border">
+            <div class="student_exp_bar"></div>
+        </div>
+        <div>
+            <div class="student_lvl">
+                <h3>Poziom: <%=@progr.lvl %></h3>
+            </div>
+            <div class="student_pustak"></div>
+            <div class="student_pkt_rank">
+                <h3>pkt rankingowe: <%=@progr.points%></h3>
+            </div>
+        </div>
+        <div class="student_rank">
+            <div class="student_rank_world">
+                <div class="student_bg_rank_world">
+                    <h1><%= @j %></h1>
+                </div>
+                <span>ranking<br>światowy</span>
+            </div>
+            <div class="student_pustak"></div>
+            <div class="student_rank_group">
+                <div class="student_bg_rank_group">
+                    <h1><%= @ran %></h1>
+                </div>
+                <span>ranking<br>grupowy</span>
+            </div>
+        </div>
+    </div>
+    <div class="student_other">
+        <div class="student_log_out">
+            <%= link_to "Wyloguj", logout_path, method: "delete"%>
+            <img src="/assets/student/student_logout.png">
+        </div>
+        <div class="student_message">
+            <%= link_to "Wiadomości ", messages_path(session[:user_id]) %><%= Message.where(student_id: session[:user_id], direction: "0").count%> 
+            <img src="/assets/student/message.png">
+        </div>
+        <div class="student_challenge">
+            <%= link_to "pojedynki:", sidequests_path %><%= Sidequest.where(level: @progr.lvl, finished: false).count%>
+            <br><img src="/assets/student/challenge.png">
+        </div>
+        
+        <br>
+    </div>
+</div>
+<div>
+    <br>---------------------------------------------------------------------------------------------------------------</br>
+    <br>| <%= link_to "Mapa świata", student_path(session[:user_id]) %> | 
+    <%= link_to "Edytuj profil", edit_student_path(session[:user_id]) %> | <br><br>
+</div>
