@@ -106,23 +106,23 @@ class StudentsController < ApplicationController
            redirect_to :back
         end
     end
-    def surender
-      wyzwanie=Sidequest.find_by(id: params[:idwyzwania])
+    # def surender
+    #   wyzwanie=Sidequest.find_by(id: params[:idwyzwania])
       
-      wyzwany=Student.find_by(id: wyzwanie.recipient_id)
-      wyzywjacy=Student.find_by(id: wyzwanie.challenger_id)
+    #   wyzwany=Student.find_by(id: wyzwanie.recipient_id)
+    #   wyzywjacy=Student.find_by(id: wyzwanie.challenger_id)
       
-      wyzwany_progre=Progre.find_by(student_id: wyzwany.id)
+    #   wyzwany_progre=Progre.find_by(student_id: wyzwany.id)
       
-      wyzwany_progre.update_column(:points , wyzwany_progre.points-5 )
-      wyzwany_progre.save
-      wyzywajacy_progre=Progre.find_by(student_id: wyzywjacy.id)
-      wyzywajacy_progre.update_column(:points , wyzywajacy_progre.points+5)
-      wyzywajacy_progre.save
-      wyzwanie.update_column(:status , 2)
-      wyzwanie.save
-      redirect_to :back
-    end
+    #   wyzwany_progre.update_column(:points , wyzwany_progre.points-5 )
+    #   wyzwany_progre.save
+    #   wyzywajacy_progre=Progre.find_by(student_id: wyzywjacy.id)
+    #   wyzywajacy_progre.update_column(:points , wyzywajacy_progre.points+5)
+    #   wyzywajacy_progre.save
+    #   wyzwanie.update_column(:status , 2)
+    #   wyzwanie.save
+    #   redirect_to :back
+    # end
   # GET /students/1/edit
   def edit
   end
@@ -134,19 +134,20 @@ class StudentsController < ApplicationController
     @student = group.students.create(new_student_params)
     @student.login = params[:student][:album_number]
     @student.password_digest = BCrypt::Password.create(params[:student][:album_number])
-
-      if @student.save
+    respond_to do |format|
+    if @student.save
             for i in 1..5
               presence = Presence.new(:student_id => @student.id, :classes_number => i, :present => true)
               presence.save
             end
         progrs = Progre.new(student_id: @student.id, points: 0, hp: 100, gained_points: 0, total: 0, lvl: 1, won_challenges: 0, lost_challenges: 0)
         progrs.save
-        redirect_to :back
-      else
-        redirect_to :back
-      end
-      
+        format.html{redirect_to :back, notice: 'Stworzono studenta'}
+    else
+        format.html { redirect_to :back }
+        format.json { render json: @student.errors, status: :unprocessable_entity }
+    end
+    end
   end
 
   # PATCH/PUT /students/1

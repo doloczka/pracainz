@@ -11,20 +11,20 @@
     </div>
   <% end %>
   <div class="field">
-    <%= f.label :content %><br>
+    <%= f.label :content, "Treść ćwiczenia"%><br>
     <%= f.text_area :content %>
   </div>
   <div class="field">
-    <%= f.label :hint %><br>
+    <%= f.label :hint, "Podpowiedź"%><br>
     <%= f.text_area :hint %>
   </div>
   <div class="field">
-    <%= f.label :reward %><br>
+    <%= f.label :reward, "Nagroda"%><br>
     <%= f.number_field :reward %>
   </div>
   <%= f.hidden_field :level, value: params[:lvl]  %>
   <%= f.hidden_field :number, value: params[:number]  %>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Akceptuj"%>
   </div>
 <% end %>
