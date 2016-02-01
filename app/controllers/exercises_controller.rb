@@ -82,7 +82,7 @@ class ExercisesController < ApplicationController
   def update
     respond_to do |format|
       if @exercise.update(exercise_params)
-        format.html { redirect_to :back, notice: 'Exercise was successfully updated.' }
+        format.html { redirect_to show_exe_path(:lvl => params[:exercise][:level], :number => params[:exercise][:number]), notice: 'Exercise was successfully updated.' }
         format.json { render :show, status: :ok, location: @exercise }
       else
         format.html { render :edit }
