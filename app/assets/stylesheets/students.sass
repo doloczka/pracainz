@@ -5,13 +5,20 @@
     margin-right: auto
     margin-top: 30px
     font-family: Viking
+    color: #000
+    a:hover, a:active, a:visited, a:link
+        text-decoration: none
+        color: #000
 .student_avatar
     position: relative
     float: left
     background: url('/assets/student/avatar.png') no-repeat
     width: 290px
     height: 351px
-.student_avatar 
+    a
+        display: block
+        width: 100%
+        height: 100%
     .student_name, .student_lastname
         h2
             position: absolute
@@ -21,12 +28,13 @@
             margin-right: auto
             text-align: center
             font-size: 18px
-.student_name
-    h2
-        bottom: 45px
-.student_lastname
-    h2
-        bottom: 15px
+    .student_name
+        h2
+            bottom: 45px
+    .student_lastname
+        h2
+            bottom: 15px
+            
 .student_statistic
     float: left
     background: url('/assets/student/bg_statistic.png') no-repeat
@@ -37,8 +45,14 @@
         float: left
     .student_hp_potion
         float: right
+        width: 100px
+        height: 48px
         margin-right: 80px
         margin-top: 50px
+        a
+            display: block
+            width: 100%
+            height: 100%
         h3
             display: inline-block
     .student_hp
@@ -87,15 +101,28 @@
     background: url('/assets/student/bg_other.png') no-repeat
     width: 260px
     height: 351px
+    a
+        display: block
+        width: 100%
+        height: 100%
+    h3
+        display: inline-block
     .student_log_out
+        width: 140px
+        height: 50px
         margin-top: 80px
-        margin-left: 70px
+        margin-left: auto
+        margin-right: auto
     .student_message
+        width: 210px
+        height: 60px
         margin-top: 20px
-        margin-left: 40px
+        margin-left: auto
+        margin-right: auto
     .student_challenge
-        margin-left: 70px
+        width: 135px
+        height: 100px
+        margin-left: auto
+        margin-right: auto
         img
-            margin-left: auto
-            margin-right: auto
- 
+            margin-left: 35px
