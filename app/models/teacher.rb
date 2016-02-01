@@ -9,7 +9,7 @@ class Teacher < ActiveRecord::Base
     
     private
     
-    def downcase_email
+    def downacase_email
       self.email = email.downcase
     end
 

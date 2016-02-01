@@ -55,8 +55,10 @@ Wyniki z zadań:
     <%end%>
     
 <%end%>
-<% if params["results"]==4 %>
+<% if params["results"]=="4" %>
 Otrzymane medale:
+<img src="indeks.png"/>
+<%=image_tag("indeks.png")%>
     <% if @medals.count!=0 %>
         <table  border="1">
           <thead>
@@ -67,12 +69,13 @@ Otrzymane medale:
             <% @medals.each do |medal| %>
               <tr>
                     <td><%= i=1+i %></td>
-                    <td><%= medal.medal_number %></td>>
+                    <td><%= medal.medal_id %></td>
+                    <td><img src="student/<%=Medal.find_by(id: medal.medal_id).img%>"/></td>
               </tr>
             <% end %>
           </tbody>
         </table>
     <% else %>
-        <%="medali"%>
+        <%="brak medali"%>
     <%end%>
 <%end%>
