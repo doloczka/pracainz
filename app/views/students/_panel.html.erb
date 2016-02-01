@@ -26,6 +26,8 @@ gr= Student.find(session[:user_id])
         <div class="student_lastname">
             <h2><%= @student.lastname %></h2>
         </div>
+        <br>| <%= link_to "Twoj profil", student_studentprofile_path(session[:user_id], :results => "1") %></br>
+        
     </div>
     <div class="student_statistic">
         <div>

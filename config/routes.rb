@@ -47,4 +47,5 @@ Rails.application.routes.draw do
   post 'challenge_win' => 'challenge#win'
   post 'challenge_draw' => 'challenge#draw'
   get 'student/surender' =>  'students#surender'
+  get 'student/studentprofile' =>  'students#studentprofile'
 end
