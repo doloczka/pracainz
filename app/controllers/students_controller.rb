@@ -27,6 +27,10 @@ class StudentsController < ApplicationController
         redirect_to   student_challengeinbox_path
       end
     end
+    def studentprofile
+       @pkt=Result.where(student_id: session[:user_id])
+       @medals=Medal.where(student_id: session[:user_id])
+    end
     
     def challengeconfirm
         student=Student.find(session[:user_id])

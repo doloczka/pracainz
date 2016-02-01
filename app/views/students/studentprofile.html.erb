@@ -1,0 +1,54 @@
+<script>
+    function showhide(a)
+     {
+           var div = document.getElementById(a);
+            if (div.style.display !== "none") {
+                div.style.display = "none";
+            }
+            else {
+                div.style.display = "block";
+            }
+          
+     }
+</script>
+<br><%= link_to "Powrót", student_path(session[:user_id]) %></br>
+<nav style="width: 30%">
+    <li><%= link_to "Wyniki zadań", student_studentprofile_path(session[:user_id], :results => "1") %></li>
+    <li><%= link_to "Wyniki zadań pobocznych", student_studentprofile_path(session[:user_id], :results => "2") %></li>
+    <li><%= link_to "Obecności", student_studentprofile_path(session[:user_id], :results => "3") %></li>
+    <li><%= link_to "Medale", student_studentprofile_path(session[:user_id], :results => "4") %></li>
+</nav>
+<% if params["results"]=="1" %>
+    <table  border="1">
+      <thead>
+        <tr>
+            <td>Nr</td>
+            <td>Poziom</td>
+            <td>Numer</td>
+            <td>Wynik [%]</td>
+        </tr>
+      </thead>
+     <% i=0%>
+      <tbody>
+        <% @pkt.each do |pk| %>
+          <tr>
+                <td><%= i=1+i %></td>
+                <td><%= pk.level %></td>
+                <td><%= Exercise.find_by(id: pk.exercise_id).number%></td>
+                <td><%= pk.earned_points %>%</td>
+                <td><button id='button' onclick="showhide(<%=i%>)">Szczegóły</button></td>
+          </tr>
+          <tr id='<%=i%>' style="display: none" >
+              <td colspan="6">
+                  <li>Treść zadania: <%= Exercise.find_by(id: pk.exercise_id).content %></li>
+                  <li>Odpowiedź: <%= Answer.find_by(exercise_id: pk.exercise_id).solution %></li>
+                </td>
+          </tr>
+        <% end %>
+        <% if i==0 %>
+            <%=" brak ocenionych rozwiązań"%>
+        <%end%>
+        
+      </tbody>
+    </table>
+<%end%>
