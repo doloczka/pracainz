@@ -60,6 +60,22 @@ class StudentsController < ApplicationController
     def show
         @student = Student.find_by(login: session[:login])
         @progr=Progre.find_by(student_id: session[:user_id])
+        
+        
+        
+        
+        time = Time.new.in_time_zone("Warsaw").strftime("%Y-%m-%d %H:%M:%S") 
+        
+        if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 2).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 2).end.to_time.to_i 
+          @progr.update_column(:lvl, "2")
+        elsif time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 3).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 3).end.to_time.to_i 
+          @progr.update_column(:lvl, "3")
+        elsif time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 4).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 4).end.to_time.to_i 
+          @progr.update_column(:lvl, "4")
+        elsif time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 5).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 5).end.to_time.to_i 
+          @progr.update_column(:lvl, "5")
+        end
+        
         # @zad=Drawnexercise.find_by(student_id: session[:user_id])
         # if @zad.nil?
         # @gr=Group.find_by(id: @student.group_id)
