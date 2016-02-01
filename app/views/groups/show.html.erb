@@ -39,7 +39,7 @@
   </thead>
   <tbody>
   <%= form_for :presence, :url => presences_update_path, :html => { :method => :put } do %>
-    <% @students.each do |student| %>
+    <% @students.order(:lastname).each do |student| %>
       <tr>
         <td><%= student.name %></td>
         <td><%= student.lastname %></td>

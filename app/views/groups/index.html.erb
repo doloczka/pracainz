@@ -12,7 +12,7 @@
   </thead>
 
   <tbody>
-    <% @groups.each do |group| %>
+    <% @groups.order(:created_at).each do |group| %>
       <tr>
         <td><%= group.name %></td>
         <td><%= link_to 'Show', group %></td>
@@ -32,7 +32,7 @@
   <th>nralbumu</th></tr>
 </thead>
   <tbody>
-    <% @students.each do |student|%>
+    <% @students.order(:lastname).each do |student|%>
         <tr>
         <td><%= student.name %></td>
         <td><%= student.lastname %></td>

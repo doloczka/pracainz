@@ -1,4 +1,4 @@
-<%= form_for (@exercise) do |f| %>
+<%= form_for @exercise, url: {action: "update"} ,method: :patch do |f| %>
   <% if @exercise.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@exercise.errors.count, "error") %> prohibited this exercise from being saved:</h2>
@@ -22,6 +22,8 @@
     <%= f.label :reward %><br>
     <%= f.number_field :reward %>
   </div>
+  <%= f.hidden_field :level, value: params[:lvl]  %>
+  <%= f.hidden_field :number, value: params[:number]  %>
   <div class="actions">
     <%= f.submit %>
   </div>

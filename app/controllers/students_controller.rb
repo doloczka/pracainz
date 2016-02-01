@@ -192,7 +192,6 @@ class StudentsController < ApplicationController
     def set_student
      @student = Student.find(params[:id])
     end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
       params.require(:student).permit(:login, :password, :email, :name, :lastname)
@@ -200,4 +199,5 @@ class StudentsController < ApplicationController
     def new_student_params
       params.require(:student).permit(:album_number)
     end
+    
 end

@@ -3,10 +3,10 @@ class CreateStudents < ActiveRecord::Migration
     create_table :students do |t|
       t.string :login
       t.string :password_digest
-      t.string :email
+      t.string :email, unique: true
       t.string :name
       t.string :lastname
-      t.string :album_number
+      t.string :album_number, unique: true
       t.references :group, index: true, foreign_key: true
       t.boolean :autenticated
 

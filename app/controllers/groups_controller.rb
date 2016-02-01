@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
-
+  before_action :correct_teacher, only: [:show, :edit, :update, :destroy]
   # GET /groups
   # GET /groups.json
   def index
@@ -18,10 +18,6 @@ class GroupsController < ApplicationController
     @classes = Classescalendar.where(group_id: params[:id])
   end
 
-  # GET /groups/new
-  # def new
-  #   @group = Group.new
-  # end
 
   # GET /groups/1/edit
   def edit
@@ -34,7 +30,7 @@ class GroupsController < ApplicationController
     @group = teacher.groups.create(group_params)
     6.times do |class_nr|
       meeting_date_start = Time.now + (7.days * class_nr)
-      meeting_date_end = meeting_date_start + 5400 # 1,5h w sekundach
+      meeting_date_end = meeting_date_start + (120+15)*60 # 1,5h w sekundach
       meeting = Classescalendar.new(group_id: @group.id, classes_number: class_nr+=1,start: meeting_date_start, end: meeting_date_end)
       meeting.save
     end
@@ -82,5 +78,9 @@ class GroupsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
       params.require(:group).permit(:name, :date, :teacher_id)
+    end
+    def correct_teacher
+      set_group
+      redirect_to :back unless Teacher.find(@group.teacher_id) == Teacher.find_by(login: session[:login])
     end
 end

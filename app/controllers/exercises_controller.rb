@@ -1,6 +1,6 @@
 class ExercisesController < ApplicationController
   before_action :set_exercise, only: [:show, :edit, :update, :destroy]
-  
+  before_action :correct_teacher, only: [:index, :show_exe, :destroy, :edit]
   
   def lesson
     @level = params[:level]
@@ -39,7 +39,7 @@ class ExercisesController < ApplicationController
   # GET /exercises
   # GET /exercises.json
   def index
-    @exercises = Exercise.where(teacher_id: session[:user_id])
+    @exercises = Exercise.where(teacher_id: Teacher.find_by(login: session[:login]).id)
   end
 
   # GET /exercises/1
@@ -111,4 +111,8 @@ class ExercisesController < ApplicationController
     def exercise_params
       params.require(:exercise).permit(:level, :number, :reward, :content, :hint)
     end
+    def correct_teacher
+      redirect_to root_url unless Teacher.find_by(login: current_user_login)
+    end
+    
 end

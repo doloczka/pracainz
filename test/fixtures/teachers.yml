@@ -1,17 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  login: MyString
-  password_diggest: MyString
-  : MyString
-  name: MyString
-  lastname: MyString
-  email: MyString
-
-two:
-  login: MyString
-  password_diggest: MyString
-  : MyString
-  name: MyString
-  lastname: MyString
-  email: MyString
+wykladowca:
+  login: wy
+  password_diggest: <%= Teacher.digest('wy') %>
+  name: WyIM
+  lastname: WyNAz
+  email: wy@example.com

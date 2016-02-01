@@ -1,11 +1,7 @@
 class TeachersController < ApplicationController
   before_action :set_teacher, only: [:show, :edit, :update, :destroy]
+  before_action :correct_teacher, only: [:show, :edit, :update, :destroy]
 
-  # GET /teachers
-  # GET /teachers.json
-  def index
-    @teachers = Teacher.all
-  end
 
   # GET /teachers/1
   # GET /teachers/1.json
@@ -70,5 +66,9 @@ class TeachersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def teacher_params
       params.require(:teacher).permit(:name, :lastname, :login, :password_digest, :email)
+    end
+    def correct_teacher
+      set_teacher
+      redirect_to :back unless @teacher == Teacher.find_by(login: session[:login])
     end
 end
