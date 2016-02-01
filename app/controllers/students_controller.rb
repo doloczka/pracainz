@@ -30,6 +30,8 @@ class StudentsController < ApplicationController
     def studentprofile
        @pkt=Result.where(student_id: session[:user_id])
        @medals=AwardedMedal.where(student_id: session[:user_id])
+       @sidequests=Sqresult.where(student_id: session[:user_id])
+       @prezences=Presence.where(student_id: session[:user_id])
     end
     
     def challengeconfirm
