@@ -18,7 +18,10 @@
     <li><%= link_to "Obecności", student_studentprofile_path(session[:user_id], :results => "3") %></li>
     <li><%= link_to "Medale", student_studentprofile_path(session[:user_id], :results => "4") %></li>
 </nav>
+<br></br>
 <% if params["results"]=="1" %>
+Wyniki z zadań:
+    <% if @pkt.count!=0 %>
     <table  border="1">
       <thead>
         <tr>
@@ -45,10 +48,31 @@
                 </td>
           </tr>
         <% end %>
-        <% if i==0 %>
-            <%=" brak ocenionych rozwiązań"%>
-        <%end%>
-        
       </tbody>
     </table>
+    <% else %>
+        <%=" brak ocenionych rozwiązań"%>
+    <%end%>
+    
+<%end%>
+<% if params["results"]==4 %>
+Otrzymane medale:
+    <% if @medals.count!=0 %>
+        <table  border="1">
+          <thead>
+            
+          </thead>
+         <% i=0%>
+          <tbody>
+            <% @medals.each do |medal| %>
+              <tr>
+                    <td><%= i=1+i %></td>
+                    <td><%= medal.medal_number %></td>>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+    <% else %>
+        <%="medali"%>
+    <%end%>
 <%end%>
