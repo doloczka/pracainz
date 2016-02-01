@@ -5,7 +5,7 @@ class SidequestsController < ApplicationController
   # GET /sidequests
   # GET /sidequests.json
   def index
-    if logged_as_teacher?
+      if logged_as_teacher?
       @sidequest= Sidequest.new
       @sidequests = Sidequest.where(teacher_id: session[:user_id])
     end
