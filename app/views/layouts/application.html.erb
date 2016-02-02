@@ -4,10 +4,9 @@
   <head>
     <title>inz</title>
     
-    <%= stylesheet_link_tag "login", "application", "students" %>
+    <%= stylesheet_link_tag "application", "login", "students" %>
                                            
-
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application" => true %>
     <%= csrf_meta_tags %>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -16,27 +15,30 @@
   </head>
   
   <body>
-    <div class="container">
-      <% flash.each do |message_type, message| %>
-        <div class='alert alert-<%=message_type%>'><%= message %></div>
-      <%end%>
-      <% if logged_as_student? || logged_as_teacher? %>
-      <%= link_to "Log out", logout_path, method: "delete"%>
-      <%end%>
-      <%if logged_as_teacher?%>
-        <%= link_to 'Grupy', teacher_groups_path(session[:user_id]) %>
-        <%= link_to 'Ćwiczenia', teacher_exercises_path(session[:user_id]) %>
-        <%= link_to 'Rozwiązania', answers_path %> | <%= Answer.where(teacher_id: session[:user_id], read: false).where.not(solution: nil).count%> |
-        <%= link_to 'Wyzwania', sidequests_path %>
-        <%= link_to 'Wiadomosci', messages_path(session[:user_id]) %><%= Message.where(teacher_id: session[:user_id], direction: "1").count%>
-        <%= link_to 'Edit', edit_teacher_path(session[:user_id]) %>
-      <%end%>
-    <% if logged_as_student?%>
-      <%= render 'students/panel' %>
-    <% end %>
-      <%= yield %>
-      <%= debug(params) if Rails.env.development? %>
-    </div>
+    <% if logged_as_student? %>
+      <div class="container">
+        <% flash.each do |message_type, message| %>
+          <div class='alert alert-<%=message_type%>'><%= message %></div>
+        <%end%>
+        <%= render 'students/panel' %>
+        <%= yield %>
+        <%= debug(params) if Rails.env.development? %>
+      </div>
+    <% elsif logged_as_teacher? %>
+      <div class="container">
+          <% flash.each do |message_type, message| %>
+            <div class='alert alert-<%=message_type%>'><%= message %></div>
+          <%end%>
+          <%= link_to "Log out", logout_path, method: "delete"%>
+          <%= yield %>
+          <%= debug(params) if Rails.env.development? %>
+        </div>
+    <% else %>
+      <div class="container">
+        jestes nie zalogowany
+        <%= yield %>
+      </div>
+    <%end%>
   </body>
   
 </html>
