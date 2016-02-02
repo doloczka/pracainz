@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
-  before_action :correct_teacher, only: [:show, :edit, :update, :destroy]
+  before_action :correct_teacher, only: [:index, :show, :edit, :update, :destroy]
   # GET /groups
   # GET /groups.json
   def index
@@ -80,7 +80,12 @@ class GroupsController < ApplicationController
       params.require(:group).permit(:name, :date, :teacher_id)
     end
     def correct_teacher
-      set_group
-      redirect_to :back unless Teacher.find(@group.teacher_id) == Teacher.find_by(login: session[:login])
+      if !params[:id].nil? 
+        set_group
+        redirect_to :back unless Teacher.find(@group.teacher_id) == Teacher.find_by(login: session[:login])
+      else
+        redirect_to root_url unless logged_as_teacher?
+      end
     end
+    
 end

@@ -1,10 +1,12 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
-
+  before_action :correct_teacher, only: :index
+  
   # GET /answers
   # GET /answers.json
   def index
     @answers = Answer.where(teacher_id: session[:user_id],read: false,).where.not(solution: nil).order(:updated_at)
+    @read_answers = Answer.where(teacher_id: session[:user_id],read: true).where.not(solution: nil).order(:updated_at)
   end
 
   # GET /answers/1
@@ -72,5 +74,8 @@ class AnswersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def answer_params
       params.require(:answer).permit(:teacher_id, :student_id, :exercise, :content, :read)
+    end
+    def correct_teacher
+      redirect_to root_url unless logged_as_teacher?
     end
 end

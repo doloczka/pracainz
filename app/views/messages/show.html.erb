@@ -1,9 +1,9 @@
 <% if logged_as_student? %>
-    <%= render "students/panel" %>
     <br><%= link_to "Powrót do skrzynki odbiorczej", message_path(session[:user_id]) %>
 <%end%>
-<p id="notice"><%= notice %></p>
-    
+<% if logged_as_teacher?%>    
+<h3>Wiadomość od <%=@student.name%> <%=@student.lastname%></h3>
+<%end%>
 <br>temat: <%= Message.find_by(id: params[:id]).subject %></br>
     tresc: <%= Message.find_by(id: params[:id]).content %>
 

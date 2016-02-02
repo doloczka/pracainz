@@ -69,6 +69,6 @@ class TeachersController < ApplicationController
     end
     def correct_teacher
       set_teacher
-      redirect_to :back unless @teacher == Teacher.find_by(login: session[:login])
+      redirect_to root_url unless @teacher == Teacher.find_by(login: session[:login])
     end
 end

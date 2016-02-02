@@ -1,10 +1,10 @@
-<h1>Listing Answers</h1>
-
+<h1>Przysłane rozwiązania</h1>
+<h3>Nie ocenione</h3>
 <table>
   <thead>
     <tr>
       <th>Student</th>
-      <th>Exercise</th>
+      <th>Ćwiczenie</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,10 +16,32 @@
         <td><%= answer.student.name %> <%= answer.student.lastname %></td>
         <td>Lekcja :<%= @exercise.level %> Ćwiczenie <%= @exercise.number %></td>
         <td><%= link_to 'Show', answer %></td>
-        <td><%= link_to 'Edit', edit_answer_path(answer) %></td>
-        <td><%= link_to 'Destroy', answer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<h3>Ocenione</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Student</th>
+      <th>Ćwiczenie</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @read_answers.each do |answer| %>
+      <tr>
+        <%@exercise = Exercise.find(answer.exercise_id)%>
+        <%result = Result.find_by(exercise_id: @exercise.id)%>
+        <td><%= answer.student.name %> <%= answer.student.lastname %></td>
+        <td>Lekcja :<%= @exercise.level %> Ćwiczenie <%= @exercise.number %></td>
+        <td>Ocena: <%= result.earned_points%></td>
+        <td><%= link_to 'Show', answer %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 

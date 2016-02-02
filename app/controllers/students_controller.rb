@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
-
+  before_action :correct_student, only: :show
   # GET /students
   # GET /students.json
   def index
@@ -205,6 +205,11 @@ class StudentsController < ApplicationController
     end
     def new_student_params
       params.require(:student).permit(:album_number)
+    end
+    
+    def correct_student
+      set_student
+      redirect_to root_url unless @student == Student.find_by(login: session[:login])
     end
     
 end

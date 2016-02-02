@@ -9,14 +9,8 @@ class Teacher < ActiveRecord::Base
     
     private
     
-<<<<<<< HEAD
       def downcase_email
-        self.email = email.downcase
+        self.email = email.downcase if !self.email.nil?
       end
-=======
-    def downacase_email
-      self.email = email.downcase
-    end
->>>>>>> arprofil
 
 end
