@@ -1,5 +1,5 @@
 class ClassescalendarController < ApplicationController
-    before_action :correct_teacher, update
+    before_action :correct_teacher, :update
     def update
         params['clas'].keys.each do |id|
             @clas = Classescalendar.find(id.to_i)
