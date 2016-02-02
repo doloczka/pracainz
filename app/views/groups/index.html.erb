@@ -1,12 +1,10 @@
-
-
-<h1>Listing Groups</h1>
+<h1>Grupy</h1>
 <%= render 'form'%>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Nazwa</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -23,20 +21,27 @@
     <% end %>
   </tbody>
 </table>
-<h2>wszyscy twoi studentci</h2>
+<h2>Ranking Światowy</h2>
 <table><thead>
-  <tr><th>
-    Imie
-  </th>
+  <tr>
+    <th>Lp.</th>
+    <th>Punkty rankingowe</th>
+  <th>Imie</th>
   <th>Nazwisko</th>
-  <th>nralbumu</th></tr>
+  <th>nralbumu</th>
+  <th>Grupa</th>
+  </tr>
 </thead>
   <tbody>
-    <% @students.order(:lastname).each do |student|%>
+    <% @students.each do |student|%>
         <tr>
+          <td><%=@lp += 1%></td>
+        <td><%= student.progre.points%></td>
         <td><%= student.name %></td>
         <td><%= student.lastname %></td>
         <td><%= student.album_number%></td>
+        
+        <td><%= student.group.name%></td>
         <td><%= link_to 'Show', student %></td>
         <td><%= link_to 'Edit', edit_student_path(student) %></td>
         <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>

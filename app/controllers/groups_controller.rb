@@ -7,15 +7,17 @@ class GroupsController < ApplicationController
     teacher = Teacher.find(curent_user_id)
     @group= teacher.groups.build
     @groups = Group.where(teacher_id: params[:teacher_id])
-    @students = Student.where(group_id:  @groups)
+    @students = Student.joins(:progre).order('points DESC').where(group_id: @groups) #Student.where(group_id:  @groups, :joins => :progre, :order => 'progre.points')
+    @lp=0
   end
 
   # GET /groups/1
   # GET /groups/1.json
   def show
     @student = @group.students.build
-    @students = Student.where(group_id: params[:id])
+    @students = Student.joins(:progre).order('points DESC').where(group_id: params[:id])
     @classes = Classescalendar.where(group_id: params[:id])
+    @nr=0
   end
 
 

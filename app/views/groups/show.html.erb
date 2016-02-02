@@ -27,12 +27,15 @@
 <br></br>
 <%=render 'new_student' %>
 <br></br>
+<h3>Ranking Grupy</h3>
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Lastname</th>
-      <th>album_number</th>
+      <th>Lp.</th>
+      <th>Punkty</th>
+      <th>Imie</th>
+      <th>Nazwisko</th>
+      <th>nr albumu</th>
       <th>Email</th>
       <th></th>
       <th></th>
@@ -44,8 +47,10 @@
   </thead>
   <tbody>
   <%= form_for :presence, :url => presences_update_path, :html => { :method => :put } do %>
-    <% @students.order(:lastname).each do |student| %>
+    <% @students.each do |student| %>
       <tr>
+        <td><%=@nr+=1%></td>
+        <td><%=student.progre.points%></td>
         <td><%= student.name %></td>
         <td><%= student.lastname %></td>
         <td><%= student.album_number %></td>

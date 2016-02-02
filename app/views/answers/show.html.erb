@@ -8,6 +8,7 @@
   <strong>Rozwiązanie:</strong>
   <%= @answer.solution %>
 </p>
+<% if !@answer.read%>
 <%= form_for @result, url: new_result_path do |f| %>
   <% if @result.errors.any? %>
     <div id="error_explanation">
@@ -19,7 +20,7 @@
       </ul>
     </div>
   <% end %>
-  <%= f.label :earned_points%>
+<%= f.label :earned_points%>
 <%= f.number_field "earned_points", in: 0...101%>
 <%= f.hidden_field :student_id, :value => @answer.student_id %>
 <%= f.hidden_field :level, :value => @exercise.level %>
@@ -29,4 +30,5 @@
     <div class="actions">
     <%= f.submit %>
   </div
+<% end %>
 <% end %>
