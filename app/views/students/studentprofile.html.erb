@@ -100,11 +100,8 @@
 <%end%>
 <% if params["results"]=="3" %>
 Dziennnik obecności:
-
     <% if @prezences.count!=0 %>
         <% stgr= Student.find(session[:user_id]).group_id %>
-        
-       
         <table  border="1">
          <% i=0%>
          <thead>
