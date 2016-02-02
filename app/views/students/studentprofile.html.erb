@@ -11,7 +11,9 @@
           
      }
 </script>
-
+<%if logged_as_teacher?%>
+    <h3>Student: <%=@student.name%> <%=@student.lastname%> , nr albumu: <%=@student.album_number%></h3>
+<%end%>
 <br><%= link_to "Powrót", student_path(session[:user_id]) %></br>
 <nav style="width: 30%">
     <li><%= link_to "Wyniki zadań", student_studentprofile_path(session[:user_id], :results => "1") %></li>

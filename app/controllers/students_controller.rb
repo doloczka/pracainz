@@ -28,10 +28,19 @@ class StudentsController < ApplicationController
       end
     end
     def studentprofile
+      if logged_as_student?
        @pkt=Result.where(student_id: session[:user_id])
        @medals=AwardedMedal.where(student_id: session[:user_id])
        @sidequests=Sqresult.where(student_id: session[:user_id])
        @prezences=Presence.where(student_id: session[:user_id])
+      end
+      if logged_as_teacher?
+        @student =Student.find(params[:format])
+       @pkt=Result.where(student_id: @student.id)
+       @medals=AwardedMedal.where(student_id: @student.id)
+       @sidequests=Sqresult.where(student_id: @student.id)
+       @prezences=Presence.where(student_id: @student.id)
+      end
     end
     
     def challengeconfirm
@@ -60,12 +69,7 @@ class StudentsController < ApplicationController
     def show
         @student = Student.find_by(login: session[:login])
         @progr=Progre.find_by(student_id: session[:user_id])
-        
-        
-        
-        
         time = Time.new.in_time_zone("Warsaw").strftime("%Y-%m-%d %H:%M:%S") 
-        
         if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 2).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 2).end.to_time.to_i 
           @progr.update_column(:lvl, "2")
         elsif time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 3).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 3).end.to_time.to_i 
@@ -75,7 +79,7 @@ class StudentsController < ApplicationController
         elsif time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 5).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 5).end.to_time.to_i 
           @progr.update_column(:lvl, "5")
         end
-        
+
         # @zad=Drawnexercise.find_by(student_id: session[:user_id])
         # if @zad.nil?
         # @gr=Group.find_by(id: @student.group_id)
@@ -224,8 +228,8 @@ class StudentsController < ApplicationController
     end
     
     def correct_student
-      set_student
-      redirect_to root_url unless @student == Student.find_by(login: session[:login])
+        set_student
+        redirect_to root_url unless @student == Student.find_by(login: session[:login])
     end
     
 end
