@@ -38,9 +38,11 @@ gr= Student.find(session[:user_id])
             <div class="student_pustak"></div>
             
             <div class="student_hp_potion">
+                <%=link_to "kup życie", student_hppotion_path(session[:user_id]) %>
                 <%= link_to do %>
                     <h3>+20 hp</h3>  
                     <img src="/assets/student/hp_potion.png" alt="">
+                    
                 <% end %>
             </div>
         </div>
@@ -49,11 +51,7 @@ gr= Student.find(session[:user_id])
         </div>
         <div>
             <div class="student_exp">
-<<<<<<< HEAD
-                <h3>exp: <%=@progr.expe %>/<%=@progr.total %></h3>
-=======
-                <h3>exp: <%=@progr.expe/@progr.total%>/<%=@progr.total%></h3>
->>>>>>> adamobecnosci1
+                <h3>exp: <%=@progr.expe%>/<%=@progr.total%></h3>
             </div>
         </div>
         <div class="student_exp_bar_border">
