@@ -36,7 +36,7 @@ class StudentsController < ApplicationController
        @prezences=Presence.where(student_id: session[:user_id])
       end
       if logged_as_teacher?
-        @student =Student.find(params[:format])
+       @student =Student.find(params[:format])
        @pkt=Result.where(student_id: @student.id)
        @medals=AwardedMedal.where(student_id: @student.id)
        @sidequests=Sqresult.where(student_id: @student.id)
@@ -74,12 +74,188 @@ class StudentsController < ApplicationController
         
         if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 2).start.to_time.to_i && Classescalendar.find_by(group_id: @student.group_id, classes_number: 3).start.to_time.to_i 
           @progr.update_column(:lvl, "2")
+            
+            @level = "2"
+            
+            @student = Student.find_by(login: session[:login])
+            zad=Drawnexercise.find_by(student_id: @student.id)
+            @progr=Progre.find_by(student_id: session[:user_id])
+            if zad.nil?
+              @gr=Group.find_by(id: @student.group_id)
+              for i in 1..5 do
+                exercount=Exercise.where(teacher_id: @gr.teacher_id, level: @level , number: i).count
+                rnd= rand(1..exercount) #rand
+                exer = Exercise.where(teacher_id: @gr.teacher_id, level: @level , number: i).first(rnd).last
+                data={
+                        "student_id"=>@student.id,
+                        "level"=>@level,
+                        "number"=>i,
+                        "exercise_id"=>exer.id
+                    }
+                 @exer = Drawnexercise.create!(data)
+                 answer_data = {
+                      "teacher_id" => @gr.teacher_id,
+                      "student_id" => @student.id,
+                      "exercise_id" => exer.id,
+                      "reward" => exer.reward,
+                      "read" => false
+                    }
+                 if !Answer.exists?(:teacher_id => @gr.teacher_id, :student_id => session[:user_id], :exercise_id =>exer.id)
+                      answer = Answer.new(answer_data)
+                      answer.save
+                      @progr.total += answer.reward
+                      @progr.save
+                 end
+              end
+            end
+          
         elsif time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 3).start.to_time.to_i && time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 4).start.to_time.to_i 
           @progr.update_column(:lvl, "3")
+          
+          @level = "3"
+            
+            @student = Student.find_by(login: session[:login])
+            zad=Drawnexercise.find_by(student_id: @student.id)
+            @progr=Progre.find_by(student_id: session[:user_id])
+            if zad.nil?
+              @gr=Group.find_by(id: @student.group_id)
+              for i in 1..5 do
+                exercount=Exercise.where(teacher_id: @gr.teacher_id, level: @level , number: i).count
+                rnd= rand(1..exercount) #rand
+                exer = Exercise.where(teacher_id: @gr.teacher_id, level: @level , number: i).first(rnd).last
+                data={
+                        "student_id"=>@student.id,
+                        "level"=>@level,
+                        "number"=>i,
+                        "exercise_id"=>exer.id
+                    }
+                 @exer = Drawnexercise.create!(data)
+                 answer_data = {
+                      "teacher_id" => @gr.teacher_id,
+                      "student_id" => @student.id,
+                      "exercise_id" => exer.id,
+                      "reward" => exer.reward,
+                      "read" => false
+                    }
+                 if !Answer.exists?(:teacher_id => @gr.teacher_id, :student_id => session[:user_id], :exercise_id =>exer.id)
+                      answer = Answer.new(answer_data)
+                      answer.save
+                      @progr.total += answer.reward
+                      @progr.save
+                 end
+              end
+            end
+          
         elsif time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 4).start.to_time.to_i && time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 5).start.to_time.to_i  
           @progr.update_column(:lvl, "4")
+          
+            @level = "4"
+            
+            @student = Student.find_by(login: session[:login])
+            zad=Drawnexercise.find_by(student_id: @student.id)
+            @progr=Progre.find_by(student_id: session[:user_id])
+            if zad.nil?
+              @gr=Group.find_by(id: @student.group_id)
+              for i in 1..5 do
+                exercount=Exercise.where(teacher_id: @gr.teacher_id, level: @level , number: i).count
+                rnd= rand(1..exercount) #rand
+                exer = Exercise.where(teacher_id: @gr.teacher_id, level: @level , number: i).first(rnd).last
+                data={
+                        "student_id"=>@student.id,
+                        "level"=>@level,
+                        "number"=>i,
+                        "exercise_id"=>exer.id
+                    }
+                 @exer = Drawnexercise.create!(data)
+                 answer_data = {
+                      "teacher_id" => @gr.teacher_id,
+                      "student_id" => @student.id,
+                      "exercise_id" => exer.id,
+                      "reward" => exer.reward,
+                      "read" => false
+                    }
+                 if !Answer.exists?(:teacher_id => @gr.teacher_id, :student_id => session[:user_id], :exercise_id =>exer.id)
+                      answer = Answer.new(answer_data)
+                      answer.save
+                      @progr.total += answer.reward
+                      @progr.save
+                 end
+              end
+            end
+          
         elsif time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 5).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 5).end.to_time.to_i 
           @progr.update_column(:lvl, "5")
+          
+            @level = "5"
+            
+            @student = Student.find_by(login: session[:login])
+            zad=Drawnexercise.find_by(student_id: @student.id)
+            @progr=Progre.find_by(student_id: session[:user_id])
+            if zad.nil?
+              @gr=Group.find_by(id: @student.group_id)
+              for i in 1..5 do
+                exercount=Exercise.where(teacher_id: @gr.teacher_id, level: @level , number: i).count
+                rnd= rand(1..exercount) #rand
+                exer = Exercise.where(teacher_id: @gr.teacher_id, level: @level , number: i).first(rnd).last
+                data={
+                        "student_id"=>@student.id,
+                        "level"=>@level,
+                        "number"=>i,
+                        "exercise_id"=>exer.id
+                    }
+                 @exer = Drawnexercise.create!(data)
+                 answer_data = {
+                      "teacher_id" => @gr.teacher_id,
+                      "student_id" => @student.id,
+                      "exercise_id" => exer.id,
+                      "reward" => exer.reward,
+                      "read" => false
+                    }
+                 if !Answer.exists?(:teacher_id => @gr.teacher_id, :student_id => session[:user_id], :exercise_id =>exer.id)
+                      answer = Answer.new(answer_data)
+                      answer.save
+                      @progr.total += answer.reward
+                      @progr.save
+                 end
+              end
+            end
+          
+        else
+          
+          @level = "1"
+            
+            @student = Student.find_by(login: session[:login])
+            zad=Drawnexercise.find_by(student_id: @student.id)
+            @progr=Progre.find_by(student_id: session[:user_id])
+            if zad.nil?
+              @gr=Group.find_by(id: @student.group_id)
+              for i in 1..5 do
+                exercount=Exercise.where(teacher_id: @gr.teacher_id, level: @level , number: i).count
+                rnd= rand(1..exercount) #rand
+                exer = Exercise.where(teacher_id: @gr.teacher_id, level: @level , number: i).first(rnd).last
+                data={
+                        "student_id"=>@student.id,
+                        "level"=>@level,
+                        "number"=>i,
+                        "exercise_id"=>exer.id
+                    }
+                 @exer = Drawnexercise.create!(data)
+                 answer_data = {
+                      "teacher_id" => @gr.teacher_id,
+                      "student_id" => @student.id,
+                      "exercise_id" => exer.id,
+                      "reward" => exer.reward,
+                      "read" => false
+                    }
+                 if !Answer.exists?(:teacher_id => @gr.teacher_id, :student_id => session[:user_id], :exercise_id =>exer.id)
+                      answer = Answer.new(answer_data)
+                      answer.save
+                      @progr.total += answer.reward
+                      @progr.save
+                 end
+              end
+            end
+          
         end
 #TODELETE
         # @zad=Drawnexercise.find_by(student_id: session[:user_id])
@@ -122,6 +298,20 @@ class StudentsController < ApplicationController
         # end
         # end
     end
+    
+    def hppotion
+      pr = Progre.find_by(student_id: session[:user_id])
+      hpnowe=pr.hp+20
+      if hpnowe>100
+        hpnowe=100
+      end
+      pr.update_column(:hp , hpnowe)
+      pr.update_column(:points,pr.points-30)
+      if pr.save
+        redirect_to :back
+      end
+    end
+    
     def solution
         idzadania=Drawnexercise.find_by(student_id: session[:user_id], level: params[:answer][:level], number: params[:answer][:number])
         tre=Exercise.find_by(id: idzadania.exercise_id)

@@ -104,14 +104,28 @@ Dziennnik obecności:
         <% stgr= Student.find(session[:user_id]).group_id %>
         <table  border="1">
          <% i=0%>
+         <thead>
+            <tr>
+                <td>Nr</td>
+                <td>Data</td>
+                <td>Obecność</td>
+            </tr>
+          </thead>
           <tbody>
             <% @prezences.each do |presence| %>
             
               <tr>
                     <td><%= i=1+i %></td>
-                    <td><%=presence.classes_number %></td>
-                    <td><%= Classescalendar.find_by(id: stgr, classes_number: presence.classes_number) %></td>
-                    <td><%=presence.student_id.group_id %></td>
+                    <td><%= Classescalendar.find_by(group_id: stgr, classes_number: presence.classes_number).start.to_date %></td>
+                    <% if Time.new.in_time_zone("Warsaw").strftime("%Y-%m-%d %H:%M:%S").to_time.to_i<Classescalendar.find_by(group_id: stgr, classes_number: presence.classes_number).start.to_time.to_i%>
+                        <td>Nieznane</td>
+                    <%else%>
+                        <%if presence.present==true%>
+                            <td>Obecny</td>
+                        <%else%>
+                            <td>Nieobecny</td>
+                        <%end%>
+                    <%end%>
               </tr>
             <% end %>
           </tbody>
