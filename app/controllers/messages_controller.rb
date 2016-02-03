@@ -1,15 +1,15 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:edit, :update, :destroy]
-  before_action :logged_user, only: :index
+  before_action :logged_user, only: [:index, :new, :destroy,:edit, :update]
   
   # GET /wiadomoscis
   # GET /wiadomoscis.json
   def index
     if logged_as_student?
-        @messages = Message.where(student_id: session[:user_id], direction: "0")
+        @messages = Message.where(student_id: session[:user_id], direction: "0").order("created_at DESC")
     end
     if logged_as_teacher?
-       @messages = Message.where(teacher_id: session[:user_id], direction: "1")
+       @messages = Message.where(teacher_id: session[:user_id], direction: "1").order("created_at DESC")
     end
   end
 
@@ -17,9 +17,15 @@ class MessagesController < ApplicationController
   # GET /wiadomoscis/1.json
   def show
     @message =Message.find(params[:id])
-   @student = Student.find(@message.student_id)
-   @message.read = true
-   @message.save
+    @student = Student.find(@message.student_id)
+    if logged_as_student? && @message.direction == 0
+      @message.read = true
+      @message.save
+    end
+    if logged_as_teacher? && @message.direction == 1
+      @message.read = true
+      @message.save
+    end
   end
 
   # GET /wiadomoscis/new
@@ -80,6 +86,7 @@ class MessagesController < ApplicationController
    @message.student_id=session[:user_id]
    @message.teacher_id=gr.teacher_id
    @message.direction="1"
+   @message.read= false
     
       respond_to do |format|
         if @message.save

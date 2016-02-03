@@ -1,6 +1,7 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
   before_action :correct_student, only: :show
+  before_action :correct_teacher, only: [:create, :destroy]
   # GET /students
   # GET /students.json
   def index
@@ -42,7 +43,7 @@ class StudentsController < ApplicationController
        @prezences=Presence.where(student_id: @student.id)
       end
     end
-    
+    #to chyna już nie poczebne #TODELETE
     def challengeconfirm
         student=Student.find(session[:user_id])
         grupa=Group.find_by(student.group_id)
@@ -61,7 +62,7 @@ class StudentsController < ApplicationController
         Sidequest.new(data).save
         redirect_to  student
     end
-    
+    #TODELETE
     def challengeinbox
         @wyzwania=Sidequest.where(recipient_id: session[:user_id])
     end
@@ -70,12 +71,8 @@ class StudentsController < ApplicationController
         @student = Student.find_by(login: session[:login])
         @progr=Progre.find_by(student_id: session[:user_id])
         time = Time.new.in_time_zone("Warsaw").strftime("%Y-%m-%d %H:%M:%S") 
-<<<<<<< HEAD
-        if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 2).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 2).end.to_time.to_i 
-=======
         
         if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 2).start.to_time.to_i && Classescalendar.find_by(group_id: @student.group_id, classes_number: 3).start.to_time.to_i 
->>>>>>> adamobecnosci1
           @progr.update_column(:lvl, "2")
         elsif time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 3).start.to_time.to_i && time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 4).start.to_time.to_i 
           @progr.update_column(:lvl, "3")
@@ -84,7 +81,7 @@ class StudentsController < ApplicationController
         elsif time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 5).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 5).end.to_time.to_i 
           @progr.update_column(:lvl, "5")
         end
-
+#TODELETE
         # @zad=Drawnexercise.find_by(student_id: session[:user_id])
         # if @zad.nil?
         # @gr=Group.find_by(id: @student.group_id)
@@ -137,6 +134,7 @@ class StudentsController < ApplicationController
            redirect_to :back
         end
     end
+    #TODELETE
     # def surender
     #   wyzwanie=Sidequest.find_by(id: params[:idwyzwania])
       
@@ -235,6 +233,9 @@ class StudentsController < ApplicationController
     def correct_student
         set_student
         redirect_to root_url unless @student == Student.find_by(login: session[:login])
+    end
+    def correct_teacher
+      redirect_to root_url unless Teacher.find(login: current_user_login) 
     end
     
 end

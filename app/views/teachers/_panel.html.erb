@@ -3,5 +3,5 @@
         <%= link_to 'Ćwiczenia', teacher_exercises_path(session[:user_id]) %>
         <%= link_to 'Rozwiązania', answers_path %> | <%= Answer.where(teacher_id: session[:user_id], read: false).where.not(solution: nil).count%> |
         <%= link_to 'Wyzwania', sidequests_path %>
-        <%= link_to 'Wiadomosci', messages_path(session[:user_id]) %><%= Message.where(teacher_id: session[:user_id], direction: "1").count%>
+        <%= link_to 'Wiadomosci', messages_path(session[:user_id]) %><%= Message.where(teacher_id: session[:user_id], direction: "1", read: false).count%>
         <%= link_to 'Edit', edit_teacher_path(session[:user_id]) %>
