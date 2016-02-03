@@ -45,34 +45,34 @@ Classescalendar.create!(group_id: "1", classes_number: "5", start: "2016-01-23 0
 Exercise.create!(teacher_id: "1",
                     level: "1",
                     number: "1",
-                    reward: "10",
+                    reward: "100",
                     content: "zadanie pierwsze dzien pierwszy",
                     hint: "jeśli używasz podowiedzi to jestes slaby"
                     )
 Exercise.create!(teacher_id: "1",
                     level: "1",
                     number: "2",
-                    reward: "10",
+                    reward: "100",
                     content: "zadanie drugie dzien pierwszy",
                     hint: "12hint"
                     )
 Exercise.create!(teacher_id: "1",
                     level: "1",
                     number: "3",
-                    reward: "10",
+                    reward: "100",
                     content: "zadanie trzecie dzien pierwszy",
                     hint: "13hint"
                     )
 Exercise.create!(teacher_id: "1",
                     level: "1",
                     number: "4",
-                    reward: "10",
+                    reward: "100",
                     content: "zadanie czwarte dzien pierwszy"
                     )
 Exercise.create!(teacher_id: "1",
                     level: "1",
                     number: "5",
-                    reward: "10",
+                    reward: "100",
                     content: "zadanie piate dzien pierwszy"
                     )
                     
@@ -80,7 +80,7 @@ Exercise.create!(teacher_id: "1",
 Exercise.create!(teacher_id: "1",
                     level: "2",
                     number: "1",
-                    reward: "10",
+                    reward: "100",
                     content: "zadanie piate dzien pierwszy"
                     )
 Exercise.create!(teacher_id: "1",
@@ -93,19 +93,19 @@ Exercise.create!(teacher_id: "1",
 Exercise.create!(teacher_id: "1",
                     level: "2",
                     number: "3",
-                    reward: "10",
+                    reward: "100",
                     content: "zadanie piate dzien pierwszy"
                     )
 Exercise.create!(teacher_id: "1",
                     level: "2",
                     number: "4",
-                    reward: "10",
+                    reward: "100",
                     content: "zadanie piate dzien pierwszy"
                     )
 Exercise.create!(teacher_id: "1",
                     level: "2",
                     number: "5",
-                    reward: "10",
+                    reward: "100",
                     content: "zadanie piate dzien pierwszy"
                     )
 
@@ -113,19 +113,19 @@ Exercise.create!(teacher_id: "1",
 Exercise.create!(teacher_id: "1",
                     level: "3",
                     number: "1",
-                    reward: "10",
+                    reward: "100",
                     content: "zadanie piate dzien pierwszy"
                     )
 Exercise.create!(teacher_id: "1",
                     level: "3",
                     number: "2",
-                    reward: "10",
+                    reward: "100",
                     content: "zadanie piate dzien pierwszy"
                     )
 Exercise.create!(teacher_id: "1",
                     level: "3",
                     number: "3",
-                    reward: "10",
+                    reward: "100",
                     content: "zadanie piate dzien pierwszy"
                     )
 Exercise.create!(teacher_id: "1",

@@ -8,6 +8,7 @@ class ResultController < ApplicationController
       @points_in_percent = (params[:result][:earned_points]).to_i/100.to_f
       earned_points = @points_in_percent * @reward
       @progres = Progre.find_by(student_id: params[:result][:student_id])
+      @progres.hp -= (@reward - earned_points) * 0.2
       @progres.gained_points += earned_points
       @progres.points += earned_points
       @progres.save
