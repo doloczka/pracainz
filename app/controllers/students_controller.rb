@@ -233,12 +233,8 @@ class StudentsController < ApplicationController
         elsif time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 5).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 5).end.to_time.to_i 
           @progr.update_column(:lvl, "5")
           
-<<<<<<< HEAD
-          @level = "1"
-=======
             lev = 5
             
->>>>>>> adamski
             @student = Student.find_by(login: session[:login])
             zad=Drawnexercise.find_by(student_id: @student.id ,level: lev)
             @progr=Progre.find_by(student_id: session[:user_id])
