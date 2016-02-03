@@ -301,6 +301,9 @@ class StudentsController < ApplicationController
     
     def hppotion
       pr = Progre.find_by(student_id: session[:user_id])
+      if pr.hp >90
+        redirect_to :back
+      end
       hpnowe=pr.hp+20
       if hpnowe>100
         hpnowe=100
