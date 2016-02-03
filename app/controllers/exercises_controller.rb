@@ -4,8 +4,8 @@ class ExercisesController < ApplicationController
   before_action :logged_user, only: [:show, :update]
   
   def lesson
-    #@level = params[:level]
-    #@student = Student.find_by(login: session[:login])
+    @level = params[:level]
+    @student = Student.find_by(login: session[:login])
     #zad=Drawnexercise.find_by(student_id: @student.id)
     #@progr=Progre.find_by(student_id: session[:user_id])
     #if zad.nil?

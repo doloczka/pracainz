@@ -14,7 +14,7 @@
      }
   </script>
 <%for i in 1..5 %>
-<% zadanie=Exercise.find_by(id: Drawnexercise.find_by(student_id: session[:user_id], level: @level, number: i).exercise_id)%></br>
+<% zadanie=Exercise.find_by(id: Drawnexercise.find_by(student_id: session[:user_id], level: params[:level], number: i).exercise_id)%></br>
 <br>Zadanie <%= i %>  Pkt: <%= pkt=zadanie.reward %></br>
 <br><%= zadanie.content %></br>
 
