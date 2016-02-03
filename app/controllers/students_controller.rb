@@ -223,7 +223,6 @@ class StudentsController < ApplicationController
         else
           
           @level = "1"
-            
             @student = Student.find_by(login: session[:login])
             zad=Drawnexercise.find_by(student_id: @student.id)
             @progr=Progre.find_by(student_id: session[:user_id])
