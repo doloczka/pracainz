@@ -1,6 +1,7 @@
 class ExercisesController < ApplicationController
   before_action :set_exercise, only: [:show, :edit, :update, :destroy]
-  before_action :correct_teacher, only: [:index, :show_exe, :destroy, :edit]
+  before_action :correct_teacher, only: [:index, :show_exe, :destroy, :edit, :create, :new, :destroy]
+  before_action :logged_user, only: [:show, :update]
   
   def lesson
     #@level = params[:level]
@@ -116,5 +117,7 @@ class ExercisesController < ApplicationController
     def correct_teacher
       redirect_to root_url unless Teacher.find_by(login: current_user_login)
     end
-    
+    def logged_user
+      redirect_to root_url unless logged_as_teacher? || logged_as_student?
+    end
 end
