@@ -235,7 +235,7 @@ class StudentsController < ApplicationController
         redirect_to root_url unless @student == Student.find_by(login: session[:login])
     end
     def correct_teacher
-      redirect_to root_url unless Teacher.find(login: current_user_login) 
+      redirect_to root_url unless Teacher.find_by(login: current_user_login) 
     end
     
 end
