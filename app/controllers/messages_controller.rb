@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:edit, :update, :destroy]
-  before_action :logged_user, only: [:index, :new, :destroy,:edit, :update]
+  before_action :logged_user, only: [:index, :new, :destroy,:edit, :update, :create]
   
   # GET /wiadomoscis
   # GET /wiadomoscis.json
