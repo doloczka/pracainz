@@ -27,7 +27,6 @@ class Student < ActiveRecord::Base
   end
   
     private
-    
       def downcase_email
         if !self.email.nil?
           self.email = email.downcase

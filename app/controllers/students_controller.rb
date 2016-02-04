@@ -314,15 +314,14 @@ class StudentsController < ApplicationController
     
     def hppotion
       pr = Progre.find_by(student_id: session[:user_id])
-      if pr.hp >90
-        redirect_to :back
-      end
-      hpnowe=pr.hp+20
-      if hpnowe>100
-        hpnowe=100
-      end
-      pr.update_column(:hp , hpnowe)
-      pr.update_column(:points,pr.points-30)
+      if pr.hp <90
+        hpnowe=pr.hp+20
+        if hpnowe>100
+          hpnowe=100
+        end
+        pr.update_column(:hp , hpnowe)
+        pr.update_column(:points,pr.points-30)
+        end
       if pr.save
         redirect_to :back
       end
