@@ -79,7 +79,7 @@ class StudentsController < ApplicationController
           
             lev = 1
             
-            @student = Student.find_by(login: session[:login])
+            @student = Student.find_by(id: session[:user_id])
             zad=Drawnexercise.find_by(student_id: @student.id ,level: lev)
             @progr=Progre.find_by(student_id: session[:user_id])
             if zad.nil?
@@ -314,7 +314,7 @@ class StudentsController < ApplicationController
     
     def hppotion
       pr = Progre.find_by(student_id: session[:user_id])
-      if pr.hp <90
+      if pr.hp <90 
         hpnowe=pr.hp+20
         if hpnowe>100
           hpnowe=100
