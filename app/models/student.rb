@@ -9,6 +9,8 @@ class Student < ActiveRecord::Base
   has_many :awarded_medals, dependent: :destroy
   has_secure_password
   before_save :downcase_email
+  
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   #TODO na czas testow
   # validates :email, length: { maximum: 255 },

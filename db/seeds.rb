@@ -36,6 +36,20 @@ Progre.create!( student_id: "1",
                 gained_points: "0", 
                 total:0,
                 lvl: "1")
+Student.create!(login: "st2", 
+                password_digest: BCrypt::Password.create("st2"), 
+                email: "st2@exam.com", 
+                name: "St2Im", 
+                lastname: "St2NAz", 
+                album_number: "2111", 
+                group_id: "1"
+                )                
+Progre.create!( student_id: "2", 
+                points: "20", 
+                hp: "0", 
+                gained_points: "0", 
+                total:0,
+                lvl: "1")                
 Classescalendar.create!(group_id: "1", classes_number: "1", start: "2016-01-19 06:00:00" , end: "2016-01-19 12:00:00" )
 Classescalendar.create!(group_id: "1", classes_number: "2", start: "2016-01-20 06:00:00" , end: "2016-01-20 12:00:00" )
 Classescalendar.create!(group_id: "1", classes_number: "3", start: "2016-01-21 06:00:00" , end: "2016-01-21 12:00:00" )
