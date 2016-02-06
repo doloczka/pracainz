@@ -1,25 +1,31 @@
 class ResultController < ApplicationController
-    #todo zbezpieczenie
+    before_action :correct_teacher, :create
     include ResultHelper
     def create
       @result = Result.new(result_params)
       exercise = Exercise.find(params[:result][:exercise_id])
       @reward = exercise.reward
-      @points_in_percent = (params[:result][:earned_points]).to_i/100.to_f
-      earned_points = @points_in_percent * @reward
-      @progres = Progre.find_by(student_id: params[:result][:student_id])
-      @progres.hp -= (@reward - earned_points) * 0.2
+      
+      @points_in_percent = (params[:result][:earned_points]).to_i/100.to_f # zamiana na procenty
+      earned_points = @points_in_percent * @reward # obliczenie ile pkt otrzymuje gracz
+      
+      @progres = Progre.find_by(student_id: params[:result][:student_id]) 
+      @progres.hp -= (@reward - earned_points) * 0.2 # gracz traci hp za nie zdobyte procenty
+      #przyznanie pktow
       @progres.gained_points += earned_points
       @progres.points += earned_points
       @progres.save
+      #Informacja dla gracza że jego rozwiązanie zostało ocenione.
       Message.create!(teacher_id: session[:user_id],
                       student_id: params[:result][:student_id], 
                       subject: "Twoje rozwiązanie zostało ocenione !", 
                       content: "Rozwiązanie do zadania #{exercise.level}.#{exercise.number} zostało ocenione na #{params[:result][:earned_points]}%, zarobiłeś  #{earned_points} punktów !", 
                       direction: 0)
+      #Update odpowiedzi na przeczytaną
       answer = Answer.find_by(student_id: params[:result][:student_id], exercise_id: params[:result][:exercise_id])
       answer.read = true
       answer.save
+      #przyznanie medalu
       if !params[:medal_id].empty?
         student = Student.find(params[:result][:student_id])
         medal = Medal.find(params[:medal_id])
@@ -40,6 +46,9 @@ class ResultController < ApplicationController
     
     def result_params
       params.require(:result).permit(:student_id, :exercise_id, :level, :earned_points)
+    end
+    def correct_teacher
+     redirect_to root_url unless logged_as_teacher?
     end
     
 end

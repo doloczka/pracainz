@@ -48,7 +48,7 @@
         <td><%="zakończone" if sidequest.finished%></td>
         <td><%= link_to 'Show', sidequest %></td>
         <td><%= link_to 'Edit', edit_sidequest_path(sidequest) %></td>
-        <td><%= link_to 'Destroy', sidequest, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', sidequest, :method => :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
   <%end%>
   </tbody>

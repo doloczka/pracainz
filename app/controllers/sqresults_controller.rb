@@ -1,5 +1,6 @@
 class SqresultsController < ApplicationController
   include ResultHelper
+  before_action :correct_teacher, :create
   def create
     @sqresult = Sqresult.new(sqresult_params)
     reward = Sidequest.find(@sqresult.sidequest_id).reward

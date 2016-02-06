@@ -1,43 +1,11 @@
 class ExercisesController < ApplicationController
   before_action :set_exercise, only: [:show, :edit, :update, :destroy]
   before_action :correct_teacher, only: [:index, :show_exe, :destroy, :edit, :create, :new, :destroy]
-  before_action :logged_user, only: [:show, :update]
+  before_action :logged_user, only: [:show, :update,:lesson]
   
   def lesson
     @level = params[:level]
     @student = Student.find_by(login: session[:login])
-    # zad=Drawnexercise.find_by(student_id: @student.id)
-    # @progr=Progre.find_by(student_id: session[:user_id])
-    # if zad.nil?
-    #   @gr=Group.find_by(id: @student.group_id)
-    #   for i in 1..5 do
-    #     exercount=Exercise.where(teacher_id: @gr.teacher_id, level: @level , number: i).count
-    #     rnd= rand(1..exercount) #rand
-    #     exer = Exercise.where(teacher_id: @gr.teacher_id, level: @level , number: i).first(rnd).last
-    
-    
-    #     data={
-    #             "student_id"=>@student.id,
-    #             "level"=>@level,
-    #             "number"=>i,
-    #             "exercise_id"=>exer.id
-    #         }
-    #     @exer = Drawnexercise.create!(data)
-    #     answer_data = {
-    #           "teacher_id" => @gr.teacher_id,
-    #           "student_id" => @student.id,
-    #           "exercise_id" => exer.id,
-    #           "reward" => exer.reward,
-    #           "read" => false
-    #         }
-    #     if !Answer.exists?(:teacher_id => @gr.teacher_id, :student_id => session[:user_id], :exercise_id =>exer.id)
-    #           answer = Answer.new(answer_data)
-    #           answer.save
-    #           @progr.total += answer.reward
-    #           @progr.save
-    #     end
-    #   end
-    # end
   end
   # GET /exercises
   # GET /exercises.json
@@ -117,7 +85,5 @@ class ExercisesController < ApplicationController
     def correct_teacher
       redirect_to root_url unless Teacher.find_by(login: current_user_login)
     end
-    def logged_user
-      redirect_to root_url unless logged_as_teacher? || logged_as_student?
-    end
+
 end

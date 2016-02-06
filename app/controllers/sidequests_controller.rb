@@ -1,17 +1,18 @@
 class SidequestsController < ApplicationController
   before_action :set_sidequest, only: [:show, :edit, :update, :destroy]
   before_action :check_is_finished, only: :index
-
+  before_action :correct_teacher, only: [:edit, :update, :create, :new, :destroy]
+  before_action :logged_user, only: :index
   # GET /sidequests
   # GET /sidequests.json
   def index
-      if logged_as_teacher?
+    if logged_as_teacher?
       @sidequest= Sidequest.new
       @sidequests = Sidequest.where(teacher_id: session[:user_id])
     end
     if logged_as_student?
       student = Student.find(session[:user_id])
-      progres = Progre.find(student.id)
+      progres = student.progre
       @sidequests = Sidequest.where(level: progres.lvl, finished: false)
     end
   end

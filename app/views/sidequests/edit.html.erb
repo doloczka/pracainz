@@ -1,6 +1,34 @@
 <h1>Editing Sidequest</h1>
 
-<%= render 'form' %>
+<%= form_for (@sidequest) do |f|%>
+  <% if @sidequest.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sidequest.errors.count, "error") %> prohibited this exercise from being saved:</h2>
+      <ul>
+      <% @sidequest.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <%= f.label :Tresc%>
+  <%= f.text_area :content%>
+  <br></br>
+  <%= f.label :Poziom%>
+  <%= f.number_field :level, in: 1..5%>
+  <br></br>
+  <%= f.label :Nagroda%>
+  <%= f.number_field :reward%>
+  <br></br>
+  <%= f.label :koniec %>
+  <%= f.datetime_select :finish%>
+  <br></br>
+  <%= f.hidden_field :finished, :value => false %>
+  <%= f.hidden_field :teacher_id, :value => session[:user_id] %>
+  <%= f.submit "Akceptuj" %>
+
+<% end %>
 
 <%= link_to 'Show', @sidequest %> |
 <%= link_to 'Back', sidequests_path %>

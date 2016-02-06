@@ -1,5 +1,5 @@
 class PresenceController < ApplicationController
-  
+  before_action :correct_teacher, :update
   def update
     params['presence'].keys.each do |id|
       @presence = Presence.find(id)
@@ -11,4 +11,5 @@ class PresenceController < ApplicationController
     end
     redirect_to :back
   end
+
 end
