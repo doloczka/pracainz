@@ -1,5 +1,5 @@
 <% if logged_as_student? %>
-    <br><%= link_to "Powrót do skrzynki odbiorczej", message_path(session[:user_id]) %>
+    <br><%= link_to "Powrót do skrzynki odbiorczej", messages_path(session[:user_id]) %></br>
 <%end%>
 <% if logged_as_teacher?%>    
 <h3>Wiadomość od <%=@student.name%> <%=@student.lastname%></h3>
