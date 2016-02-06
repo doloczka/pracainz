@@ -9,7 +9,9 @@
 
 <% if logged_as_student? %> 
     <br>
-        <%= link_to 'Odpowiedz', new_message_path(session[:user_id])%>
+        <%if Message.find_by(id: params[:id]).teacher_id!=nil%>
+            <%= link_to 'Odpowiedz', new_message_path(session[:user_id])%>
+        <%end%>
    </br>
 <% else %>
     <br>
