@@ -30,7 +30,7 @@ class Progre < ActiveRecord::Base
       def zerohp
         if self.hp<=0
           self.hp=40
-          self.points=self.points*0.75
+          self.points=self.points*0.75 #TODO tutaj powinno być gained_points, jak ginie to mu średnia ocena maleje z 4 no. 3,5 a ranking bez zmian janking jest walutą do kupna hp i wynik rankingowy.
          # st=Student.finde_by(id: session[:user_id])
           Message.create!(subject: "System",
                 content: "Zginąłeś. Kontunułujesz grę tracąc 1/4 wszystkich punktów.",

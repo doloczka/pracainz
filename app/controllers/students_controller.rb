@@ -204,7 +204,7 @@ class StudentsController < ApplicationController
         end
         pr.update_column(:hp , hpnowe)
         pr.update_column(:points,pr.points-30)
-        end
+      end
       if pr.save
         redirect_to :back
       end
