@@ -75,26 +75,33 @@ class StudentsController < ApplicationController
         
         time = Time.new.in_time_zone("Warsaw").strftime("%Y-%m-%d %H:%M:%S") 
         if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id , classes_number: 1).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 1).end.to_time.to_i
-          if @progr.lvl!=1
+       
             assist(1)
-          end
+         
         elsif time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 2).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 2).end.to_time.to_i         
           if @progr.lvl!=2
             assist(2)
+            checksolution(1)
           end
         elsif time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 3).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 3).end.to_time.to_i  
           if @progr.lvl!=3
             assist(3)
+            checksolution(2)
           end
         elsif time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 4).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 4).end.to_time.to_i  
           if @progr.lvl!=4
             assist(4)
+            checksolution(3)
           end
         elsif time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 5).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 5).end.to_time.to_i 
           if @progr.lvl!=5
             assist(5)
+            checksolution(4)
           end
-        end 
+        end
+        if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 5).end.to_time.to_i
+          checksolution(5)
+        end  
     end
     
     #niedziala 
@@ -103,9 +110,9 @@ class StudentsController < ApplicationController
       for i in 1..5 do
         drawn=Drawnexercise.find_by(student_id: session[:user_id], level: lvl, number: i)
         answer=Answer.find_by(student_id: session[:user_id], exercise_id: drawn.id)
-        if answer.student_id.nil?
+        if answer.solution==nil
           progr.update_column(:hp, progr.hp-8)
-          progr.save
+          progr.saveexitex
           Message.create!(subject: "System",
                 content: "nie wykonano zadania #{lvl}-#{i}. Tracisz 8hp.",
                 read: false,
@@ -119,7 +126,7 @@ class StudentsController < ApplicationController
     
     def assist(lev)
       @progr.update_column(:lvl, lev)
-            @student = Student.find_by(login: session[:login])
+            @student = Student.find(session[:user_id])
             zad=Drawnexercise.find_by(student_id: @student.id ,level: lev)
             @progr=Progre.find_by(student_id: session[:user_id])
             if zad.nil?
@@ -135,8 +142,6 @@ class StudentsController < ApplicationController
                         "exercise_id"=>exer.id
                     }
                  @exer = Drawnexercise.create!(data)
-                 #de=Drawnexercise.new(data)
-                 de.save
                  answer_data = {
                       "teacher_id" => @gr.teacher_id,
                       "student_id" => @student.id,
