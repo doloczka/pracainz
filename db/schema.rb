@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160128171840) do
+ActiveRecord::Schema.define(version: 20160210071548) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "teacher_id"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20160128171840) do
     t.text     "hint"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "variant"
   end
 
   add_index "exercises", ["teacher_id"], name: "index_exercises_on_teacher_id"

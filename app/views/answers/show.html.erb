@@ -3,7 +3,7 @@
   <strong>Treść:</strong>
   <%= @exercise.content %>
 </p>
-
+<p>Nagroda: <%=@exercise.reward%></p>
 <p>
   <strong>Rozwiązanie:</strong>
   <%= @answer.solution %>
@@ -20,7 +20,7 @@
       </ul>
     </div>
   <% end %>
-<%= f.label :earned_points%>
+<%= f.label :earned_points, "Przyznaj punkty"%>
 <%= f.number_field "earned_points", in: 0...101%>
 <%= f.hidden_field :student_id, :value => @answer.student_id %>
 <%= f.hidden_field :level, :value => @exercise.level %>
@@ -28,7 +28,7 @@
 <% @medals = Medal.where(value: 6)%>
 <%= select_tag 'medal_id', options_for_select(@medals.collect{ |u| [u.name, u.id] }), :prompt => "zasłużył na medal?"%>
     <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Oceń"%>
   </div
 <% end %>
 <% end %>

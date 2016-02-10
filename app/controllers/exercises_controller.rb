@@ -80,7 +80,7 @@ class ExercisesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def exercise_params
-      params.require(:exercise).permit(:level, :number, :reward, :content, :hint)
+      params.require(:exercise).permit(:level, :number, :reward, :content, :hint, :variant)
     end
     def correct_teacher
       redirect_to root_url unless Teacher.find_by(login: current_user_login)
