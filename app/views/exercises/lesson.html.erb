@@ -20,7 +20,7 @@
 
   <%@zad = Answer.find_by(student_id: @student.id, exercise_id: zadanie.id)%>
   <button id='button' onclick="showhide(<%=i%>)">Podpowiedź</button><div id='<%=i%>' style="display: none"><%= zadanie.hint %></div>
-<%= form_for @zad, url: {controller: "students", action: "solution"} do |f| %>
+<%= form_for @zad, remote: true, url: {controller: "students", action: "solution"} do |f| %>
     <%= f.hidden_field :reward, :value => zadanie.reward %>
     <%= f.hidden_field :level, :value => @level %>
     <%= f.hidden_field :number, :value => i %>
