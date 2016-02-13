@@ -100,25 +100,93 @@ class StudentsController < ApplicationController
           end
         end
         if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 5).end.to_time.to_i
-          checksolution(5)
+          #mid=Medal.find_by(name: "Medal za wytrwałość")
+          if Progre.find(session[:user_id]).rate==nil
+            checksolution(5)
+            #do dopracowania
+            checkpresense
+            avg(session[:user_id])
+          end
         end  
     end
     
-    #niedziala 
+    def checkpresense
+      presences=Presence.where(student_id: session[:user_id])
+      if presences.count==5
+        medal=Medal.find_by(name: "Medal za wytrwałość")
+        m=AwardedMedal.new(student_id: session[:user_id], medal_id: medal.id)
+        m.save  
+        Message.create!( student_id: session[:user_id], subject: "Dostałeś nagrodę specjalną !", content: "Właśnie otrzymałeś #{medal.description} !", direction: 0)
+      end
+    end
+   
+    def avg(stid)
+      progr=Progre.find_by(student_id: stid)
+      if progr.total!=0
+        exp_mark=mark(progr.gained_points/progr.total)
+      else
+        exp_mark=2
+      end
+      medal_sum=0
+      all_medal_sum=0
+      AwardedMedal.where(student_id: stid).each do |m|
+        medal_sum=medal_sum+Medal.find(m.medal_id).value
+      end
+      Medal.all.each do |m|
+        all_medal_sum=all_medal_sum+Medal.find(m).value
+      end
+      medal_mark=mark(medal_sum / all_medal_sum)
+      
+      presences_mark=mark(Presence.where(student_id: stid).count / 5)
+      
+      mark=mark((exp_mark+medal_mark+presences_mark)/5)
+      
+      
+      progr.update_column(:rate , mark)
+    end
+    
+    def mark(percent)
+        if percent>=0.51 && percent<=0.74
+          ocena=3
+        elsif percent >=0.75 && percent<=0.90
+          ocena=4
+        elsif percent>=0.91
+        ocena=5
+        else
+          ocena=2
+        end
+      return ocena
+    end
+    
     def checksolution(lvl)
       progr=Progre.find_by(student_id: session[:user_id])
       for i in 1..5 do
         drawn=Drawnexercise.find_by(student_id: session[:user_id], level: lvl, number: i)
-        answer=Answer.find_by(student_id: session[:user_id], exercise_id: drawn.id)
-        if answer.solution==nil
-          progr.update_column(:hp, progr.hp-8)
-          progr.saveexitex
-          Message.create!(subject: "System",
-                content: "nie wykonano zadania #{lvl}-#{i}. Tracisz 8hp.",
-                read: false,
-                direction: 0,
-                student_id: session[:user_id]
-               )
+        #answer=Answer.find_by(student_id: session[:user_id], exercise_id: drawn.id)
+        if drawn!=nil
+          if Answer.find_by(student_id: session[:user_id], exercise_id: drawn.id)!=nil
+            if Answer.find_by(student_id: session[:user_id], exercise_id: drawn.id).solution.nil? 
+                progr.update_column(:hp, progr.hp-8)
+                progr.save
+                Message.create!(subject: "System",
+                      content: "nie wykonano zadania #{lvl}-#{i}. Tracisz 8hp.",
+                      read: false,
+                      direction: 0,
+                      student_id: session[:user_id]
+                     )
+            end
+          end
+        else
+          progr.update_column(:hp, progr.hp-20)
+          progr.update_column(:hp, progr.points-20)
+                progr.save
+                Message.create!(subject: "System",
+                      content: "Nie rozwiązałeś zadań z poprzedniego levelu. Tracisz 20hp i 20 punktów rankingowych.",
+                      read: false,
+                      direction: 0,
+                      student_id: session[:user_id]
+                     )
+          return
         end
       end
     end

@@ -1,9 +1,7 @@
 
-<br>loko -> testy <%=link_to "Lekcja 1", lesson_path(:level => @progr.lvl), method: :post%> <br></br>
 
 <%time = Time.new.in_time_zone("Warsaw").strftime("%Y-%m-%d %H:%M:%S") %>
 <%if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id , classes_number: 1).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 1).end.to_time.to_i %>
-    <%#= link_to "zajecia1", student_lesson1_path(session[:user_id]) %>  
     <%=link_to "Lekcja 1", lesson_path(:level => @progr.lvl), method: :post%><br></br>
 <%else%>
     <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:1).start.to_time.to_i%>
@@ -14,7 +12,6 @@
 <%end%>
 
 <%if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 2).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 2).end.to_time.to_i %>
-    <%#= link_to "zajecia2", student_lesson2_path(session[:user_id]) %> 
     <%=link_to "Lekcja 2", lesson_path(:level => @progr.lvl), method: :post%><br></br>
 <%else%>
     <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:2).start.to_time.to_i%>
@@ -25,7 +22,6 @@
 <%end%>
 
 <%if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 3).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 3).end.to_time.to_i %>
-    <%#= link_to "zajecia3", student_lesson3_path(session[:user_id]) %>  
     <%=link_to "Lekcja 3", lesson_path(:level => @progr.lvl), method: :post%><br></br>
 <%else%>
     <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:3).start.to_time.to_i%>    
@@ -35,7 +31,6 @@
     <%end%>    
 <%end%>
 <%if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 4).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 4).end.to_time.to_i %>
-    <%#= link_to "zajecia4", student_lesson4_path(session[:user_id]) %>  
     <%=link_to "Lekcja 4", lesson_path(:level => @progr.lvl), method: :post%><br></br>
 <%else%>
     <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:4).start.to_time.to_i%>
@@ -46,12 +41,10 @@
 <%end%>
 
 <%if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 5).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 5).end.to_time.to_i %>
-    <%#= link_to "zajecia5", student_lesson5_path(session[:user_id]) %> 
-     <%=link_to "Lekcja 5", lesson_path(:level => @progr.lvl), method: :post%><br></br>
+    <%=link_to "Lekcja 5", lesson_path(:level => @progr.lvl), method: :post%><br></br>
 <%else%>
     <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:5).start.to_time.to_i%>    
         zajecia5!! dostepne od <%=Classescalendar.find_by(group_id: @student.group_id, classes_number: 5).start.strftime("%Y-%m-%d %H:%M:%S")%><br></br>
-        
     <%else%>
         zajecia5!! Etap zakończony!!<br></br>
     <%end%>
