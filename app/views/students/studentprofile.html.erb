@@ -20,6 +20,7 @@
     <li><%= link_to "Wyniki zadań pobocznych", student_studentprofile_path(session[:user_id], :results => "2") %></li>
     <li><%= link_to "Obecności", student_studentprofile_path(session[:user_id], :results => "3") %></li>
     <li><%= link_to "Medale", student_studentprofile_path(session[:user_id], :results => "4") %></li>
+    <li><%= link_to "Ocena", student_studentprofile_path(session[:user_id], :results => "5") %></li>
 </nav>
 <br></br>
 <% if params["results"]=="1" %>
@@ -154,3 +155,14 @@ Otrzymane medale:
         <%="brak medali"%>
     <%end%>
 <%end%>
+<% if params["results"]=="5" %>
+<%pr=Progre.find_by(student_id: session[:user_id])%>
+ <%if pr.rate!=nil%>
+     <br>Łącznie udało Ci się zebrać <%=pr.gained_points%> punktów rozwiązując zadania,</br> a twoj ostateczny
+     wynik to <%=pr.points%> punktów. 
+     Proponowana ocena to: <%=pr.rate%>
+ <%else%>
+     Occena zostanie wystawiona po ostatnic zajęciach.
+ <%end%>
+
+<% end %>

@@ -1,5 +1,5 @@
 <%
-@student = Student.find_by(login: session[:login])
+@student = Student.find_by(id: session[:user_id])
 @progr=Progre.find_by(student_id: session[:user_id])
 
 gr= Student.find(session[:user_id])
@@ -17,7 +17,10 @@ gr= Student.find(session[:user_id])
                 i=i+1
             end
        end
+verification
 %>
+
+
 <div class="student_header">
     
         <div class="student_avatar">
