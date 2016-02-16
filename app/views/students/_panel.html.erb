@@ -40,18 +40,16 @@ verification
             <div class="student_pustak"></div>
             
             <div class="student_hp_potion">
-                <%=link_to "kup życie", student_hppotion_path(session[:user_id]) %>
-                <%= link_to do %>
+                <%= link_to student_hppotion_path(session[:user_id]) do %>
                     <h3>+20 hp</h3>  
                     <img src="/assets/student/hp_potion.png" alt="">
-                    
                 <% end %>
             </div>
         </div>
         <script>
             $(document).ready(function() {
                 var hp = <%= @progr.hp%>;
-                var exp = <%= @progr.expe %>
+                var exp = <%= @progr.gained_points %>*100/<%=@progr.total%>
                 $('#progress_hp_bar').css("width",hp + "%");
                 $('#progress_exp_bar').css("width",exp + "%");
             });
