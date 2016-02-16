@@ -18,8 +18,9 @@ gr= Student.find(session[:user_id])
             end
        end
 %>
+
+  
 <div class="student_header">
-    
         <div class="student_avatar">
             <%= link_to student_studentprofile_path(session[:user_id], :results => "1") do %>
                 <div class="student_name">
@@ -44,16 +45,26 @@ gr= Student.find(session[:user_id])
                 <% end %>
             </div>
         </div>
-        <div class="student_hp_bar_border">
-            <div class="student_hp_bar"></div>
+        <script>
+            $(document).ready(function() {
+                var hp = <%= @progr.hp%>;
+                var exp = <%= @progr.expe %>
+                $('#progress_hp_bar').css("width",hp + "%");
+                $('#progress_exp_bar').css("width",exp + "%");
+            });
+        </script>
+        <div class="progress_hp">
+            <div id="progress_hp_bar" class="progress_hp_bar"></div>
         </div>
+        
+        
         <div>
             <div class="student_exp">
                 <h3>exp: <%=@progr.expe %>/<%=@progr.total %></h3>
             </div>
         </div>
-        <div class="student_exp_bar_border">
-            <div class="student_exp_bar"></div>
+        <div class="progress_exp">
+            <div id="progress_exp_bar" class="progress_exp_bar"></div>
         </div>
         <div>
             <div class="student_lvl">
@@ -99,12 +110,11 @@ gr= Student.find(session[:user_id])
                 <img src="/assets/student/challenge.png" alt="">
             <% end %>
         </div>
-        
-        <br>
     </div>
 </div>
 <div>
     <br>---------------------------------------------------------------------------------------------------------------</br>
     <br>| <%= link_to "Mapa świata", student_path(session[:user_id]) %> | 
     <%= link_to "Edytuj profil", edit_student_path(session[:user_id]) %> | <br><br>
+    
 </div>
