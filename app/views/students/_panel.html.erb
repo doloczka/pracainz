@@ -38,7 +38,6 @@ verification
                 <h3>hp: <%=@progr.hp %>/100</h3>
             </div>
             <div class="student_pustak"></div>
-            
             <div class="student_hp_potion">
                 <%= link_to student_hppotion_path(session[:user_id]) do %>
                     <h3>+20 hp</h3>  
@@ -49,7 +48,11 @@ verification
         <script>
             $(document).ready(function() {
                 var hp = <%= @progr.hp%>;
+<<<<<<< HEAD
                 var exp = <%= @progr.gained_points %>*100/<%=@progr.total%>
+=======
+                var exp = <%=@progr.gained_points%>*100/<%=@progr.total%>
+>>>>>>> master
                 $('#progress_hp_bar').css("width",hp + "%");
                 $('#progress_exp_bar').css("width",exp + "%");
             });
