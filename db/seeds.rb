@@ -32,7 +32,7 @@ Group.create!(teacher_id: "1",
                 
 Progre.create!( student_id: "1", 
                 points: "0", 
-                hp: "100", 
+                hp: "40", 
                 gained_points: "0", 
                 total:0,
                 lvl: "1")
