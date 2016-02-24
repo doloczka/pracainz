@@ -59,7 +59,7 @@ class StudentsController < ApplicationController
           hpnowe=100
         end
         pr.update_column(:hp , hpnowe)
-        pr.update_column(:points,pr.points-30)
+        pr.update_column(:points, pr.points-30)
       end
       if pr.save
         redirect_to :back

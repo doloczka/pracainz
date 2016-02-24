@@ -87,15 +87,31 @@
         text-align: center
         font-weight: bold
 .student_statistic
-    .student_hp_bar_border, .student_exp_bar_border
+    .progress_hp, .progress_exp
         float: left
         margin-left: 70px
         width: 450px
         height: 20px
         border: solid 3px
-        border-radius: 15px
-        
-
+        border-radius: 13px
+        background: rgba(0, 0, 0, 0.15)
+    .progress_hp_bar, .progress_exp_bar
+        height: 20px
+        border-radius: 13px
+        -webkit-transition: 0.4s linear
+        -moz-transition: 0.4s linear
+        -o-transition: 0.4s linear
+        transition: 0.4s linear
+    .progress_hp_bar
+        background: -webkit-linear-gradient(#ffdbdb, #ff0000)
+        background: -o-linear-gradient(#ffdbdb, #ff0000)
+        background: -moz-linear-gradient(#ffdbdb, #ff0000)
+        background: linear-gradient(#ffdbdb, #ff0000)
+    .progress_exp_bar
+        background: -webkit-linear-gradient(#eff6e1, #7bb805)
+        background: -o-linear-gradient(#eff6e1, #7bb805)
+        background: -moz-linear-gradient(#eff6e1, #7bb805)
+        background: linear-gradient(#eff6e1, #7bb805)
 .student_other
     float: right
     background: url('/assets/student/bg_other.png') no-repeat

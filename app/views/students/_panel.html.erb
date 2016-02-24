@@ -2,27 +2,26 @@
 @student = Student.find_by(id: session[:user_id])
 @progr=Progre.find_by(student_id: session[:user_id])
 
-gr= Student.find(session[:user_id])
-       progresy=Progre.order(points: :desc)
-        i=1
-        k=0
-       progresy.each do |pr|
-           k=k+1
-            if pr.student_id==session[:user_id]
-                @ran=i
-                @j=k
-            end
-            gru=Student.find(pr.student_id)
-            if gru.group_id==gr.group_id
-                i=i+1
-            end
-       end
+    gr= Student.find(session[:user_id])
+    progresy=Progre.order(points: :desc)
+    i=1
+    k=0
+    progresy.each do |pr|
+       k=k+1
+        if pr.student_id==session[:user_id]
+            @ran=i
+            @j=k
+        end
+        gru=Student.find(pr.student_id)
+        if gru.group_id==gr.group_id
+            i=i+1
+        end
+    end
 verification
 %>
 
 
 <div class="student_header">
-    
         <div class="student_avatar">
             <%= link_to student_studentprofile_path(session[:user_id], :results => "1") do %>
                 <div class="student_name">
@@ -49,16 +48,26 @@ verification
                 <% end %>
             </div>
         </div>
-        <div class="student_hp_bar_border">
-            <div class="student_hp_bar"></div>
+        <script>
+            $(document).ready(function() {
+                var hp = <%= @progr.hp%>;
+                var exp = <%= @progr.expe %>
+                $('#progress_hp_bar').css("width",hp + "%");
+                $('#progress_exp_bar').css("width",exp + "%");
+            });
+        </script>
+        <div class="progress_hp">
+            <div id="progress_hp_bar" class="progress_hp_bar"></div>
         </div>
+        
+        
         <div>
             <div class="student_exp">
                 <h3>exp: <%=@progr.gained_points%>/<%=@progr.total%></h3>
             </div>
         </div>
-        <div class="student_exp_bar_border">
-            <div class="student_exp_bar"></div>
+        <div class="progress_exp">
+            <div id="progress_exp_bar" class="progress_exp_bar"></div>
         </div>
         <div>
             <div class="student_lvl">
@@ -104,13 +113,14 @@ verification
                 <img src="/assets/student/challenge.png" alt="">
             <% end %>
         </div>
-        
-        <br>
     </div>
 </div>
 <div>
     <br>---------------------------------------------------------------------------------------------------------------</br>
     <br>| <%= link_to "Mapa świata", student_path(session[:user_id]) %> | 
+
     <%= link_to "Edytuj profil", edit_student_path(session[:user_id]) %> | 
     <%= link_to "FAQ", student_faq_path() %> |<br><br>
+    <%= link_to "Edytuj profil", edit_student_path(session[:user_id]) %> | <br><br>
+
 </div>

@@ -36,10 +36,15 @@ class ApplicationController < ActionController::Base
             assist(5)
             checksolution(4)
           end
-        end
-        if time.to_time.to_i>Classescalendar.find_by(group_id: student.group_id, classes_number: 5).end.to_time.to_i
-          if Progre.find(session[:user_id]).rate==nil
+        elsif time.to_time.to_i>Classescalendar.find_by(group_id: student.group_id, classes_number: 6).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: student.group_id, classes_number: 6).end.to_time.to_i 
+          if progr.lvl!=6
+            assist(6)
             checksolution(5)
+          end
+        end
+        if time.to_time.to_i>Classescalendar.find_by(group_id: student.group_id, classes_number: 6).end.to_time.to_i
+          if Progre.find(session[:user_id]).rate==nil
+            checksolution(6)
             avg(session[:user_id])
             checkpresense
           end
@@ -48,7 +53,7 @@ class ApplicationController < ActionController::Base
  
     def checkpresense
       presences=Presence.where(student_id: session[:user_id])
-      if presences.count==5
+      if presences.count==6
         medal=Medal.find_by(name: "Medal za wytrwałość")
         m=AwardedMedal.new(student_id: session[:user_id], medal_id: medal.id)
         m.save  
