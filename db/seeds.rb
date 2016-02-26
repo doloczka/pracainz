@@ -45,9 +45,9 @@ Student.create!(login: "st2",
                 group_id: "1"
                 )                
 Progre.create!( student_id: "2", 
-                points: "20", 
-                hp: "0", 
-                gained_points: "0", 
+                points: "50", 
+                hp: "50", 
+                gained_points: "50", 
                 total:0,
                 lvl: "1")                
 Classescalendar.create!(group_id: "1", classes_number: "1", start: "2016-01-19 06:00:00" , end: "2016-01-19 12:00:00" )
@@ -55,7 +55,7 @@ Classescalendar.create!(group_id: "1", classes_number: "2", start: "2016-01-20 0
 Classescalendar.create!(group_id: "1", classes_number: "3", start: "2016-01-21 06:00:00" , end: "2016-01-21 12:00:00" )
 Classescalendar.create!(group_id: "1", classes_number: "4", start: "2016-01-22 06:00:00" , end: "2016-01-22 12:00:00" )
 Classescalendar.create!(group_id: "1", classes_number: "5", start: "2016-01-23 06:00:00" , end: "2016-01-23 12:00:00" )
-
+Classescalendar.create!(group_id: "1", classes_number: "6", start: "2016-01-24 06:00:00" , end: "2016-01-24 12:00:00" )
 Exercise.create!(teacher_id: "1",
                     level: "1",
                     number: "1",

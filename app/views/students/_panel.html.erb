@@ -2,21 +2,21 @@
 @student = Student.find_by(id: session[:user_id])
 @progr=Progre.find_by(student_id: session[:user_id])
 
-gr= Student.find(session[:user_id])
-       progresy=Progre.order(points: :desc)
-        i=1
-        k=0
-       progresy.each do |pr|
-           k=k+1
-            if pr.student_id==session[:user_id]
-                @ran=i
-                @j=k
-            end
-            gru=Student.find(pr.student_id)
-            if gru.group_id==gr.group_id
-                i=i+1
-            end
-       end
+    gr= Student.find(session[:user_id])
+    progresy=Progre.order(points: :desc)
+    i=1
+    k=0
+    progresy.each do |pr|
+       k=k+1
+        if pr.student_id==session[:user_id]
+            @ran=i
+            @j=k
+        end
+        gru=Student.find(pr.student_id)
+        if gru.group_id==gr.group_id
+            i=i+1
+        end
+    end
 verification
 %>
 

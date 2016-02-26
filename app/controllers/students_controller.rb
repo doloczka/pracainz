@@ -11,24 +11,24 @@ class StudentsController < ApplicationController
  
   # GET /students/1
   # GET /students/1.json
-    def challenge
-        student=Student.find(session[:user_id])
-        @idgru=Student.where(group_id: student.group_id)
-    end
+    # def challenge
+    #     student=Student.find(session[:user_id])
+    #     @idgru=Student.where(group_id: student.group_id)
+    # end
     
-    def chosechallenge
-        poziom=Progre.find_by(student_id: session[:user_id])
-        @zadania=Exercise.where(level: poziom.lvl)   
-        @wyzwany=Student.find(params[:idst])
-    end
+    # def chosechallenge
+    #     poziom=Progre.find_by(student_id: session[:user_id])
+    #     @zadania=Exercise.where(level: poziom.lvl)   
+    #     @wyzwany=Student.find(params[:idst])
+    # end
     
-    def challengeconfirm2
-      wyzwanie=Sidequest.find(params[:zad][:wyzwanie])
-      wyzwanie.update_attributes(:recipient_answer => params[:zad][:odp] , :status=>"1")
-      if wyzwanie.save
-        redirect_to   student_challengeinbox_path
-      end
-    end
+    # def challengeconfirm2
+    #   wyzwanie=Sidequest.find(params[:zad][:wyzwanie])
+    #   wyzwanie.update_attributes(:recipient_answer => params[:zad][:odp] , :status=>"1")
+    #   if wyzwanie.save
+    #     redirect_to   student_challengeinbox_path
+    #   end
+    # end
     def studentprofile
       if logged_as_student?
        @pkt=Result.where(student_id: session[:user_id])
@@ -59,7 +59,7 @@ class StudentsController < ApplicationController
           hpnowe=100
         end
         pr.update_column(:hp , hpnowe)
-        pr.update_column(:points,pr.points-30)
+        pr.update_column(:points, pr.points-30)
       end
       if pr.save
         redirect_to :back
@@ -73,7 +73,7 @@ class StudentsController < ApplicationController
         @zad.update_column(:solution, params[:answer][:solution])
         @zad.update_column(:reward , params[:answer][:reward])
         if @zad.save
-           redirect_to :back
+          redirect_to :back
         end
     end
  
@@ -84,7 +84,7 @@ class StudentsController < ApplicationController
     @student.password_digest = BCrypt::Password.create(params[:student][:album_number])
     respond_to do |format|
     if @student.save
-            for i in 1..5
+            for i in 1..6
               presence = Presence.new(:student_id => @student.id, :classes_number => i, :present => true)
               presence.save
             end
