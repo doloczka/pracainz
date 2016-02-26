@@ -15,6 +15,7 @@ class MessagesController < ApplicationController
 
   # GET /wiadomoscis/1
   # GET /wiadomoscis/1.json
+  
   def show
     @message =Message.find(params[:id])
     @student = Student.find(@message.student_id)

@@ -23,13 +23,14 @@ verification
 
 <div class="student_header">
         <div class="student_avatar">
-            <%= link_to student_studentprofile_path(session[:user_id], :results => "1") do %>
+            <%= link_to student_studentprofile_path(session[:user_id], :results => "1"), :class => "tooltip" do %>
                 <div class="student_name">
                     <h2><%= @student.name %></h2>
                 </div>
                 <div class="student_lastname">
                     <h2><%= @student.lastname %></h2>
                 </div>
+                <span>Kliknij, aby przejść do profilu gracza i uzyskać szczegółowe informacje o koncie.</span>
             <% end %>
         </div>
     <div class="student_statistic">
@@ -39,20 +40,21 @@ verification
             </div>
             <div class="student_pustak"></div>
             <div class="student_hp_potion">
-                <%= link_to student_hppotion_path(session[:user_id]) do %>
+                <%= link_to student_hppotion_path(session[:user_id]), :class =>"tooltip" do %>
                     <h3>+20 hp</h3>  
                     <img src="/assets/student/hp_potion.png" alt="">
+                    <span>Kup miksturę, aby się uleczyć:<br>
+                        + 20 hp,<br>
+                        - 20 pkt rankingowych,
+                        <br>aby użyc musisz mieć mniej niż 90 hp.
+                    </span>
                 <% end %>
             </div>
         </div>
         <script>
             $(document).ready(function() {
                 var hp = <%= @progr.hp%>;
-<<<<<<< HEAD
                 var exp = <%= @progr.gained_points %>*100/<%=@progr.total%>
-=======
-                var exp = <%=@progr.gained_points%>*100/<%=@progr.total%>
->>>>>>> master
                 $('#progress_hp_bar').css("width",hp + "%");
                 $('#progress_exp_bar').css("width",exp + "%");
             });
@@ -71,12 +73,16 @@ verification
             <div id="progress_exp_bar" class="progress_exp_bar"></div>
         </div>
         <div>
-            <div class="student_lvl">
+            <div class="student_lvl tooltip">
                 <h3>Poziom: <%=@progr.lvl %></h3>
+                <span>Poziom odpawiada numerze lekcji, która się odbywa.</span>
             </div>
             <div class="student_pustak"></div>
-            <div class="student_pkt_rank">
+            <div class="student_pkt_rank tooltip">
                 <h3>pkt rankingowe: <%=@progr.points%></h3>
+                <span>Punkty rankingowe zdobywasz za wykonywanie zadań.
+                Zbierz jak najwięcej, aby uzyskać lepsze miejsce w rankingu.
+                Możesz je wydać na kup mikstury leczniczej</span>
             </div>
         </div>
         <div class="student_rank">
@@ -102,6 +108,7 @@ verification
                 <img src="/assets/student/student_logout.png" alt="">
             <% end %>
         </div>
+
         <div class="student_message">
             <%= link_to messages_path(session[:user_id]) do %>
                 <h3>wiadomosci: <%= Message.where(student_id: session[:user_id], direction: "0").count%> </h3>
@@ -116,6 +123,7 @@ verification
         </div>
     </div>
 </div>
+
 <div>
     <br>---------------------------------------------------------------------------------------------------------------</br>
     <br>| <%= link_to "Mapa świata", student_path(session[:user_id]) %> | 
@@ -124,4 +132,4 @@ verification
     <%= link_to "FAQ", student_faq_path() %> |<br><br>
     <%= link_to "Edytuj profil", edit_student_path(session[:user_id]) %> | <br><br>
 
-</div>
+</div>                       

@@ -1,53 +1,105 @@
 
 
 <%time = Time.new.in_time_zone("Warsaw").strftime("%Y-%m-%d %H:%M:%S") %>
-<%if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id , classes_number: 1).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 1).end.to_time.to_i %>
-    <%=link_to "Lekcja 1", lesson_path(:level => @progr.lvl), method: :post%><br></br>
-<%else%>
-    <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:1).start.to_time.to_i%>
-        zajecia1!! dostepne od <%=Classescalendar.find_by(group_id: @student.group_id, classes_number: 1).start.strftime("%Y-%m-%d %H:%M:%S")%><br></br>
+<div class="student_map">
+    <%if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id , classes_number: 1).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 1).end.to_time.to_i %>
+        <div class="student_lesson1">
+            <div class="mark_lesson1">
+                <%=link_to lesson_path(:level => @progr.lvl), method: :post, :class => "xmark" do%>
+                    <img src="/assets/student/xmark.png">
+                <% end %>
+            </div>
+        </div>
     <%else%>
-        zajecia1!! Etap zakończony!!<br></br>
+        <div class="student_lesson1">
+            <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:1).start.to_time.to_i%>
+            <%else%>
+                <div>
+                    <img src="/assets/student/okmark.png" class="mark_lesson1 okmark">
+                </div>
+            <%end%>
+        </div>
     <%end%>
-<%end%>
-
-<%if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 2).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 2).end.to_time.to_i %>
-    <%=link_to "Lekcja 2", lesson_path(:level => @progr.lvl), method: :post%><br></br>
-<%else%>
-    <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:2).start.to_time.to_i%>
-        zajecia2!! dostepne od <%=Classescalendar.find_by(group_id: @student.group_id, classes_number: 2).start.strftime("%Y-%m-%d %H:%M:%S")%><br></br>
+    
+    <%if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 2).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 2).end.to_time.to_i %>
+        <div class="student_lesson2">
+            <div class="mark_lesson2">
+                <%=link_to lesson_path(:level => @progr.lvl), method: :post, :class => "xmark" do%>
+                    <img src="/assets/student/xmark.png">
+                <% end %>
+            </div>
+        </div>
     <%else%>
-        zajecia2!! Etap zakończony!!<br></br>
+        <div class="student_lesson2">
+            <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:2).start.to_time.to_i%>
+            <%else%>
+                <div>
+                    <img src="/assets/student/okmark.png" class="mark_lesson2 okmark">
+                </div>
+            <%end%>
+        </div>
     <%end%>
-<%end%>
-
-<%if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 3).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 3).end.to_time.to_i %>
-    <%=link_to "Lekcja 3", lesson_path(:level => @progr.lvl), method: :post%><br></br>
-<%else%>
-    <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:3).start.to_time.to_i%>    
-        zajecia3!! dostepne od <%=Classescalendar.find_by(group_id: @student.group_id, classes_number: 3).start.strftime("%Y-%m-%d %H:%M:%S")%><br></br>
+    
+    <%if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 3).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 3).end.to_time.to_i %>  
+        <div class="student_lesson3">
+            <div class="mark_lesson3">
+                <%=link_to lesson_path(:level => @progr.lvl), method: :post, :class => "xmark" do%>
+                    <img src="/assets/student/xmark.png">
+                <% end %>
+            </div>
+        </div>
     <%else%>
-        zajecia3!! Etap zakończony!!<br></br>
-    <%end%>    
-<%end%>
-<%if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 4).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 4).end.to_time.to_i %>
-    <%=link_to "Lekcja 4", lesson_path(:level => @progr.lvl), method: :post%><br></br>
-<%else%>
-    <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:4).start.to_time.to_i%>
-        zajecia4!! dostepne od <%=Classescalendar.find_by(group_id: @student.group_id, classes_number: 4).start.strftime("%Y-%m-%d %H:%M:%S")%><br></br>
+        <div class="student_lesson3">
+            <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:3).start.to_time.to_i%>
+            <%else%>
+                <div>
+                    <img src="/assets/student/okmark.png" class="mark_lesson3 okmark">
+                </div>
+            <% end %>
+        </div>
+    <% end %>
+    
+    <%if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 4).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 4).end.to_time.to_i %>
+        <div class="student_lesson4">
+            <div class="mark_lesson4">
+                <%=link_to lesson_path(:level => @progr.lvl), method: :post, :class => "xmark" do%>
+                    <img src="/assets/student/xmark.png">
+                <% end %>
+            </div>
+        </div>
     <%else%>
-        zajecia4!! Etap zakończony!!<br></br>
+        <div class="student_lesson4">
+            <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:4).start.to_time.to_i%>
+            <%else%>
+                <div>
+                    <img src="/assets/student/okmark.png" class="mark_lesson4 okmark">
+                </div>
+            <% end %>
+        </div>
     <%end%>
-<%end%>
-
-<%if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 5).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 5).end.to_time.to_i %>
-    <%=link_to "Lekcja 5", lesson_path(:level => @progr.lvl), method: :post%><br></br>
-<%else%>
-    <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:5).start.to_time.to_i%>    
-        zajecia5!! dostepne od <%=Classescalendar.find_by(group_id: @student.group_id, classes_number: 5).start.strftime("%Y-%m-%d %H:%M:%S")%><br></br>
+    
+    <%if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 5).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 5).end.to_time.to_i %>
+        <div class="student_lesson5">
+            <div class="mark_lesson5">
+                <%=link_to lesson_path(:level => @progr.lvl), method: :post, :class => "xmark" do%>
+                    <img src="/assets/student/xmark.png">
+                <%end%>
+            </div>
+        </div>
     <%else%>
-        zajecia5!! Etap zakończony!!<br></br>
+        <div class="student_lesson5">
+            <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:5).start.to_time.to_i%>
+            <%else%>
+                <div>
+                    <img src="/assets/student/okmark.png" class="mark_lesson5 okmark">
+                </div>
+            <% end %>
+        </div>
     <%end%>
-<%end%>
-<br></br><br></br>
+    
+    <div class="student_lesson6">
+        
+    </div>
 </div>
+
+

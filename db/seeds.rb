@@ -31,17 +31,10 @@ Group.create!(teacher_id: "1",
                 name: "sroda 9:40")
                 
 Progre.create!( student_id: "1", 
-<<<<<<< HEAD
-                points: "1000", 
-                hp: "40", 
-                gained_points: "30", 
-                total:40,
-=======
                 points: "100", 
                 hp: "40", 
                 gained_points: "41", 
                 total:89,
->>>>>>> master
                 lvl: "1")
 Student.create!(login: "st2", 
                 password_digest: BCrypt::Password.create("st2"), 
