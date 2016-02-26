@@ -119,10 +119,8 @@ ActiveRecord::Schema.define(version: 20160211231347) do
     t.integer  "hp"
     t.integer  "gained_points"
     t.integer  "lvl"
-    # t.integer  "won_challenges"
-    # t.integer  "lost_challenges"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "total"
     t.float    "rate"
   end
