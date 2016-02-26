@@ -8,8 +8,7 @@ class ResultController < ApplicationController
       @points_in_percent = (params[:result][:earned_points]).to_i/100.to_f # zamiana na procenty
       earned_points = @points_in_percent * @reward # obliczenie ile pkt otrzymuje gracz
       @progres = Progre.find_by(student_id: params[:result][:student_id]) 
-      @progres.hp -= (100 - params[:result][:earned_points].to_i) * 0.2 # gracz traci hp za nie zdobyte procenty
-      #przyznanie pktow
+      @progres.hp -= (100 - params[:result][:earned_points].to_i) * 0.2 # gracz traci hp za nie zdobyte procenty #przyznanie pktow
       @progres.gained_points += earned_points
       @progres.points += earned_points
       @progres.save
