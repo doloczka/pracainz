@@ -31,10 +31,10 @@ Group.create!(teacher_id: "1",
                 name: "sroda 9:40")
                 
 Progre.create!( student_id: "1", 
-                points: "0", 
+                points: "100", 
                 hp: "40", 
-                gained_points: "0", 
-                total:0,
+                gained_points: "41", 
+                total:89,
                 lvl: "1")
 Student.create!(login: "st2", 
                 password_digest: BCrypt::Password.create("st2"), 
@@ -55,7 +55,11 @@ Classescalendar.create!(group_id: "1", classes_number: "2", start: "2016-01-20 0
 Classescalendar.create!(group_id: "1", classes_number: "3", start: "2016-01-21 06:00:00" , end: "2016-01-21 12:00:00" )
 Classescalendar.create!(group_id: "1", classes_number: "4", start: "2016-01-22 06:00:00" , end: "2016-01-22 12:00:00" )
 Classescalendar.create!(group_id: "1", classes_number: "5", start: "2016-01-23 06:00:00" , end: "2016-01-23 12:00:00" )
+
 Classescalendar.create!(group_id: "1", classes_number: "6", start: "2016-01-23 06:00:00" , end: "2016-01-23 12:00:00" )
+
+
+Classescalendar.create!(group_id: "1", classes_number: "6", start: "2016-01-24 06:00:00" , end: "2016-01-24 12:00:00" )
 
 Exercise.create!(teacher_id: "1",
                     level: "1",
@@ -217,6 +221,14 @@ Exercise.create!(teacher_id: "1",
                     reward: "10",
                     content: "zadanie piate dzien pierwszy"
                     )
+for i in 1..5
+Exercise.create!(teacher_id: "1",
+                    level: "6",
+                    number: i,
+                    reward: "10",
+                    content: "zadanie #{i} dzien 6"
+                    )
+end
 Medal.create!(name: "Medal za wytrwałość",
               description: "medal za 100% obecności",
               img: "indeks.png",
