@@ -19,6 +19,10 @@
         display: block
         width: 100%
         height: 100%
+        span
+            text-align: justify
+            width: 250px
+            margin-top: 360px
     .student_name, .student_lastname
         h2
             position: absolute
@@ -34,7 +38,6 @@
     .student_lastname
         h2
             bottom: 15px
-            
 .student_statistic
     float: left
     background: url('/assets/student/bg_statistic.png') no-repeat
@@ -53,6 +56,10 @@
             display: block
             width: 100%
             height: 100%
+            span
+                margin-top: -30px
+                margin-left: 28px
+                width: 230px
         h3
             display: inline-block
     .student_hp
@@ -62,9 +69,19 @@
     .student_exp, .student_lvl, 
         float: left
         margin-left: 70px
+        span
+            text-align: justify
+            margin-left: -190px
+            margin-top: -70px
+            width: 130px
     .student_pkt_rank
         float: right
         margin-right: 80px
+        span
+            text-align: justify
+            margin-left: 240px
+            margin-top: -70px
+            width: 230px
     .student_rank_world
         float: left
         margin-left: 150px
@@ -80,6 +97,8 @@
         h1
             vertical-align: middle
             line-height: 50px
+        .rank
+            font-family: Viking
     .student_rank_group
         margin-top: -20px
         float: right
@@ -142,3 +161,114 @@
         margin-right: auto
         img
             margin-left: 35px
+
+.tooltip
+    outline: none
+    span
+        z-index: 10
+        display: none
+        padding: 14px 20px
+        line-height: 16px
+        border-radius: 4px
+        -moz-border-radius: 4px
+        -webkit-border-radius: 4px
+        -moz-box-shadow: 5px 5px 8px #000
+        -webkit-box-shadow: 5px 5px 8px #000
+        box-shadow: 5px 5px 8px #000
+.tooltip:hover
+    text-decoration: none
+    span
+        display: inline
+        position: absolute
+        color: #fff
+        border: 1px solid #000
+        background-color: rgba(0, 0, 0, 0.8)
+        font-family: Helvetica
+            
+.student_map
+    width: 1200px
+    height: 987px
+    margin-left: auto
+    margin-right: auto
+    margin-top: 20px
+    font-family: Viking
+    color: #000
+    background: url('/assets/student/bg_map.png')
+    z-index: 1
+    .student_lesson1
+        float: left
+        background: url('/assets/student/lesson1.png')
+        width: 552px
+        height: 408px
+        margin-left: 50px
+        margin-top: 20px
+        z-index: 2
+        .mark_lesson1
+            position: relative
+            margin-top: 260px
+            margin-left: 178px
+    .student_lesson2
+        float: right
+        background: url('/assets/student/lesson2.png')
+        width: 721px
+        height: 258px
+        margin-top: -300px
+        margin-right: 274px
+        z-index: 3
+        .mark_lesson2
+            position: relative
+            margin-top: 125px
+            margin-left: 580px
+    .student_lesson3
+        float: right
+        background: url('/assets/student/lesson3.png')
+        width: 822px
+        height: 521px
+        margin-top: -148px
+        margin-right: 52px
+        z-index: 4
+        .mark_lesson3
+            position: relative
+            margin-top: 190px
+            margin-left: 680px
+    .student_lesson4
+        float: left
+        background: url('/assets/student/lesson4.png')
+        width: 1024px
+        height: 469px
+        margin-top: -315px
+        margin-left: 96px
+        z-index: 5
+        .mark_lesson4
+            position: relative
+            margin-top: 340px
+            margin-left: 200px
+    .student_lesson5
+        float: left
+        background: url('/assets/student/lesson5.png')
+        width: 534px
+        height: 232px
+        margin-top: -285px
+        margin-left: 315px
+        z-index: 6
+        .mark_lesson5
+            position: relative
+            margin-top: 135px
+            margin-left: 290px
+    .student_lesson6
+        float: right
+        background: url('/assets/student/lesson6.png')
+        width: 509px
+        height: 341px
+        margin-top: -389px
+        margin-right: 48px
+        z-index: 7
+        .mark_lesson6
+            position: relative
+            margin-top: 236px
+            margin-left: 190px
+.okmark, .xmark
+    display: block
+    width: 70px
+    height: 40px
+    z-index: 10
