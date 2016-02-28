@@ -12,6 +12,18 @@ class ApplicationController < ActionController::Base
         student = Student.find_by(login: session[:login])
         progr=Progre.find_by(student_id: session[:user_id])
               time = Time.new.in_time_zone("Warsaw").strftime("%Y-%m-%d %H:%M:%S") 
+        
+        if @progr.variant.nil?
+          teacher=Group.find(student.group_id)
+          exer=Exercise.where(teacher_id: teacher.teacher_id, level: 1 , number: 1).order(variant: :desc).first.variant
+          if exer!=nil
+            randed=rand(1..exer.variant)
+            @progr.update_column(:variant, randed)
+          else
+            @progr.update_column(:variant, 1)
+          end
+        end
+          
         if time.to_time.to_i>Classescalendar.find_by(group_id: student.group_id , classes_number: 1).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: student.group_id, classes_number: 1).end.to_time.to_i
        
             assist(1)
@@ -131,9 +143,9 @@ class ApplicationController < ActionController::Base
             if zad.nil?
               @gr=Group.find_by(id: @student.group_id)
               for i in 1..5 do
-                exercount=Exercise.where(teacher_id: @gr.teacher_id, level: lev , number: i).count
+                exercount=Exercise.where(teacher_id: @gr.teacher_id, level: lev , number: i, variant: @progr.variant).count
                 rnd= rand(1..exercount) #rand
-                exer = Exercise.where(teacher_id: @gr.teacher_id, level: lev , number: i).first(rnd).last
+                exer = Exercise.where(teacher_id: @gr.teacher_id, level: lev , number: i, variant: @progr.variant).first(rnd).last
                 data={
                         "student_id"=>@student.id,
                         "level"=>lev,
