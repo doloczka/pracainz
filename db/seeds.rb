@@ -31,10 +31,10 @@ Group.create!(teacher_id: "1",
                 name: "sroda 9:40")
                 
 Progre.create!( student_id: "1", 
-                points: "100", 
+                points: "0", 
                 hp: "40", 
-                gained_points: "41", 
-                total:89,
+                gained_points: "0", 
+                total:0,
                 lvl: "1")
 Student.create!(login: "st2", 
                 password_digest: BCrypt::Password.create("st2"), 
@@ -56,173 +56,177 @@ Classescalendar.create!(group_id: "1", classes_number: "3", start: "2016-01-21 0
 Classescalendar.create!(group_id: "1", classes_number: "4", start: "2016-01-22 06:00:00" , end: "2016-01-22 12:00:00" )
 Classescalendar.create!(group_id: "1", classes_number: "5", start: "2016-01-23 06:00:00" , end: "2016-01-23 12:00:00" )
 Classescalendar.create!(group_id: "1", classes_number: "6", start: "2016-01-24 06:00:00" , end: "2016-01-24 12:00:00" )
-Exercise.create!(teacher_id: "1",
-                    level: "1",
-                    number: "1",
-                    reward: "100",
-                    content: "zadanie pierwsze dzien pierwszy",
-                    hint: "jeśli używasz podowiedzi to jestes slaby"
-                    )
-Exercise.create!(teacher_id: "1",
-                    level: "1",
-                    number: "2",
-                    reward: "100",
-                    content: "zadanie drugie dzien pierwszy",
-                    hint: "12hint"
-                    )
-Exercise.create!(teacher_id: "1",
-                    level: "1",
-                    number: "3",
-                    reward: "100",
-                    content: "zadanie trzecie dzien pierwszy",
-                    hint: "13hint"
-                    )
-Exercise.create!(teacher_id: "1",
-                    level: "1",
-                    number: "4",
-                    reward: "100",
-                    content: "zadanie czwarte dzien pierwszy"
-                    )
-Exercise.create!(teacher_id: "1",
-                    level: "1",
-                    number: "5",
-                    reward: "100",
-                    content: "zadanie piate dzien pierwszy"
-                    )
+
+# Exercise.create!(teacher_id: "1",
+#                     level: "1",
+#                     number: "1",
+#                     reward: "100",
+#                     content: "zadanie pierwsze dzien pierwszy",
+#                     hint: "jeśli używasz podowiedzi to jestes slaby"
+#                     )
+# Exercise.create!(teacher_id: "1",
+#                     level: "1",
+#                     number: "2",
+#                     reward: "100",
+#                     content: "zadanie drugie dzien pierwszy",
+#                     hint: "12hint"
+#                     )
+# Exercise.create!(teacher_id: "1",
+#                     level: "1",
+#                     number: "3",
+#                     reward: "100",
+#                     content: "zadanie trzecie dzien pierwszy",
+#                     hint: "13hint"
+#                     )
+# Exercise.create!(teacher_id: "1",
+#                     level: "1",
+#                     number: "4",
+#                     reward: "100",
+#                     content: "zadanie czwarte dzien pierwszy"
+#                     )
+# Exercise.create!(teacher_id: "1",
+#                     level: "1",
+#                     number: "5",
+#                     reward: "100",
+#                     content: "zadanie piate dzien pierwszy"
+#                     )
                     
-     #zadania na kolejne dni+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Exercise.create!(teacher_id: "1",
-                    level: "2",
-                    number: "1",
-                    reward: "100",
-                    content: "zadanie piate dzien pierwszy"
-                    )
-Exercise.create!(teacher_id: "1",
-                    level: "2",
-                    number: "2",
-                    reward: "10",
-                    content: "zadanie piate dzien pierwszy"
-                    )
+#      #zadania na kolejne dni+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Exercise.create!(teacher_id: "1",
+#                     level: "2",
+#                     number: "1",
+#                     reward: "100",
+#                     content: "zadanie piate dzien pierwszy"
+#                     )
+# Exercise.create!(teacher_id: "1",
+#                     level: "2",
+#                     number: "2",
+#                     reward: "10",
+#                     content: "zadanie piate dzien pierwszy"
+#                     )
 					
-Exercise.create!(teacher_id: "1",
-                    level: "2",
-                    number: "3",
-                    reward: "100",
-                    content: "zadanie piate dzien pierwszy"
-                    )
-Exercise.create!(teacher_id: "1",
-                    level: "2",
-                    number: "4",
-                    reward: "100",
-                    content: "zadanie piate dzien pierwszy"
-                    )
-Exercise.create!(teacher_id: "1",
-                    level: "2",
-                    number: "5",
-                    reward: "100",
-                    content: "zadanie piate dzien pierwszy"
-                    )
+# Exercise.create!(teacher_id: "1",
+#                     level: "2",
+#                     number: "3",
+#                     reward: "100",
+#                     content: "zadanie piate dzien pierwszy"
+#                     )
+# Exercise.create!(teacher_id: "1",
+#                     level: "2",
+#                     number: "4",
+#                     reward: "100",
+#                     content: "zadanie piate dzien pierwszy"
+#                     )
+# Exercise.create!(teacher_id: "1",
+#                     level: "2",
+#                     number: "5",
+#                     reward: "100",
+#                     content: "zadanie piate dzien pierwszy"
+#                     )
 
 					
-Exercise.create!(teacher_id: "1",
-                    level: "3",
-                    number: "1",
-                    reward: "100",
-                    content: "zadanie piate dzien pierwszy"
-                    )
-Exercise.create!(teacher_id: "1",
-                    level: "3",
-                    number: "2",
-                    reward: "100",
-                    content: "zadanie piate dzien pierwszy"
-                    )
-Exercise.create!(teacher_id: "1",
-                    level: "3",
-                    number: "3",
-                    reward: "100",
-                    content: "zadanie piate dzien pierwszy"
-                    )
-Exercise.create!(teacher_id: "1",
-                    level: "3",
-                    number: "4",
-                    reward: "10",
-                    content: "zadanie piate dzien pierwszy"
-                    )
-Exercise.create!(teacher_id: "1",
-                    level: "3",
-                    number: "5",
-                    reward: "10",
-                    content: "zadanie piate dzien pierwszy"
-                    )
+# Exercise.create!(teacher_id: "1",
+#                     level: "3",
+#                     number: "1",
+#                     reward: "100",
+#                     content: "zadanie piate dzien pierwszy"
+#                     )
+# Exercise.create!(teacher_id: "1",
+#                     level: "3",
+#                     number: "2",
+#                     reward: "100",
+#                     content: "zadanie piate dzien pierwszy"
+#                     )
+# Exercise.create!(teacher_id: "1",
+#                     level: "3",
+#                     number: "3",
+#                     reward: "100",
+#                     content: "zadanie piate dzien pierwszy"
+#                     )
+# Exercise.create!(teacher_id: "1",
+#                     level: "3",
+#                     number: "4",
+#                     reward: "10",
+#                     content: "zadanie piate dzien pierwszy"
+#                     )
+# Exercise.create!(teacher_id: "1",
+#                     level: "3",
+#                     number: "5",
+#                     reward: "10",
+#                     content: "zadanie piate dzien pierwszy"
+#                     )
 
-Exercise.create!(teacher_id: "1",
-                    level: "4",
-                    number: "1",
-                    reward: "10",
-                    content: "zadanie piate dzien pierwszy"
-                    )
-Exercise.create!(teacher_id: "1",
-                    level: "4",
-                    number: "2",
-                    reward: "10",
-                    content: "zadanie piate dzien pierwszy"
-                    )
-Exercise.create!(teacher_id: "1",
-                    level: "4",
-                    number: "3",
-                    reward: "10",
-                    content: "zadanie piate dzien pierwszy"
-                    )
-Exercise.create!(teacher_id: "1",
-                    level: "4",
-                    number: "4",
-                    reward: "10",
-                    content: "zadanie piate dzien pierwszy"
-                    )
-Exercise.create!(teacher_id: "1",
-                    level: "4",
-                    number: "5",
-                    reward: "10",
-                    content: "zadanie piate dzien pierwszy"
-                    )
+# Exercise.create!(teacher_id: "1",
+#                     level: "4",
+#                     number: "1",
+#                     reward: "10",
+#                     content: "zadanie piate dzien pierwszy"
+#                     )
+# Exercise.create!(teacher_id: "1",
+#                     level: "4",
+#                     number: "2",
+#                     reward: "10",
+#                     content: "zadanie piate dzien pierwszy"
+#                     )
+# Exercise.create!(teacher_id: "1",
+#                     level: "4",
+#                     number: "3",
+#                     reward: "10",
+#                     content: "zadanie piate dzien pierwszy"
+#                     )
+# Exercise.create!(teacher_id: "1",
+#                     level: "4",
+#                     number: "4",
+#                     reward: "10",
+#                     content: "zadanie piate dzien pierwszy"
+#                     )
+# Exercise.create!(teacher_id: "1",
+#                     level: "4",
+#                     number: "5",
+#                     reward: "10",
+#                     content: "zadanie piate dzien pierwszy"
+#                     )
 
-Exercise.create!(teacher_id: "1",
-                    level: "5",
-                    number: "1",
-                    reward: "10",
-                    content: "zadanie piate dzien pierwszy"
-                    )
-Exercise.create!(teacher_id: "1",
-                    level: "5",
-                    number: "2",
-                    reward: "10",
-                    content: "zadanie piate dzien pierwszy"
-                    )
-Exercise.create!(teacher_id: "1",
-                    level: "5",
-                    number: "3",
-                    reward: "10",
-                    content: "zadanie piate dzien pierwszy"
-                    )
-Exercise.create!(teacher_id: "1",
-                    level: "5",
-                    number: "4",
-                    reward: "10",
-                    content: "zadanie piate dzien pierwszy"
-                    )
-Exercise.create!(teacher_id: "1",
-                    level: "5",
-                    number: "5",
-                    reward: "10",
-                    content: "zadanie piate dzien pierwszy"
-                    )
-for i in 1..5
-Exercise.create!(teacher_id: "1",
-                    level: "6",
+# Exercise.create!(teacher_id: "1",
+#                     level: "5",
+#                     number: "1",
+#                     reward: "10",
+#                     content: "zadanie piate dzien pierwszy"
+#                     )
+# Exercise.create!(teacher_id: "1",
+#                     level: "5",
+#                     number: "2",
+#                     reward: "10",
+#                     content: "zadanie piate dzien pierwszy"
+#                     )
+# Exercise.create!(teacher_id: "1",
+#                     level: "5",
+#                     number: "3",
+#                     reward: "10",
+#                     content: "zadanie piate dzien pierwszy"
+#                     )
+# Exercise.create!(teacher_id: "1",
+#                     level: "5",
+#                     number: "4",
+#                     reward: "10",
+#                     content: "zadanie piate dzien pierwszy"
+#                     )
+# Exercise.create!(teacher_id: "1",
+#                     level: "5",
+#                     number: "5",
+#                     reward: "10",
+#                     content: "zadanie piate dzien pierwszy"
+#                     )
+for j in 1..6
+    for i in 1..5
+     Exercise.create!(teacher_id: "1",
+                    level: j,
                     number: i,
                     reward: "10",
-                    content: "zadanie #{i} dzien 6"
+                    content: "zadanie #{i} dzien #{j}",
+                    variant: 1
                     )
+    end
 end
 Medal.create!(name: "Medal za wytrwałość",
               description: "medal za 100% obecności",

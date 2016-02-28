@@ -88,7 +88,7 @@ class StudentsController < ApplicationController
               presence = Presence.new(:student_id => @student.id, :classes_number => i, :present => true)
               presence.save
             end
-        progrs = Progre.new(student_id: @student.id, points: 0, hp: 100, gained_points: 0, total: 0, lvl: 1, won_challenges: 0, lost_challenges: 0)
+        progrs = Progre.new(student_id: @student.id, points: 0, hp: 100, gained_points: 0, total: 0, lvl: 1)
         progrs.save
         format.html{redirect_to :back, notice: 'Stworzono studenta'}
     else

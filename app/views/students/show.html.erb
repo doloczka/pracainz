@@ -1,9 +1,27 @@
-
-
+<script>
+$( document ).ready(function() {
+    var level = <%=@progr.lvl%>;
+    if (level<2){
+        $('#lesson2').hide();
+    }
+    if (level<3){
+        $('#lesson3').hide();
+   }
+   if (level<4){
+        $('#lesson4').hide();
+   }
+   if (level<5){
+        $('#lesson5').hide();
+   }
+   if (level<6){
+       $('#lesson6').hide();
+   }
+});
+</script>
 <%time = Time.new.in_time_zone("Warsaw").strftime("%Y-%m-%d %H:%M:%S") %>
 <div class="student_map">
     <%if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id , classes_number: 1).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 1).end.to_time.to_i %>
-        <div class="student_lesson1">
+        <div id="lesson1" class="student_lesson1">
             <div class="mark_lesson1">
                 <%=link_to lesson_path(:level => @progr.lvl), method: :post, :class => "xmark" do%>
                     <img src="/assets/student/xmark.png">
@@ -11,7 +29,7 @@
             </div>
         </div>
     <%else%>
-        <div class="student_lesson1">
+        <div id="lesson1" class="student_lesson1">
             <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:1).start.to_time.to_i%>
             <%else%>
                 <div>
@@ -22,7 +40,7 @@
     <%end%>
     
     <%if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 2).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 2).end.to_time.to_i %>
-        <div class="student_lesson2">
+        <div id="lesson2" class="student_lesson2">
             <div class="mark_lesson2">
                 <%=link_to lesson_path(:level => @progr.lvl), method: :post, :class => "xmark" do%>
                     <img src="/assets/student/xmark.png">
@@ -30,7 +48,7 @@
             </div>
         </div>
     <%else%>
-        <div class="student_lesson2">
+        <div id="lesson2" class="student_lesson2">
             <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:2).start.to_time.to_i%>
             <%else%>
                 <div>
@@ -41,7 +59,7 @@
     <%end%>
     
     <%if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 3).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 3).end.to_time.to_i %>  
-        <div class="student_lesson3">
+        <div id="lesson3" class="student_lesson3">
             <div class="mark_lesson3">
                 <%=link_to lesson_path(:level => @progr.lvl), method: :post, :class => "xmark" do%>
                     <img src="/assets/student/xmark.png">
@@ -49,7 +67,7 @@
             </div>
         </div>
     <%else%>
-        <div class="student_lesson3">
+        <div id="lesson3" class="student_lesson3">
             <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:3).start.to_time.to_i%>
             <%else%>
                 <div>
@@ -60,7 +78,7 @@
     <% end %>
     
     <%if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 4).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 4).end.to_time.to_i %>
-        <div class="student_lesson4">
+        <div id="lesson4" class="student_lesson4">
             <div class="mark_lesson4">
                 <%=link_to lesson_path(:level => @progr.lvl), method: :post, :class => "xmark" do%>
                     <img src="/assets/student/xmark.png">
@@ -68,7 +86,7 @@
             </div>
         </div>
     <%else%>
-        <div class="student_lesson4">
+        <div id="lesson4" class="student_lesson4">
             <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:4).start.to_time.to_i%>
             <%else%>
                 <div>
@@ -79,7 +97,7 @@
     <%end%>
     
     <%if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 5).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 5).end.to_time.to_i %>
-        <div class="student_lesson5">
+        <div id="lesson5" class="student_lesson5">
             <div class="mark_lesson5">
                 <%=link_to lesson_path(:level => @progr.lvl), method: :post, :class => "xmark" do%>
                     <img src="/assets/student/xmark.png">
@@ -87,7 +105,7 @@
             </div>
         </div>
     <%else%>
-        <div class="student_lesson5">
+        <div id="lesson5" class="student_lesson5">
             <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:5).start.to_time.to_i%>
             <%else%>
                 <div>
@@ -98,7 +116,7 @@
     <%end%>
 
     <%if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id, classes_number: 6).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: 6).end.to_time.to_i %>
-        <div class="student_lesson6">
+        <div id="lesson6" class="student_lesson6">
             <div class="mark_lesson6">
                 <%=link_to lesson_path(:level => @progr.lvl), method: :post, :class => "xmark" do%>
                     <img src="/assets/student/xmark.png">
@@ -106,7 +124,7 @@
             </div>
         </div>
     <%else%>
-        <div class="student_lesson6">
+        <div id="lesson6" class="student_lesson6">
             <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:6).start.to_time.to_i%>
             <%else%>
                 <div>
@@ -115,5 +133,4 @@
             <% end %>
         </div>
     <%end%>
-
 
