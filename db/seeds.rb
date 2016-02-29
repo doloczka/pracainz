@@ -55,6 +55,7 @@ Classescalendar.create!(group_id: "1", classes_number: "2", start: "2016-01-20 0
 Classescalendar.create!(group_id: "1", classes_number: "3", start: "2016-01-21 06:00:00" , end: "2016-01-21 12:00:00" )
 Classescalendar.create!(group_id: "1", classes_number: "4", start: "2016-01-22 06:00:00" , end: "2016-01-22 12:00:00" )
 Classescalendar.create!(group_id: "1", classes_number: "5", start: "2016-01-23 06:00:00" , end: "2016-01-23 12:00:00" )
+<<<<<<< HEAD
 Classescalendar.create!(group_id: "1", classes_number: "6", start: "2016-01-24 06:00:00" , end: "2016-01-24 12:00:00" )
 
 # Exercise.create!(teacher_id: "1",
@@ -90,6 +91,47 @@ Classescalendar.create!(group_id: "1", classes_number: "6", start: "2016-01-24 0
 #                     reward: "100",
 #                     content: "zadanie piate dzien pierwszy"
 #                     )
+=======
+
+Classescalendar.create!(group_id: "1", classes_number: "6", start: "2016-01-23 06:00:00" , end: "2016-01-23 12:00:00" )
+
+
+Classescalendar.create!(group_id: "1", classes_number: "6", start: "2016-01-24 06:00:00" , end: "2016-01-24 12:00:00" )
+
+Exercise.create!(teacher_id: "1",
+                    level: "1",
+                    number: "1",
+                    reward: "100",
+                    content: "zadanie pierwsze dzien pierwszy",
+                    hint: "jeśli używasz podowiedzi to jestes slaby"
+                    )
+Exercise.create!(teacher_id: "1",
+                    level: "1",
+                    number: "2",
+                    reward: "100",
+                    content: "zadanie drugie dzien pierwszy",
+                    hint: "12hint"
+                    )
+Exercise.create!(teacher_id: "1",
+                    level: "1",
+                    number: "3",
+                    reward: "100",
+                    content: "zadanie trzecie dzien pierwszy",
+                    hint: "13hint"
+                    )
+Exercise.create!(teacher_id: "1",
+                    level: "1",
+                    number: "4",
+                    reward: "100",
+                    content: "zadanie czwarte dzien pierwszy"
+                    )
+Exercise.create!(teacher_id: "1",
+                    level: "1",
+                    number: "5",
+                    reward: "100",
+                    content: "zadanie piate dzien pierwszy"
+                    )
+>>>>>>> 20a1824bb977b42c076c16c259e850de61663f88
                     
 #      #zadania na kolejne dni+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Exercise.create!(teacher_id: "1",
