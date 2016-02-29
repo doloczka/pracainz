@@ -20,7 +20,7 @@
     <% if logged_as_student? %>
       <div class="container">
         <% flash.each do |message_type, message| %>
-          <div class='alert alert-<%=message_type%>'><%= message %></div>
+         
         <%end%>
         <%= render 'students/panel' %>
         <%= yield %>

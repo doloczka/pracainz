@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
           teacher=Group.find(student.group_id)
           exer=Exercise.where(teacher_id: teacher.teacher_id, level: 1 , number: 1).order(variant: :desc).first.variant
           if exer!=nil
-            randed=rand(1..exer.variant)
+            randed=rand(1..exer)
             @progr.update_column(:variant, randed)
           else
             @progr.update_column(:variant, 1)

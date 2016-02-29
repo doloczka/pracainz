@@ -1,21 +1,21 @@
 <script>
-$( document ).ready(function() {
+$(document).ready(function() {
     var level = <%=@progr.lvl%>;
     if (level<2){
         $('#lesson2').hide();
     }
     if (level<3){
         $('#lesson3').hide();
-   }
-   if (level<4){
+    }
+    if (level<4){
         $('#lesson4').hide();
-   }
-   if (level<5){
+    }
+    if (level<5){
         $('#lesson5').hide();
-   }
-   if (level<6){
+    }
+    if (level<6){
        $('#lesson6').hide();
-   }
+    }
 });
 </script>
 <%time = Time.new.in_time_zone("Warsaw").strftime("%Y-%m-%d %H:%M:%S") %>
