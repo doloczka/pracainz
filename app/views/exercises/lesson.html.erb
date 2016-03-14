@@ -3,31 +3,81 @@
 <script>
     function showhide(a)
      {
-           var div = document.getElementById(a);
-            if (div.style.display !== "none") {
-                div.style.display = "none";
-            }
-            else {
-                div.style.display = "block";
-            }
-          
+         var id = "hint"
+        $("hint"+a)
      }
 </script>
-
-<div>
-<%for i in 1..5 %>
-    <% zadanie=Exercise.find_by(id: Drawnexercise.find_by(student_id: session[:user_id], level: params[:level], number: i).exercise_id)%></br>
-    <br>Zadanie <%= i %>  Pkt: <%= pkt=zadanie.reward %></br>
-    <br><%= zadanie.content %></br>
-    <%@zad = Answer.find_by(student_id: @student.id, exercise_id: zadanie.id)%>
-    <button id='button' onclick="showhide(<%=i%>)">Podpowiedź</button><div id='<%=i%>' style="display: none"><%= zadanie.hint %></div>
-    <%= form_for @zad, url: {controller: "students", action: "solution"} do |f| %>
-        <%= f.hidden_field :reward, :value => zadanie.reward %>
-        <%= f.hidden_field :level, :value => @level %>
-        <%= f.hidden_field :number, :value => i %>
-        <%= f.text_area :solution, size: "60x5" %><br>
-        <%= f.submit "Wyślij" %></br>
-    <% end %>
-<br></br>
-<%end%>
+<div class="student_map">
+    <div class="back_button tooltip">
+        <%= link_to "", student_path(session[:user_id]) %>
+        <span>Kliknij aby przejść do mapy świata</span>
+    </div>
+    <div class="student_lesson_title">
+        <h1>Lekcja <%=@level %></h1>
+    </div>
+    <div class="lesson_pustak"></div>
+    <%for i in 1..5 %>
+        <% story = Story.find_by(level: @level, number: i)%>
+        <%= link_to "#zad#{@level}_#{i}" do%>
+        <div class="lesson_zad">
+            <%= image_tag("/assets/lesson/zad#{@level}_#{i}.png")%>
+            <div class="lesson_title">
+                <span style="font-size: 1.5em;">Zadanie <%=i%></span>
+                <span style="font-size: 2em;"><%= story.title %></span>
+            </div>
+        </div>
+        <%end%>
+    <%end%>
 </div>
+
+
+<%for i in 1..5 %>
+<!-- MODAl-->
+    <%= content_tag(:div, :id =>"zad#{@level}_#{i}", :class =>"modal_dialog") do %>
+        <div class="modal_content">
+            <% zadanie=Exercise.find_by(id: Drawnexercise.find_by(student_id: session[:user_id], level: params[:level], number: i).exercise_id)%>
+            <% story = Story.find_by(level: @level, number: i)%>
+            <div class="modal_header">
+                <div class="modal_title">
+                    <h2>Zadanie <%= i %></h2>
+                    <h1><%=story.title%></h1>
+                </div>
+                <div class="modal_close">
+                    <%= link_to "#close" do%>
+                    <% end %>
+                </div>
+            </div>
+            
+            <div class="modal_story">
+                <p><%= story.content%></p>
+            </div>
+            <div class="modal_story">
+                <p><%= zadanie.content %></p>
+            </div>
+            
+            <%@zad = Answer.find_by(student_id: @student.id, exercise_id: zadanie.id)%>
+            <div class="hint">
+                <button id='button' onclick="showhide(<%=i%>)" class="modal_button button_hint">
+                    <img src="/assets/lesson/drozd.png">
+                    <span>Podpowiedź</button>
+                <%= content_tag(:div, :id =>"hint#{i}", :class => "hint_content") do %>
+                    <%= zadanie.hint %>
+                <% end%>
+            </div>
+            <%= form_for @zad, url: {controller: "students", action: "solution"} do |f| %>
+                <div class="modal_answer">
+                    <%= f.hidden_field :reward, :value => zadanie.reward %>
+                    <%= f.hidden_field :level, :value => @level %>
+                    <%= f.hidden_field :number, :value => i %>
+                    <h4 class="modal_tag">Odpowiedź</h4>
+                    <%= f.text_area :solution, size: "100x5", :class => "modal_text_area" %>
+                    <h3>Nagroda:</h3>
+                    <h4> <%= pkt=zadanie.reward %> pkt exp<br>
+                        <%= pkt=zadanie.reward %> pkt rankingowych</h4>
+                    <%= f.submit "Wyślij", :class => "modal_button button_send" %>
+                </div>
+            <% end %>
+        </div>
+    <br></br>
+    <%end%>
+<%end%>

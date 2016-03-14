@@ -1,3 +1,12 @@
+.bg_student
+    position: absolute
+    min-height: 100%
+    max-height: 1600px
+    width: 100%
+    top: 0
+    background: url('/assets/student/bg_wood.jpg') no-repeat
+    z-index: -1
+    
 .student_header
     width: 1200px
     height: 360px
@@ -184,7 +193,7 @@
         border: 1px solid #000
         background-color: rgba(0, 0, 0, 0.8)
         font-family: Helvetica
-            
+
 .student_map
     width: 1200px
     height: 987px
@@ -242,6 +251,10 @@
         .mark_lesson4
             position: relative
             margin-top: 340px
+            margin-left: -115px
+        .mark_lesson4_ok
+            position: relative
+            margin-top: 340px
             margin-left: 200px
     .student_lesson5
         float: left
@@ -272,3 +285,187 @@
     width: 70px
     height: 40px
     z-index: 10
+// CSS do lesson.html.erb
+.student_map
+    .back_button
+        float: left
+        background: url('/assets/student/back.png')
+        width: 95px
+        height: 92px
+        margin-top: 92px
+        margin-left: 134px
+        a
+            display: block
+            width: 100%
+            height: 100%
+        span
+            text-align: justify
+            width: 120px
+            margin-left: -35px
+    .student_lesson_title
+        float: left
+        margin-top: 100px
+        margin-left: 256px
+        text-align: center
+        h1
+            font-size: 40px
+    .lesson_pustak
+        float: none
+        height: 195px
+    a
+        display: block
+        text-decoration: none
+        color: #000
+        width: 545px
+        height: 120px
+        margin-left: auto
+        margin-right: auto
+        margin-top: 22px
+        .lesson_zad
+            position: relative
+            width: 545px
+            height: 120px
+            background-color: #f8c67e
+            border: 3px solid black
+            border-radius: 45px
+            img
+                position: absolute
+                top: 0
+                bottom: 0
+                margin: auto
+                padding: 10px
+            .lesson_title
+                padding: 5px
+                text-align: center
+                font-weight: bold
+                height: 34px
+                margin-left: 20%
+                margin-top: 3%
+                .lesson_title, span
+                    vertical-align: middle
+                span
+                    line-height: 34px
+                    display: block
+                    vertical-align: middle
+    .lesson_zad:hover
+        border-radius: 45px
+        -moz-box-shadow: 0 0 15px #000
+        -webkit-box-shadow: 0 0 15px #000
+        box-shadow: 0 0 15px #000
+// modal
+.modal_dialog 
+    position: fixed
+    overflow: auto
+    height: 100%
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    background: rgba(0,0,0,0.9)
+    z-index: 100
+    opacity: 0
+    pointer-events: none
+    font-family: Viking
+    .modal_button
+        font-family: Viking
+        font-weight: bold
+.modal_dialog:target 
+    opacity: 1
+    pointer-events: auto
+    .modal_content 
+        width: 1200px
+        height: 950px
+        position: relative
+        margin: 0 auto
+        color: #000
+        padding: 66px 20px 13px 20px
+        background: url('/assets/lesson/bg_modal.png') no-repeat
+        .modal_header
+            width: 100%
+            height: 127px
+            text-align: center
+            .modal_title
+                h1
+                    font-size: 35px
+                h2
+                    margin-bottom: 26px
+            .modal_close
+                position: absolute
+                top: 83px
+                right: 147px
+                width: 70px
+                height: 45px
+                background: url('/assets/student/xmark.png')
+                a
+                    display: block
+                    width: 100%
+                    height: 100%
+        .modal_story
+            text-align: justify
+            width: 900px
+            margin-top: -10px
+            margin-bottom: 20px
+            margin-left: auto
+            margin-right: auto
+            padding: 10px 20px
+            border-radius: 20px
+            background: rgba(255,255,255,0.6)
+            p
+                line-height: 1.3em
+                font-size: 1.2em
+                font-family: Helvetica
+        .hint
+            float: right
+            margin-right: 130px
+            margin-top: -8px
+            .button_hint
+                padding: 5px 5px
+                background-color: rgba(236, 236, 11, 0.82)
+                border: solid 3px
+                border-radius: 20px 
+                span, img
+                    vertical-align: middle
+            .hint_content
+                position: absolute
+                width: 270px
+                color: #fff
+                border: 1px solid #000
+                margin-top: 10px
+                margin-left: -113px
+                padding: 5px 10px
+                background-color: rgba(0, 0, 0, 0.8)
+                font-family: Helvetica
+                display: none
+                z-index: 101
+        .modal_tag
+            background: rgba(255,255,255,0.6)
+            width: 110px
+            padding: 10px 21px
+            margin-left: -20px
+            margin-top: -58px
+            border-radius: 10px 10px 0px 0px
+        .modal_answer
+            width: 900px
+            margin-top: 83px
+            margin-left: auto
+            margin-right: auto
+            padding: 20px 20px
+            border-radius: 0px 20px 20px 20px
+            background: rgba(255,255,255,0.6)
+            .modal_text_area
+                width: 100%
+                height: 160px
+                border-radius: 10px
+                font-size: 1.2em
+                resize: vertical
+                max-height: 180px
+                min-height: 120px
+            .button_send
+                float: right
+                margin-top: -52px
+                padding: 14px 31px
+                border-radius: 20px
+                border: solid 3px
+                color: #000
+                background-color: rgba(0, 156, 34, 0.81)
+    

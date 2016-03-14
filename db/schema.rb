@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160228212545) do
+ActiveRecord::Schema.define(version: 20160229104817) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "teacher_id"
@@ -179,6 +179,15 @@ ActiveRecord::Schema.define(version: 20160228212545) do
 
   add_index "sqresults", ["sidequest_id"], name: "index_sqresults_on_sidequest_id"
   add_index "sqresults", ["student_id"], name: "index_sqresults_on_student_id"
+
+  create_table "stories", force: :cascade do |t|
+    t.integer  "level"
+    t.integer  "number"
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "students", force: :cascade do |t|
     t.string   "login"

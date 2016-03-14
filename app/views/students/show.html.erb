@@ -90,7 +90,7 @@ $(document).ready(function() {
             <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:4).start.to_time.to_i%>
             <%else%>
                 <div>
-                    <img src="/assets/student/okmark.png" class="mark_lesson4 okmark">
+                    <img src="/assets/student/okmark.png" class="mark_lesson4_ok okmark">
                 </div>
             <% end %>
         </div>

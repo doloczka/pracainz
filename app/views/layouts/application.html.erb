@@ -18,13 +18,10 @@
   
   <body>
     <% if logged_as_student? %>
-      <div class="container">
-        <% flash.each do |message_type, message| %>
-         
-        <%end%>
+      <div class="bg_student">
+        <!--<% flash.each do |message_type, message| %><%end%>-->
         <%= render 'students/panel' %>
         <%= yield %>
-
       </div>
     <% elsif logged_as_teacher? %>
       <div class="container">
@@ -37,10 +34,8 @@
         </div>
     <% else %>
       <div class="container">
-        jestes nie zalogowany
         <%= yield %>
       </div>
     <%end%>
   </body>
-  
 </html>
