@@ -1,13 +1,12 @@
 <div class="bg_login">
-    <div class="login_axe">
-        <div class="form_login">
-            <%= form_for(:session, url: login_path) do |f|%>
-                <%= f.label :login, :class =>"label_font"%>
-                <%=f.text_field :login, :class =>"input_login"%>
-                <%=f.label :hasło, :class =>"label_font"%>
-                <%=f.password_field :password, :class =>"input_password"%>
-                <%=f.submit "zaloguj", :class =>"button_login label_font"%>
-            <%end%>
-        </div>
+    <img class="bg" src="/assets/sign_in/bg_login2.jpg">
+    <div class="form_login">
+        <%= form_for(:session, url: login_path) do |f|%>
+        <%= f.label :login, :class =>"label_font"%>
+            <%=f.text_field :login, :class =>"input_login"%>
+            <%=f.label :hasło, :class =>"label_font"%>
+            <%=f.password_field :password, :class =>"input_password"%>
+            <%=f.submit "zaloguj", :class =>"button_login label_font"%>
+        <%end%>
     </div>
 </div>

@@ -1,39 +1,49 @@
-/*Logowanie*/
 .bg_login
+    margin: 0 auto
+    text-align: left
+    width: 600px
+.bg
+    height: auto
+    left: 0
+    min-height: 100%
+    //min-width: 1024px
+    //min-width: 100%
     position: fixed
+    top: 0
     width: 100%
-    height: 100%
+    z-index: 1
+.form_login, .form_login_first
+    margin: auto
     top: 0
     left: 0
-    background: url('/assets/sign_in/bg.jpg') no-repeat center
-    background-size: 100%
-    -webkit-background-size: cover
-    -moz-background-size: cover
-    -o-background-size: cover
-    z-index: 0
-
-.login_axe
-    width: 1012px
-    height: 929px
-    position: absolute
-    background-image: url('/assets/sign_in/axe.png')
-    left: 50%
-    margin-left: -506px
+    right: 0
     bottom: 0
+    width: 200px
+    height: 247px
+    position: absolute
     z-index: 2
-
-.form_login, .form_login_first
-    position: fixed
-    width: 206px
-    height: 450px
-    left: 50%
-    top: 50%
-    margin-left: -103px
-    margin-top: -225px
-    z-index: 3
     text-align: center
-
-
+.form_login_first
+    height: 700px
+    width: 260px
+    .log_out_btn
+        width: 190px
+        height: 45px
+        border-radius: 10px
+        margin-top: 22px
+        margin-left: auto
+        margin-right: auto
+        border: solid 5px black
+        background-color: #d67c12
+        z-index: 100
+        a
+            display: block
+            width: 100%
+            height: 100%
+            text-decoration: none
+            color: #000
+            padding-top: 13px
+    
 .input_login, .input_password, .input_email, .input_name, .input_lastname
     width: 190px
     height: 35px
@@ -43,7 +53,7 @@
     margin-bottom: 10px
 
 .button_login, .button_update, .button_logout
-    width: 190px
+    width: 200px
     height: 55px
     border-radius: 10px
     margin-top: 33px

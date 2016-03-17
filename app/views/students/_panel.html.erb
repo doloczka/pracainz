@@ -127,7 +127,8 @@ verification
         </div>
         <div class="student_challenge">
             <%= link_to sidequests_path do%>
-                <%if Sidequest.where(level: @progr.lvl).count == Sqanswer.where(student_id: session[:user_id]).count%>
+            <%gr=Group.find_by(id: @student.group_id)%>
+                <%if Sidequest.where(level: @progr.lvl, teacher_id: gr.teacher_id).count == Sqanswer.where(student_id: session[:user_id]).count%>
                     <div class="challenge tooltip">
                         <%= image_tag("/assets/student/challenge.png") %>
                         <span>Nie masz nowych wyzwań</span>
@@ -135,7 +136,7 @@ verification
                 <%else%>
                     <div class="new_challange tooltip">
                         <%= image_tag("/assets/student/new_challenge.png") %>
-                        <span>Masz <%=Sidequest.where(level: @progr.lvl).count - Sqanswer.where(student_id: session[:user_id]).count%> nowych wyzwań</span>
+                        <span>Masz <%=Sidequest.where(level: @progr.lvl, teacher_id: gr.teacher_id).count - Sqanswer.where(student_id: session[:user_id]).count%> nowych wyzwań</span>
                     </div>
                 <%end%>
             <% end %>

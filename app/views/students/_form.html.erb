@@ -1,7 +1,6 @@
 <div class="bg_login">
-  <%= link_to "Log out", logout_path, method: "delete"%>
-    <div class="login_axe">
-        <div class="form_login_first">
+  <img class="bg" src="/assets/sign_in/bg_login2.jpg">
+    <div class="form_login_first">
           <%= form_for(@student) do |f| %>
             <% if @student.errors.any? %>
               <div id="error_explanation">
@@ -42,8 +41,9 @@
             <div class="actions">
               <%= f.submit "zmień", :class =>"button_update label_font"%>
             </div>
-            
+            <div class ="log_out_btn label_font" >
+              <%= link_to "Wyloguj", logout_path, method: "delete"%>
+            </div>
           <% end %>
       </div>
-  </div>
 </div>
