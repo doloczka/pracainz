@@ -104,21 +104,40 @@ verification
     <div class="student_other">
         <div class="student_log_out">
             <%= link_to logout_path, method: "delete" do %>
-                <h3>Wyloguj</h3>
-                <img src="/assets/student/student_logout.png" alt="">
+                <div class="log_out tooltip">
+                    <img src="/assets/student/student_logout.png" alt="">
+                    <span>Wyloguj</span>
+                </div>
             <% end %>
         </div>
-
         <div class="student_message">
             <%= link_to messages_path(session[:user_id]) do %>
-                <h3>wiadomosci: <%= Message.where(student_id: session[:user_id], direction: "0").count%> </h3>
-                <img src="/assets/student/message.png" alt="" >
+                <% if Message.where(student_id: session[:user_id], direction: "0", read: false).count>0  %>
+                    <div class="new_message tooltip">
+                        <%=image_tag("/assets/student/new_message.png")%>
+                        <span>Masz <%=Message.where(student_id: session[:user_id], direction: "0", read: false).count%> nieprzeczytanych wiadomości </span>
+                    </div>
+                <%else%>
+                    <div class="message tooltip">
+                        <%=image_tag("/assets/student/message.png")%>
+                        <span>Nie masz nowych wiadomości</span>
+                    </div>
+                <% end %>
             <% end %>
         </div>
         <div class="student_challenge">
             <%= link_to sidequests_path do%>
-                <h3>pojedynki: <%= Sidequest.where(level: @progr.lvl, finished: false).count%></h3>
-                <img src="/assets/student/challenge.png" alt="">
+                <%if Sidequest.where(level: @progr.lvl).count == Sqanswer.where(student_id: session[:user_id]).count%>
+                    <div class="challenge tooltip">
+                        <%= image_tag("/assets/student/challenge.png") %>
+                        <span>Nie masz nowych wyzwań</span>
+                    </div>
+                <%else%>
+                    <div class="new_challange tooltip">
+                        <%= image_tag("/assets/student/new_challenge.png") %>
+                        <span>Masz <%=Sidequest.where(level: @progr.lvl).count - Sqanswer.where(student_id: session[:user_id]).count%> nowych wyzwań</span>
+                    </div>
+                <%end%>
             <% end %>
         </div>
     </div>

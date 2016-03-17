@@ -17,7 +17,12 @@ class SqresultsController < ApplicationController
       medal = Medal.find(params[:medal_id])
       give_a_medal(medal,student)
     end
-    message = Message.new(:subject => "Wyniki wyzwania", :content => "Zdobyłeś #{earned_points} punktów", :read => false, :direction => 0, :student_id => @sqresult.student_id, :teacher_id => session[:user_id])
+    message = Message.new(:subject => "Wyniki wyzwania", 
+                          :content => "Zdobyłeś #{earned_points} punktów",
+                          :read => false,
+                          :direction => 0,
+                          :student_id => @sqresult.student_id,
+                          :teacher_id => session[:user_id])
     message.save
     respond_to do |format|
       if @sqresult.save

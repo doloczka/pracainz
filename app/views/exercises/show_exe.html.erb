@@ -1,3 +1,9 @@
+
+<br></br>
+<%=link_to " <- poprzednie", show_exe_path(:lvl => @prevlvl, :number => @prevnumber)%> 
+
+<%=link_to "następne ->", show_exe_path(:lvl => @nextlvl, :number => @nextnumber)%>
+
 <%= render 'form' %>
 <h3>warianty ćwiczenia : <%= params[:number]%></h3>
 
@@ -23,5 +29,3 @@
         <%end%>
     </tbody>
 </table>
-
-

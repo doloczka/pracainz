@@ -3,8 +3,8 @@
 <script>
     function showhide(a)
      {
-         var id = "hint"
-        $("hint"+a)
+         var id = "hint" + a
+        $("#"+id+"").toggle();
      }
 </script>
 <div class="student_map">
@@ -59,7 +59,7 @@
             <div class="hint">
                 <button id='button' onclick="showhide(<%=i%>)" class="modal_button button_hint">
                     <img src="/assets/lesson/drozd.png">
-                    <span>Podpowiedź</button>
+                    <span>Podpowiedź</span></button>
                 <%= content_tag(:div, :id =>"hint#{i}", :class => "hint_content") do %>
                     <%= zadanie.hint %>
                 <% end%>

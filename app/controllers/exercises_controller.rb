@@ -18,11 +18,31 @@ class ExercisesController < ApplicationController
   def show
     
   end
+  
   def show_exe #funkcja wyświetla wszystkie warianty danego zadania + formular_tworzenia zadania
     @exercise = Exercise.new
     @exercises = Exercise.where(teacher_id: session[:user_id],level: params[:lvl], number: params[:number])
-  end
+    
+    lvl = params[:lvl].to_i
+    number = params[:number].to_i
+    if number==1
+          @nextlvl = lvl
+          @prevlvl = lvl==1 ? 6 : lvl-1
+          @nextnumber = number + 1
+          @prevnumber = 5
+    elsif number == 5
+          @nextlvl = lvl==6 ? 1 : lvl+1
+          @prevlvl = lvl
+          @nextnumber = 1
+          @prevnumber = number -1
+    else
+          @nextlvl = lvl
+          @prevlvl = lvl
+          @nextnumber = number+1
+          @prevnumber = number-1
+    end
 
+  end
   # GET /exercises/new
   def new
     @exercise = Exercise.new

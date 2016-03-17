@@ -4,7 +4,7 @@
     max-height: 1600px
     width: 100%
     top: 0
-    background: url('/assets/student/bg_wood.jpg') no-repeat
+    background: url('/assets/student/bg_wood.jpg') no-repeat 50% 50%
     z-index: -1
     
 .student_header
@@ -152,24 +152,48 @@
     h3
         display: inline-block
     .student_log_out
-        width: 140px
+        width: 52px
         height: 50px
         margin-top: 80px
         margin-left: auto
         margin-right: auto
+        .log_out
+            span
+                text-align: justify
+                width: 50px
+                margin-left: -20px
     .student_message
-        width: 210px
-        height: 60px
+        width: 69px
+        height: 50px
         margin-top: 20px
         margin-left: auto
         margin-right: auto
+        .message
+            span
+                text-align: justify
+                width: 240px
+                margin-left: -110px
+        .new_message
+            span
+                text-align: justify
+                width: 240px
+                margin-left: -110px
     .student_challenge
-        width: 135px
-        height: 100px
+        width: 63px
+        height: 72px
+        margin: 20px
         margin-left: auto
         margin-right: auto
-        img
-            margin-left: 35px
+        .challenge
+            span
+                text-align: justify
+                width: 240px
+                margin-left: -110px
+        .new_challange
+            span
+                text-align: justify
+                width: 150px
+                margin-left: -60px
 
 .tooltip
     outline: none
@@ -317,7 +341,7 @@
         text-decoration: none
         color: #000
         width: 545px
-        height: 120px
+        height: 127px
         margin-left: auto
         margin-right: auto
         margin-top: 22px
@@ -468,4 +492,294 @@
                 border: solid 3px
                 color: #000
                 background-color: rgba(0, 156, 34, 0.81)
+                
+// student wiadomosci
+.bg_message, .bg_profil, .bg_sidequest
+    position: relative
+    width: 1200px
+    height: 987px
+    margin-left: auto
+    margin-right: auto
+    margin-top: 20px
+    font-family: Viking
+    color: #000
+    background: url('/assets/student/bg_map.png')
+    z-index: 1
+    .student_message_title, .student_profil_title, .student_sidequest_title
+        position: absolute
+        margin-left: auto
+        margin-right: auto
+        left: 0
+        right: 0
+        margin-top: 100px
+        text-align: center
+        z-index: 2
+    .back_msg, .backto_msg
+        position: absolute
+        background: url('/assets/student/back.png')
+        width: 95px
+        height: 92px
+        margin-top: 92px
+        margin-left: 134px
+        z-index: 3
+        a
+            width: 95px
+            height: 92px
+        span
+            text-align: justify
+            width: 120px
+            margin-left: -35px
+            margin-top: 100px
+    .backto_msg
+        background: url('/assets/student/back_arrow.png')
+    .student_new_message
+        position: absolute
+        margin-left: auto
+        width: 550px
+        height: 38px
+        left: 50%
+        margin-left: -275px
+        margin-top: 200px
+        text-align: center
+        background-color: #FDAB37
+        border-radius: 23px
+        border: solid 3px
+        a
+            display: block
+            width: 100%
+            height: 100%
+            text-decoration: none
+            color: #000
+            font-weight: bold
+            font-size: 1.2em
+            padding-top: 10px
+    .student_new_message:hover
+        border-radius: 45px
+        -moz-box-shadow: 0 0 15px #000
+        -webkit-box-shadow: 0 0 15px #000
+        box-shadow: 0 0 15px #000
+
+    .student_message_content, .student_sidequest_content
+        position: absolute
+        margin-top: 250px
+        left: 0
+        right: 0
+        padding: 10px
+        border-radius: 10px
+        direction: ltr
+        text-align: center
+        max-height: 600px
+        overflow-y: auto
+        table
+            margin-left: auto
+            margin-right: auto
+            width: 611px
+            border: solid 2px
+            border-radius: 10px
+            padding: 6px
+            border-spacing: 7px
+            background-color: #F9E6C9
+            th, .btn_join
+                padding: 6px
+                border-radius: 5px
+                box-shadow: 1px 1px 4px #000
+                background-color: #FDAB37
+                font-weight: bold
+                a
+                    display: block
+                    width: 100%
+                    height: 100%
+                    text-decoration: none
+                    color: #000
+                    font-family: Viking
+                    font-weight: bold
+            .btn_join
+                width: 135px
+                padding: 0px
+            tr
+                height: 26px
+                td
+                    border-radius: 5px
+                    background-color: rgba(255,207,31,0.75)
+                    box-shadow: 1px 1px 3px #000
+                .table_button
+                    width: 100px
+                    border-radius: 5px
+                    box-shadow: 1px 1px 4px #000
+                    background-color: #FDAB37
+                    text-align: center
+                    a
+                        text-decoration: none
+                        color: #000
+                        font-weight: bold
+                        display: block
+                        width: 100%
+                        height: 100%
+                        font-family: Viking
+    .student_message_show, .student_new_message_content, .student_sidequest_show
+        position: absolute
+        margin-top: 250px
+        left: 0
+        right: 0
+        padding: 10px
+        border-radius: 10px
+        width: 611px
+        background-color: #F9E6C9
+        border: solid 2px
+        border-radius: 10px
+        margin-left: auto
+        margin-right: auto
+        max-height: 600px
+        overflow-y: auto
+        h3, label
+            padding: 6px
+            border-radius: 5px
+            box-shadow: 1px 1px 4px #000
+            background-color: #FDAB37
+            font-weight: bold
+        p
+            padding: 10px
+            border-radius: 5px
+            background-color: rgba(255,207,31,0.75)
+            box-shadow: 1px 1px 3px #000
+    .student_new_message_content, .student_sidequest_show
+        padding: 15px
+        overflow-x: hidden
+        textarea, input
+            max-width: 100%
+            min-width: 100%
+        textarea
+            height: 200px
+        .btn_send
+            margin-top: 10px
+            float: right
+            width: 119px
+            height: 40px
+            border-radius: 5px
+            box-shadow: 1px 1px 4px #000
+            background-color: #FDAB37
+            input
+                display: block
+                width: 100%
+                height: 100%
+                font-family: Viking
+                background-color: #FDAB37
+                font-weight: bold
+                border: none
+                border-radius: 5px
+                
+        
+// student profil
+.bg_profil
+    .navbar_student_profil
+        position: absolute
+        top: 251px
+        left: 204px
+        ul
+            width: 1000px
+            list-style-type: none
+            margin: 0
+            padding: 0
+            overflow: hidden
+            li 
+                float: left
+                font-family: Viking
+                font-weight: bold
+                font-size: 1em
+                margin-right: -6px
+                a 
+                    display: inline-block
+                    color: #000
+                    text-align: center
+                    padding: 14px 16px
+                    text-decoration: none
+                    border-left: solid 3px
+                    border-top: solid 3px
+                    border-right: solid 3px
+                    border-radius: 15px 15px 0px 0px
+                    background-color: #f8c67e
+                a:hover
+                    background-color: #D69A43
+    .student_profil_content
+        position: absolute
+        top: 300px
+        left: 204px
+        background-color: #f8c67e
+        width: 842px
+        max-height: 594px
+        border: solid 3px
+        border-top-right-radius: 15px
+        border-bottom-right-radius: 15px
+        border-bottom-left-radius: 15px
+        padding: 20px
+        text-align: center
+        overflow-y: auto
+        table
+            margin-left: auto
+            margin-right: auto
+            width: 800px
+            border: solid 2px
+            border-radius: 10px
+            padding: 6px
+            border-spacing: 7px
+            background-color: #F9E6C9
+            th
+                padding: 6px
+                border-radius: 5px
+                box-shadow: 1px 1px 4px #000
+                background-color: #FDAB37
+            tr
+                td
+                    border-radius: 5px
+                    background-color: rgba(255,207,31,0.75)
+                    box-shadow: 1px 1px 3px #000
+                .col1
+                    width: 80px
+                .col2
+                    width: 130px
+                .col3
+                    width: 180px
+                .col4
+                    width: 130px
+                .btn_details
+                    width: 180px
+                    border-radius: 5px
+                    box-shadow: 1px 1px 4px #000
+                    background-color: #FDAB37
+                    text-align: center
+                    button
+                        display: block
+                        width: 100%
+                        height: 100%
+                        font-family: Viking
+                        background-color: #FDAB37
+                        font-weight: bold
+                        border: none
+                        border-radius: 5px
+            .details_main
+                td
+                    background-color: rgba(255,211,56,0.34)
+
+                
+                
+
+        
+        // a
+    //     display: block
+    //     width: 154px
+    //     height: 36px
+    //     text-decoration: none
+    //     color: #000
+    //     .student_new_message
+    //         padding: 10px
+    //         width: 154px
+    //         height: 36px
+    //         background-color: rgba(236, 236, 11, 0.82)
+    //         border: solid 3px
+    //         border-radius: 20px
+    //         font-weight: bold
+    //         text-align: center
+    //         font-family: Viking
+    //         font-size: 1em
+        
     

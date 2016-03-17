@@ -1,3 +1,13 @@
+<div class ="bg_message">
+  
+  <div class="student_message_title">
+        <h1>Wiadomości</h1>
+    </div>
+    <%= link_to messages_path(session[:user_id]) do%>
+      <div class="backto_msg tooltip">
+        <span>Kliknij aby wrócić do skrzynki</span>
+      </div>
+    <% end %>
 <%= form_for(@message) do |f| %>
   <% if @message.errors.any? %>
     <div id="error_explanation">
@@ -10,12 +20,15 @@
       </ul>
     </div>
   <% end %>
-  <%= f.label "temat" %><br>
-  <%= f.text_field "subject" %><br>
-  <%= f.label "tresc" %><br>
-  <%= f.text_area :content, size: "60x5" %><br>
-
-  <div class="actions">
-    <%= f.submit %>
+  <div class="student_new_message_content">
+    <%= f.label "temat" %><br>
+    <%= f.text_field "subject" %><br><br>
+    <%= f.label "treść" %><br>
+    <%= f.text_area :content, size: "60x5" %><br>
+  
+    <div class="actions btn_send">
+      <%= f.submit "Wyślij"%>
+    </div>
   </div>
 <% end %>
+</div>

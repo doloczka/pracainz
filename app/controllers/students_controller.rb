@@ -8,27 +8,7 @@ class StudentsController < ApplicationController
   def index
     @students = Student.all
   end
- 
-  # GET /students/1
-  # GET /students/1.json
-    # def challenge
-    #     student=Student.find(session[:user_id])
-    #     @idgru=Student.where(group_id: student.group_id)
-    # end
-    
-    # def chosechallenge
-    #     poziom=Progre.find_by(student_id: session[:user_id])
-    #     @zadania=Exercise.where(level: poziom.lvl)   
-    #     @wyzwany=Student.find(params[:idst])
-    # end
-    
-    # def challengeconfirm2
-    #   wyzwanie=Sidequest.find(params[:zad][:wyzwanie])
-    #   wyzwanie.update_attributes(:recipient_answer => params[:zad][:odp] , :status=>"1")
-    #   if wyzwanie.save
-    #     redirect_to   student_challengeinbox_path
-    #   end
-    # end
+
     def studentprofile
       if logged_as_student?
        @pkt=Result.where(student_id: session[:user_id])

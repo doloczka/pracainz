@@ -1,25 +1,39 @@
 <%if logged_as_student?%>
-<h3>Treść</h3>
-<p><%= @sidequest.content%></p>
-<%= form_for @sqanswer, url: sqanswer_update_path, :method => :put do |f| %>
-  <% if @sqanswer.errors.any? %> %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@sqanswer.id.errors.count, "error") %> prohibited this sqanswer from being saved:</h2>
-
-      <ul>
-      <% @sqanswer.id.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div class="bg_sidequest">
+    <div class="student_message_title">
+        <h1>Wyzwania</h1>
     </div>
-  <% end %>
-  <%= f.label :Rozwiazanie%>
-  <%= f.text_area :solution%>
-  <%= f.hidden_field :id, :value => @sqanswer.id %>
-  <%= f.submit %>
-
-<%end%>
-<%end%>
+    <%= link_to sidequests_path do%>
+      <div class="backto_msg tooltip">
+        <span>Kliknij aby wrócić do wyzwań</span>
+      </div>
+    <% end %>
+    <div class="student_sidequest_show">
+        <h3>Treść wyzwania</h3>
+        <p><%= @sidequest.content%></p>
+        <%= form_for @sqanswer, url: sqanswer_update_path, :method => :put do |f| %>
+          <% if @sqanswer.errors.any? %> %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@sqanswer.id.errors.count, "error") %> prohibited this sqanswer from being saved:</h2>
+        
+              <ul>
+              <% @sqanswer.id.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <h3>Odpowiedź</h3>
+          <%= f.text_area :solution%>
+          <%= f.hidden_field :id, :value => @sqanswer.id %>
+          
+        <div class="btn_send">
+              <%= f.submit "Wyślij"%>
+        </div>
+        <%end%>
+        <%end%>
+    </div>
+</div>
 <%if logged_as_teacher?%>
 <h3>Treść:</h3>
 <p><%=@sidequest.content%></p>
