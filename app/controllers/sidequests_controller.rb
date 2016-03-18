@@ -25,7 +25,11 @@ class SidequestsController < ApplicationController
       group = Group.find(student.group_id)
       if !Sqanswer.where(:teacher_id => group.teacher_id, :student_id => student.id, :sidequest_id => @sidequest.id, :reward => @sidequest.reward, :read => false).exists?
         @sqanswer = Sqanswer.new(:teacher_id => group.teacher_id, :student_id => student.id, :sidequest_id => @sidequest.id, :reward => @sidequest.reward, :read => false)
+        
         @sqanswer.save
+        #MEDAL ZA UDZIAL W SIDEQUEST
+        medal_id = Medal.find(3) 
+        give_a_medal_and_send_message(medal_id,student)
       else
         @sqanswer = Sqanswer.find_by(:student_id => student, :sidequest_id => @sidequest.id)
       end

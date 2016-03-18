@@ -6,6 +6,5 @@ class CreateAwardedMedals < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-      add_index :awarded_medals, [:student_id, :medal_id], unique: true
   end
 end

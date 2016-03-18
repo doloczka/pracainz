@@ -15,7 +15,7 @@ class SqresultsController < ApplicationController
     if !params[:medal_id].empty?
       student = Student.find(params[:sqresult][:student_id])
       medal = Medal.find(params[:medal_id])
-      give_a_medal(medal,student)
+      give_a_medal_and_send_message(medal,student)
     end
     message = Message.new(:subject => "Wyniki wyzwania", 
                           :content => "Zdobyłeś #{earned_points} punktów",

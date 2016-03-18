@@ -12,14 +12,14 @@ class Student < ActiveRecord::Base
   
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  #TODO na czas testow
-  # validates :email, length: { maximum: 255 },
-  # format: { with: VALID_EMAIL_REGEX },
-  #                   uniqueness: { case_sensitive: false }, allow_nil:true
-  # validates :password, presence: true, length: { minimum: 2 }, allow_nil:true #TODO zmienic min na 6 po testach
+  validates :email, length: { maximum: 255 },
+  format: { with: VALID_EMAIL_REGEX },
+                    uniqueness: { case_sensitive: false }, allow_nil:true
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil:true #TODO zmienic min na 6 po testach
   validates :album_number, :numericality => {:only_integer => true}
   def admit_medal(medal)
     awarded_medals.create(medal_id: medal)
+    self.progre.points += Medal.find(medal).value
   end
   def take_medal(medal)
     awarded_medals.find_by(medal_id: medal).destroy

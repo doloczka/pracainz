@@ -1,83 +1,34 @@
+Teacher.create!(    name: 'name', 
+                   lastname: 'lastname', 
+                   login: "wyk001", 
+                   password_digest: BCrypt::Password.create("wyk001"), 
+                   email: 'wy1@example.com')
 Teacher.create!(    name: 'Wy1Im', 
                    lastname: 'Wy1Naz', 
-                   login: "wy", 
-                   password_digest: BCrypt::Password.create("wy"), 
+                   login: "wyk002", 
+                   password_digest: BCrypt::Password.create("wyk002"), 
                    email: 'wy1@example.com')
-Student.create!(login: "st", 
-                password_digest: BCrypt::Password.create("st"), 
-                email: "st@exam.com", 
-                name: "St1Im", 
-                lastname: "StNAz", 
-                album_number: "111", 
-                group_id: "1"
-                )
 
-Group.create!(teacher_id: 1,
-            name: "grupa testowa"    
-            )
-Message.create!(subject: "temat",
-                content: "content",
-                read: false,
-                direction: 0,
-                student_id: 1,
-                teacher_id: 1 )
-Message.create!(subject: "temat",
-                content: "content",
-                read: false,
-                direction: 1,
-                student_id: 1,
-                teacher_id: 1 )
-Group.create!(teacher_id: "1",
-                name: "sroda 9:40")
-                
-Progre.create!( student_id: "1", 
-                points: "0", 
-                hp: "40", 
-                gained_points: "0", 
-                total:0,
-                lvl: "1")
-Student.create!(login: "st2", 
-                password_digest: BCrypt::Password.create("st2"), 
-                email: "st2@exam.com", 
-                name: "St2Im", 
-                lastname: "St2NAz", 
-                album_number: "2111", 
-                group_id: "1"
-                )                
-Progre.create!( student_id: "2", 
-                points: "50", 
-                hp: "50", 
-                gained_points: "50", 
-                total:0,
-                lvl: "1")                
-Classescalendar.create!(group_id: "1", classes_number: "1", start: "2016-01-19 06:00:00" , end: "2016-01-19 12:00:00" )
-Classescalendar.create!(group_id: "1", classes_number: "2", start: "2016-01-20 06:00:00" , end: "2016-01-20 12:00:00" )
-Classescalendar.create!(group_id: "1", classes_number: "3", start: "2016-01-21 06:00:00" , end: "2016-01-21 12:00:00" )
-Classescalendar.create!(group_id: "1", classes_number: "4", start: "2016-01-22 06:00:00" , end: "2016-01-22 12:00:00" )
-Classescalendar.create!(group_id: "1", classes_number: "5", start: "2016-01-23 06:00:00" , end: "2016-01-23 12:00:00" )
-Classescalendar.create!(group_id: "1", classes_number: "6", start: "2016-01-24 06:00:00" , end: "2016-01-24 12:00:00" )
 
-for j in 1..6
-    for i in 1..5
-     Exercise.create!(teacher_id: "1",
-                    level: j,
-                    number: i,
-                    reward: "100",
-                    content: "zadanie #{i} dzien #{j}",
-                    variant: 1
-                    )
-    end
-end
+
 Medal.create!(name: "Medal za wytrwałość",
               description: "medal za 100% obecności",
               img: "indeks.png",
               value:5)
               
-Medal.create!(name: "Puchar speedy gonzales'a ",
-              description: "puchar za najszybszą poprawną odpowiedź",
-              img: "indeks.png",
+Medal.create!(name: "Szybkie kopytko",
+              description: "puchar dla studenta który jako pierwszy z grupy przysłał poprawną odpowiedź",
+              img: "/assets/medal/medal_speed.png",
               value:6)
+Medal.create!(name: "Odważny jak niedźwiedź",
+              description: "medal za udział w pojedynku",
+              img: "/assets/medal/medal_speed.png",
+              value:5)
 
+Medal.create!(name: "Precyzja Odyna",
+              description: "medal za rozwiązanie zadania na 100%",
+              img: "/assets/medal/medal_speed.png",
+              value:5)
 Story.create!(level:1,
               number:1,
               content:"Za górami, za lasami żył sobie Bjorn. Pewnego zimnego ranka obudziło go stukanie w okno. Po paru chwilach, gdy w końcu udało mu się otworzyć oczy, zobaczył Drozda z liścikiem w dziobie. Wystraszył się, że to kolejne pismo od komornika. Po otwarciu koperty zobaczył to … 
@@ -201,3 +152,14 @@ Story.create!(level:6,
               number:5,
               content:"Zaniepokojeni ciszą Staruszek z ptakiem wybiegli ze swojej kryjówki, aby zobaczyć co się dzieje. Gdy Drozd zobaczył ich razem uśmiechnął się i powiedział: „ A morał z tej bajki jest krótki i niektórym znany: gdy teściowa swój nos wtyka, tylko bigos jej usta zamyka!”  ",
               title:"Happy End")
+for j in 1..6
+    for i in 1..5
+     Exercise.create!(teacher_id: "1",
+                    level: j,
+                    number: i,
+                    reward: "100",
+                    content: "zadanie #{i} dzien #{j}",
+                    variant: 1
+                    )
+    end
+end

@@ -26,8 +26,10 @@ class ResultController < ApplicationController
       if !params[:medal_id].empty?
         student = Student.find(params[:result][:student_id])
         medal = Medal.find(params[:medal_id])
-        give_a_medal(medal,student)
+        give_a_medal_and_send_message(medal,student)
       end
+      precision_medal = Medal.find_by(name: "Precyzja Odyna").id
+      give_a_medal_and_send_message(precision_medal,student)
     respond_to do |format|
       if @result.save
         format.html { redirect_to answers_path, notice: 'result was successfully created.' }

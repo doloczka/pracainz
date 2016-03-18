@@ -336,20 +336,22 @@ Otrzymane medale:
             <% if @medals.count!=0 %>
                 <table>
                     <thead>
-                        <tr>
-                            <th>Nr</th>
+                        <tr></tr>
+                            <th width=135px class="nostyle"></th>
                             <th>Nazwa</th>
+                            <th>opis</th>
                             <th>Bonus</th>
                         </tr>
                     </thead>
                  <% i=0%>
                   <tbody>
                     <% @medals.each do |medal| %>
-                      <tr>
-                            <td><%= i=1+i %></td>
-                            <td><%=Medal.find_by(id: medal.medal_id).description %></td>
-                            <td>+<%=Medal.find_by(id: medal.medal_id).value %></td>
-                            <td><%=image_tag(Medal.find_by(id: medal.medal_id).img, size:"15x15")%></td>
+                      <tr class="medal_row">
+                            <td class="nostyle"><%=image_tag(Medal.find_by(id: medal.medal_id).img)%></td>
+                            <td class="medal_title"><span><%=Medal.find_by(id: medal.medal_id).name %></span></td>
+                            <td class="medal_title"><span><%=Medal.find_by(id: medal.medal_id).description %></span></td>
+                            <td class="medal_title">+<%=Medal.find_by(id: medal.medal_id).value %> pkt rank</td>
+                            
                       </tr>
                     <% end %>
                   </tbody>
