@@ -12,7 +12,7 @@ class StudentsController < ApplicationController
     def studentprofile
       if logged_as_student?
        @pkt=Result.where(student_id: session[:user_id])
-       @medals=AwardedMedal.where(student_id: session[:user_id])
+       @medals=Student.find(session[:user_id]).awarded_medals.all
        @sidequests=Sqresult.where(student_id: session[:user_id])
        @prezences=Presence.where(student_id: session[:user_id])
       end

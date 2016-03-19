@@ -44,5 +44,6 @@ Rails.application.routes.draw do
   get 'student/surender' =>  'students#surender'
   get 'student/studentprofile' =>  'students#studentprofile'
   get 'student/hppotion' =>  'students#hppotion'
-
+  get 'contact', to: 'my_mail#new', as: 'contact'
+post 'contact', to: 'my_mail#create'
 end

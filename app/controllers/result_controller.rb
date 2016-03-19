@@ -29,7 +29,8 @@ class ResultController < ApplicationController
         give_a_medal_and_send_message(medal,student)
       end
       precision_medal = Medal.find_by(name: "Precyzja Odyna").id
-      give_a_medal_and_send_message(precision_medal,student)
+      
+      give_a_medal_and_send_message(precision_medal, student) if params[:result][:earned_points] = 100
     respond_to do |format|
       if @result.save
         format.html { redirect_to answers_path, notice: 'result was successfully created.' }
