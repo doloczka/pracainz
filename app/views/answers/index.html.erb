@@ -38,9 +38,9 @@
     <% @read_answers.each do |answer| %>
       <tr>
         <%@exercise = Exercise.find(answer.exercise_id)%>
-        <%result = Result.find_by(exercise_id: @exercise.id)%>
+        <%@result = Result.find_by(exercise_id: @exercise.id)%>
         <td><%= answer.student.name %> <%= answer.student.lastname %></td>
-                <td><%= result.earned_points%></td>
+       <td><%= @result.earned_points%></td>
         <td><%= @exercise.level %></td> 
         <td><%= @exercise.number %></td>
 

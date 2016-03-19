@@ -19,11 +19,11 @@ class Student < ActiveRecord::Base
   validates :album_number, :numericality => {:only_integer => true}
   def admit_medal(medal)
     awarded_medals.create(medal_id: medal)
-    self.progre.points += Medal.find(medal).value
+    self.progre.points += Medal.find_by(id: medal).value
     self.progre.save
   end
   def take_medal(medal)
-    awarded_medals
+    awarded_medals.find_by(medal_id: medal).destroy
   end
   def has_medal?(medal)
     awarded_medals.exists?(medal_id: medal)

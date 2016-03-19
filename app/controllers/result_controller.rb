@@ -26,7 +26,7 @@ class ResultController < ApplicationController
       if !params[:medal_id].empty?
         student = Student.find(params[:result][:student_id])
         medal = Medal.find(params[:medal_id])
-        give_a_medal_and_send_message(medal,student)
+        give_a_medal_and_send_message(medal.id,student)
       end
       precision_medal = Medal.find_by(name: "Precyzja Odyna").id
       
