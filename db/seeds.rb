@@ -22,7 +22,7 @@ Medal.create!(name: "Szybkie kopytko",
               value:6)
 Medal.create!(name: "Odważny jak niedźwiedź",
               description: "Medal za udział w pojedynku",
-              img: "/assets/medal/medal_speed.png",
+              img: "/assets/medal/medal_bear.png",
               value:5)
 Medal.create!(name: "Precyzja Odyna",
               description: "Medal za rozwiązanie zadania na 100%",
