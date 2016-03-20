@@ -6,8 +6,6 @@ class CreateProgres < ActiveRecord::Migration
       t.integer :hp
       t.integer :gained_points
       t.integer :lvl
-      # t.integer :won_challenges
-      # t.integer :lost_challenges
 
       t.timestamps null: false
     end
