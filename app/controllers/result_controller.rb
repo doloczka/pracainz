@@ -23,8 +23,8 @@ class ResultController < ApplicationController
       answer.read = true
       answer.save
       #przyznanie medalu
+      student = Student.find(params[:result][:student_id])
       if !params[:medal_id].empty?
-        student = Student.find(params[:result][:student_id])
         medal = Medal.find(params[:medal_id])
         give_a_medal_and_send_message(medal.id,student)
       end

@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 20160319071510) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "awarded_medals", ["student_id", "medal_id"], name: "index_awarded_medals_on_student_id_and_medal_id", unique: true
+
   create_table "classescalendars", force: :cascade do |t|
     t.integer  "group_id"
     t.integer  "classes_number"
