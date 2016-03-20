@@ -13,15 +13,15 @@ Teacher.create!(    name: 'Wy1Im',
 
 Medal.create!(name: "Medal za wytrwałość",
               description: "Medal za 100% obecności",
-              img: "indeks.png",
+              img: "/assets/medal/medal_stopro.png",
               value:5)
               
 Medal.create!(name: "Szybkie kopytko",
-              description: "Medal dla studenta który jako pierwszy z grupy przysłał poprawną odpowiedź",
+              description: "Medalza najszybszą odpowiedź",
               img: "/assets/medal/medal_speed.png",
               value:6)
 Medal.create!(name: "Odważny jak niedźwiedź",
-              description: "Medal za udział w pojedynku",
+              description: "Medal za udział w wyzwaniu",
               img: "/assets/medal/medal_bear.png",
               value:5)
 Medal.create!(name: "Precyzja Odyna",
