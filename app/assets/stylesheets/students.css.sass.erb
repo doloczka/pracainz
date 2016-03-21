@@ -48,7 +48,7 @@
             bottom: 15px
 .student_statistic
     float: left
-    background: url('/assets/student/bg_statistic.png') no-repeat
+    background: url('<%= asset_path("student/bg_statistic.png")%>') no-repeat
     width: 600px
     height: 351px
     margin: 0 25px
@@ -97,7 +97,7 @@
         text-align: center
         font-weight: bold
     .student_bg_rank_world, .student_bg_rank_group
-        background: url('/assets/student/rank.png') no-repeat
+        background: url('<%= asset_path("student/rank.png")%>') no-repeat
         width: 86px
         height: 50px
         margin-left: auto
@@ -141,7 +141,7 @@
         background: linear-gradient(#eff6e1, #7bb805)
 .student_other
     float: right
-    background: url('/assets/student/bg_other.png') no-repeat
+    background: url('<%= asset_path("student/bg_other.png")%>') no-repeat
     width: 260px
     height: 351px
     a
@@ -225,11 +225,11 @@
     margin-top: 20px
     font-family: Viking
     color: #000
-    background: url('/assets/student/bg_map.png')
+    background: 
     z-index: 1
     .student_lesson1
         float: left
-        background: url('/assets/student/lesson1.png')
+        background: url('<%= asset_path("student/lesson1.png")%>')
         width: 552px
         height: 408px
         margin-left: 50px
@@ -241,7 +241,7 @@
             margin-left: 178px
     .student_lesson2
         float: right
-        background: url('/assets/student/lesson2.png')
+        background: url('<%= asset_path("student/lesson2.png")%>')
         width: 721px
         height: 258px
         margin-top: -300px
@@ -253,7 +253,7 @@
             margin-left: 580px
     .student_lesson3
         float: right
-        background: url('/assets/student/lesson3.png')
+        background: url('<%= asset_path("student/lesson3.png")%>')
         width: 822px
         height: 521px
         margin-top: -148px
@@ -265,7 +265,7 @@
             margin-left: 680px
     .student_lesson4
         float: left
-        background: url('/assets/student/lesson4.png')
+        background: url('<%= asset_path("student/lesson4.png")%>')
         width: 1024px
         height: 469px
         margin-top: -315px
@@ -281,7 +281,7 @@
             margin-left: 200px
     .student_lesson5
         float: left
-        background: url('/assets/student/lesson5.png')
+        background: url('<%= asset_path("student/lesson5.png")%>')
         width: 534px
         height: 232px
         margin-top: -285px
@@ -293,7 +293,7 @@
             margin-left: 290px
     .student_lesson6
         float: right
-        background: url('/assets/student/lesson6.png')
+        background: url('<%= asset_path("student/lesson6.png")%>')
         width: 509px
         height: 341px
         margin-top: -389px
@@ -312,7 +312,7 @@
 .student_map
     .back_button
         float: left
-        background: url('/assets/student/back.png')
+        background: url('<%= asset_path("student/back.png")%>')
         width: 95px
         height: 92px
         margin-top: 92px
@@ -402,7 +402,7 @@
         margin: 0 auto
         color: #000
         padding: 66px 20px 13px 20px
-        background: url('/assets/lesson/bg_modal.png') no-repeat
+        background: url('<%= asset_path("student/bg_modal.png")%>') no-repeat
         .modal_header
             width: 100%
             height: 127px
@@ -418,7 +418,7 @@
                 right: 147px
                 width: 70px
                 height: 45px
-                background: url('/assets/student/xmark.png')
+                background: url('<%= asset_path("student/xmark.png")%>')
                 a
                     display: block
                     width: 100%
@@ -515,7 +515,7 @@
         z-index: 2
     .back_msg, .backto_msg
         position: absolute
-        background: url('/assets/student/back.png')
+        background: url('<%= asset_path("student/back.png")%>')
         width: 95px
         height: 92px
         margin-top: 92px
@@ -530,7 +530,7 @@
             margin-left: -35px
             margin-top: 100px
     .backto_msg
-        background: url('/assets/student/back_arrow.png')
+        background: url('<%= asset_path("student/back_arrow.png")%>')
     .student_new_message
         position: absolute
         margin-left: auto
