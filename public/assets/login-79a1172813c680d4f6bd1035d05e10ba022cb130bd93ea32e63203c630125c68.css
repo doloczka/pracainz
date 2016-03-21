@@ -1,0 +1,85 @@
+/* line 1, /home/ubuntu/workspace/app/assets/stylesheets/login.css.sass */
+.bg_login {
+  margin: 0 auto;
+  text-align: left;
+  width: 600px;
+}
+
+/* line 5, /home/ubuntu/workspace/app/assets/stylesheets/login.css.sass */
+.bg {
+  height: auto;
+  left: 0;
+  min-height: 100%;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+/* line 15, /home/ubuntu/workspace/app/assets/stylesheets/login.css.sass */
+.form_login, .form_login_first {
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 200px;
+  height: 247px;
+  position: absolute;
+  z-index: 2;
+  text-align: center;
+}
+
+/* line 26, /home/ubuntu/workspace/app/assets/stylesheets/login.css.sass */
+.form_login_first {
+  height: 700px;
+  width: 260px;
+}
+/* line 29, /home/ubuntu/workspace/app/assets/stylesheets/login.css.sass */
+.form_login_first .log_out_btn {
+  width: 190px;
+  height: 45px;
+  border-radius: 10px;
+  margin-top: 22px;
+  margin-left: auto;
+  margin-right: auto;
+  border: solid 5px black;
+  background-color: #d67c12;
+  z-index: 100;
+}
+/* line 39, /home/ubuntu/workspace/app/assets/stylesheets/login.css.sass */
+.form_login_first .log_out_btn a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: #000;
+  padding-top: 13px;
+}
+
+/* line 47, /home/ubuntu/workspace/app/assets/stylesheets/login.css.sass */
+.input_login, .input_password, .input_email, .input_name, .input_lastname {
+  width: 190px;
+  height: 35px;
+  border-radius: 10px;
+  border: solid 5px;
+  background-color: #fceedd;
+  margin-bottom: 10px;
+}
+
+/* line 55, /home/ubuntu/workspace/app/assets/stylesheets/login.css.sass */
+.button_login, .button_update, .button_logout {
+  width: 200px;
+  height: 55px;
+  border-radius: 10px;
+  margin-top: 33px;
+  border: solid 5px;
+  background-color: #d67c12;
+  z-index: 100;
+}
+
+/* line 64, /home/ubuntu/workspace/app/assets/stylesheets/login.css.sass */
+.label_font {
+  font-family: Viking;
+  font-size: 24px;
+}
