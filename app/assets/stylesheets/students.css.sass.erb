@@ -1,10 +1,11 @@
+//= depend_on_asset "bg_wood.jpg"
 .bg_student
     position: absolute
     min-height: 100%
     max-height: 1600px
     width: 100%
     top: 0
-    background: url('/assets/student/bg_wood.jpg') no-repeat 50% 50%
+    background: url('<%= asset_path("/student/bg_wood.jpg") %>') no-repeat 50% 50%
     z-index: -1
 .student_header
     width: 1200px
