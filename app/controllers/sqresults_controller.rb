@@ -12,11 +12,14 @@ class SqresultsController < ApplicationController
     sqanswer = Sqanswer.find_by(student_id: @sqresult.student_id, sidequest_id: @sqresult.sidequest_id)
     sqanswer.read = true
     sqanswer.save
+    student = Student.find(params[:sqresult][:student_id])
     if !params[:medal_id].empty?
-      student = Student.find(params[:sqresult][:student_id])
       medal = Medal.find(params[:medal_id])
       give_a_medal_and_send_message(medal,student)
     end
+    #MEDAL ZA UDZIAL W SIDEQUEST
+    medal_id = Medal.find_by(name: "Odważny jak niedźwiedź").id 
+    give_a_medal_and_send_message(medal_id, student) if !student.has_medal?(medal_id)
     message = Message.new(:subject => "Wyniki wyzwania", 
                           :content => "Zdobyłeś #{earned_points} punktów",
                           :read => false,

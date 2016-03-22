@@ -1,0 +1,18 @@
+<div class="bg_profil">
+    <div class="student_message_title">
+        <h1>Ustawienia</h1>
+    </div>
+    <%= link_to student_path(session[:user_id]) do%>
+      <div class="back_msg tooltip">
+        <span>Kliknij aby przejść do mapy świata</span>
+      </div>
+    <% end %>
+    <nav class="navbar_student_settings"style="width: 30%">
+        <ul>
+            <li><%= link_to "Zgłoś błąd", contact_path %></li>
+            <li><%= link_to "FAQ", faq_path %></li>
+            <li><%= link_to "Zmień hasło", edit_student_path(session[:user_id]) %></li>
+            
+        </ul>
+    </nav>
+</div>

@@ -1,21 +1,29 @@
-<%= form_for @my_mail, url: contact_path do |message_form| %>
-  <fieldset>
-    <div class="field">
-      <%= message_form.text_field :name, placeholder: "Name" %>
+<div class="bg_profil">
+    <div class="student_message_title">
+        <h1>Zgłoś Błąd</h1>
     </div>
-    
-    <div class="field">
-      <%= message_form.email_field :email, placeholder: "Email"%>
+    <%= link_to settings_path do%>
+      <div class="backto_msg tooltip">
+        <span>Kliknij aby wrócić do ustawień</span>
+      </div>
+    <% end %>
+    <div class="student_mail_error">
+      <%= form_for @my_mail, url: contact_path do |message_form| %>
+          <%= message_form.label "Imię", :class => "label_mail_error" %>
+          <div class="field">
+            <%= message_form.text_field :name, placeholder: "Imię" %>
+          </div>
+          <%= message_form.label "email", :class => "label_mail_error" %>
+          <div class="field">
+            <%= message_form.email_field :email, placeholder: "Email"%>
+          </div>
+          <%= message_form.label "wiadomość", :class => "label_mail_error" %>
+          <div class="field">
+            <%= message_form.text_area :content, placeholder: "Wiadomość"%>
+          </div>
+          <div class="btn_send_error">
+            <%= message_form.submit "Wyślij"%>
+          </div>
+      <% end %>
     </div>
-    
-    <div class="field">
-      <%= message_form.text_area :content, placeholder: "Message"%>
-    </div>
-  </fieldset>
-  
-  <fieldset>
-    <div class="field">
-      <%= message_form.submit "Send" %>
-    </div>
-  </fieldset>
-<% end %>
+</div>

@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   put 'classes_update' => 'classescalendar#update'
   put 'presences_update' => 'presence#update'
   get 'student/edit' => 'students#edit'
-  get 'student/faq' => 'students#faq'
+  get 'faq' => 'students#faq'
   patch 'student/solution' => 'students#solution'
   get 'student/challenge' =>'students#challenge'
   get 'student/chosechallenge' =>'students#chosechallenge'
@@ -45,5 +45,6 @@ Rails.application.routes.draw do
   get 'student/studentprofile' =>  'students#studentprofile'
   get 'student/hppotion' =>  'students#hppotion'
   get 'contact', to: 'my_mail#new', as: 'contact'
-post 'contact', to: 'my_mail#create'
+  post 'contact', to: 'my_mail#create'
+  get 'settings' => 'students#settings'
 end

@@ -88,7 +88,6 @@ class MessagesController < ApplicationController
    @message.teacher_id=gr.teacher_id
    @message.direction="1"
    @message.read= false
-    
       respond_to do |format|
         if @message.save
           format.html { redirect_to@message, notice: 'Message was successfully created.' }
@@ -104,7 +103,7 @@ class MessagesController < ApplicationController
      @message.teacher_id=session[:user_id]
      @message.student_id=params[:message][:id]
      @message.direction="0"
-     
+     @message.read =false
         respond_to do |format|
           if @message.save
             format.html { redirect_to @message, notice: 'Message was successfully created.' }
@@ -122,6 +121,7 @@ class MessagesController < ApplicationController
       @message.teacher_id=session[:user_id]
       @message.student_id=student.id
       @message.direction="0"
+      @message.read =false
       @message.save     
      end
         respond_to do |format|

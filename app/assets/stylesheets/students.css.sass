@@ -153,13 +153,24 @@
     .student_log_out
         width: 52px
         height: 50px
-        margin-top: 80px
+        margin-top: 50px
         margin-left: auto
         margin-right: auto
         .log_out
+            text-align: center
             span
-                text-align: justify
                 width: 50px
+                margin-left: -20px
+    .student_settings
+        width: 50px
+        height: 50px
+        margin-top: 18px
+        margin-left: auto
+        margin-right: auto
+        .settings
+            text-align: center
+            span
+                width: 60px
                 margin-left: -20px
     .student_message
         width: 69px
@@ -167,15 +178,10 @@
         margin-top: 20px
         margin-left: auto
         margin-right: auto
-        .message
+        .message, .new_message
+            text-align: center
             span
-                text-align: justify
-                width: 240px
-                margin-left: -110px
-        .new_message
-            span
-                text-align: justify
-                width: 240px
+                width: 200px
                 margin-left: -110px
     .student_challenge
         width: 63px
@@ -184,13 +190,13 @@
         margin-left: auto
         margin-right: auto
         .challenge
+            text-align: center
             span
-                text-align: justify
-                width: 240px
+                width: 200px
                 margin-left: -110px
         .new_challange
+            text-align: center
             span
-                text-align: justify
                 width: 150px
                 margin-left: -60px
 
@@ -216,7 +222,7 @@
         border: 1px solid #000
         background-color: rgba(0, 0, 0, 0.8)
         font-family: Helvetica
-
+        
 .student_map
     width: 1200px
     height: 987px
@@ -667,9 +673,38 @@
                 border: none
                 border-radius: 5px
                 
-        
+
 // student profil
 .bg_profil
+    .navbar_student_settings
+        position: relative
+        width: 300px
+        margin-left: auto
+        margin-right: auto
+        top: 280px
+        text-align: center
+        ul
+            list-style-type: none
+            li
+                font-family: Viking
+                font-weight: bold
+                font-size: 2em
+                a
+                    display: inline-block
+                    padding-top: 9%
+                    width: 100%
+                    height: 50px
+                    color: #000
+                    margin-top: 20px
+                    text-decoration: none
+                    background-color: #f8c67e
+                    border: 3px solid black
+                    border-radius: 45px
+                a:hover
+                    border-radius: 45px
+                    -moz-box-shadow: 0 0 15px #000
+                    -webkit-box-shadow: 0 0 15px #000
+                    box-shadow: 0 0 15px #000
     .navbar_student_profil
         position: absolute
         top: 251px
@@ -759,26 +794,52 @@
                 td
                     background-color: rgba(255,211,56,0.34)
 
-                
-                
-
-        
-        // a
-    //     display: block
-    //     width: 154px
-    //     height: 36px
-    //     text-decoration: none
-    //     color: #000
-    //     .student_new_message
-    //         padding: 10px
-    //         width: 154px
-    //         height: 36px
-    //         background-color: rgba(236, 236, 11, 0.82)
-    //         border: solid 3px
-    //         border-radius: 20px
-    //         font-weight: bold
-    //         text-align: center
-    //         font-family: Viking
-    //         font-size: 1em
-        
+.faq_content
+    position: absolute
+    top: 205px
+    left: 50%
+    width: 600px
+    margin-left: -300px
+    h3, h4
+        text-align: center
+    p
+        text-align: justify
+.student_mail_error
+    position: absolute
+    top: 205px
+    left: 50%
+    width: 557px
+    margin-left: -278px
+    background-color: #F9E6C9
+    border: solid 2px
+    border-radius: 10px
+    max-height: 600px
+    overflow-y: auto
+    padding: 13px
+    textarea, input
+        max-width: 537px
+        min-width: 537px
+    .label_mail_error
+        padding: 6px
+        border-radius: 5px
+        box-shadow: 1px 1px 4px #000
+        background-color: #FDAB37
+        font-weight: bold
+    .btn_send_error
+        margin-top: 10px
+        width: 100%
+        height: 40px
+        border-radius: 5px
+        box-shadow: 1px 1px 4px #000
+        background-color: #FDAB37
+        input
+            display: block
+            width: 100%
+            height: 100%
+            font-family: Viking
+            background-color: #FDAB37
+            font-weight: bold
+            border: none
+            border-radius: 5px
+    
     

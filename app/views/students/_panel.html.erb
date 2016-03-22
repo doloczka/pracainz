@@ -110,9 +110,17 @@ verification
                 </div>
             <% end %>
         </div>
+        <div class="student_settings">
+            <%= link_to settings_path do %>
+                <div class="settings tooltip">
+                    <%= image_tag("/assets/student/settings.png")%>
+                    <span>Ustawienia</span>
+                </div>
+            <% end %>
+        </div>
         <div class="student_message">
             <%= link_to messages_path(session[:user_id]) do %>
-                <% if Message.where(student_id: session[:user_id], direction: "0", read: false).count>0  %>
+                <% if Message.where(student_id: session[:user_id], direction: "0", read: false).count > 0 %>
                     <div class="new_message tooltip">
                         <%=image_tag("/assets/student/new_message.png")%>
                         <span>Masz <%=Message.where(student_id: session[:user_id], direction: "0", read: false).count%> nieprzeczytanych wiadomości </span>
@@ -120,6 +128,7 @@ verification
                 <%else%>
                     <div class="message tooltip">
                         <%=image_tag("/assets/student/message.png")%>
+                        
                         <span>Nie masz nowych wiadomości</span>
                     </div>
                 <% end %>
@@ -149,7 +158,7 @@ verification
 <!--    <br>| <%= link_to "Mapa świata", student_path(session[:user_id]) %> | -->
 
 <!--    <%= link_to "Edytuj profil", edit_student_path(session[:user_id]) %> | -->
-<!--    <%= link_to "FAQ", student_faq_path() %> |<br><br>-->
+<!--    <%= link_to "FAQ", faq_path() %> |<br><br>-->
 <!--    <%= link_to "Edytuj profil", edit_student_path(session[:user_id]) %> | <br><br>-->
 
 <!--</div>                       -->
