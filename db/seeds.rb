@@ -12,24 +12,23 @@ Teacher.create!(    name: 'Wy1Im',
 
 
 Medal.create!(name: "Medal za wytrwałość",
-              description: "medal za 100% obecności",
+              description: "Medal za 100% obecności",
               img: "/assets/medal/medal_stopro.png",
               value:5)
               
 Medal.create!(name: "Szybkie kopytko",
-              description: "puchar dla studenta który jako pierwszy z grupy przysłał poprawną odpowiedź",
+              description: "Medalza najszybszą odpowiedź",
               img: "/assets/medal/medal_speed.png",
               value:6)
 Medal.create!(name: "Odważny jak niedźwiedź",
-              description: "medal za udział w pojedynku",
+              description: "Medal za udział w wyzwaniu",
               img: "/assets/medal/medal_bear.png",
               value:5)
-
 Medal.create!(name: "Precyzja Odyna",
-              description: "medal za rozwiązanie zadania na 100%",
+              description: "Medal za rozwiązanie zadania na 100%",
               img: "/assets/medal/medal_precyzja.png",
               value:5)
-
+              
 Story.create!(level:1,
               number:1,
               content:"Za górami, za lasami żył sobie Bjorn. Pewnego zimnego ranka obudziło go stukanie w okno. Po paru chwilach, gdy w końcu udało mu się otworzyć oczy, zobaczył Drozda z liścikiem w dziobie. Wystraszył się, że to kolejne pismo od komornika. Po otwarciu koperty zobaczył to … 
