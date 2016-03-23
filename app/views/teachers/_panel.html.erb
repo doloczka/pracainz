@@ -1,7 +1,28 @@
-        <%= link_to "Log out", logout_path, method: "delete"%>
-        <%= link_to 'Grupy', teacher_groups_path(session[:user_id]) %>
-        <%= link_to 'Ćwiczenia', teacher_exercises_path(session[:user_id]) %>
-        <%= link_to 'Rozwiązania', answers_path %> | <%= Answer.where(teacher_id: session[:user_id], read: false).where.not(solution: nil).count%> |
-        <%= link_to 'Wyzwania', sidequests_path %>
-        <%= link_to 'Wiadomosci', messages_path(session[:user_id]) %><%= Message.where(teacher_id: session[:user_id], direction: "1", read: false).count%>
-        <%= link_to 'Edit', edit_teacher_path(session[:user_id]) %>
+<ul class="sidebar-nav">
+        <li class="sidebar-brand">
+            Data-Base
+        </li>
+        <li>
+            <%= link_to 'Grupy', teacher_groups_path(session[:user_id]) %>
+        </li>
+        <li>
+            <%= link_to 'Ćwiczenia', teacher_exercises_path(session[:user_id]) %>
+        </li>
+        <li>
+            <%= link_to 'Wyzwania', sidequests_path %>
+        </li>
+        <li>
+           <%= link_to 'Rozwiązania', answers_path %>
+           <%#= Answer.where(teacher_id: session[:user_id], read: false).where.not(solution: nil).count%>
+        </li>
+        <li>
+            <%= link_to 'Wiadomosci', messages_path(session[:user_id]) %>
+            <%#= Message.where(teacher_id: session[:user_id], direction: "1", read: false).count%>
+        </li>
+        <li>
+            <%= link_to 'Edit', edit_teacher_path(session[:user_id]) %>
+        </li>
+        <li>
+            <%= link_to "Log out", logout_path, method: "delete"%>
+        </li>
+</ul>

@@ -3,9 +3,20 @@ class ApplicationController < ActionController::Base
   include SessionHelper
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
+  layout :another_by_method
+  private
+  def another_by_method
+    if logged_as_student?
+        "student_layout"
+    elsif logged_as_teacher?
+        "teacher_layout"
+    else
+        "application"
+    end
+  end
   protect_from_forgery with: :exception
   helper_method :verification
-  
+
   def verification
         @student = Student.find_by(login: session[:login])
         @progr=Progre.find_by(student_id: session[:user_id])

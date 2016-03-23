@@ -36,12 +36,12 @@ verification
     <div class="student_statistic">
         <div>
             <div class="student_hp">
-                <h3>hp: <%=@progr.hp %>/100</h3>
+                <h4>hp: <%=@progr.hp %>/100</h4>
             </div>
             <div class="student_pustak"></div>
             <div class="student_hp_potion">
                 <%= link_to student_hppotion_path(session[:user_id]), :class =>"tooltip" do %>
-                    <h3>+20 hp</h3>  
+                    <h4>+20 hp</h4>  
                     <img src="/assets/student/hp_potion.png" alt="">
                     <span>Kup miksturę, aby się uleczyć:<br>
                         + 20 hp,<br>
@@ -62,11 +62,9 @@ verification
         <div class="progress_hp">
             <div id="progress_hp_bar" class="progress_hp_bar"></div>
         </div>
-        
-        
         <div>
             <div class="student_exp">
-                <h3>exp: <%=@progr.gained_points%>/<%=@progr.total%></h3>
+                <h4>exp: <%=@progr.gained_points%>/<%=@progr.total%></h4>
             </div>
         </div>
         <div class="progress_exp">
@@ -74,15 +72,15 @@ verification
         </div>
         <div>
             <div class="student_lvl tooltip">
-                <h3>Poziom: <%=@progr.lvl %></h3>
+                <h4>Poziom: <%=@progr.lvl %></h4>
                 <span>Poziom odpawiada numerze lekcji, która się odbywa.</span>
             </div>
             <div class="student_pustak"></div>
             <div class="student_pkt_rank tooltip">
-                <h3>pkt rankingowe: <%=@progr.points%></h3>
+                <h4>pkt rankingowe: <%=@progr.points%></h4>
                 <span>Punkty rankingowe zdobywasz za wykonywanie zadań.
                 Zbierz jak najwięcej, aby uzyskać lepsze miejsce w rankingu.
-                Możesz je wydać na kup mikstury leczniczej</span>
+                Możesz je wydać na zakup mikstury leczniczej</span>
             </div>
         </div>
         <div class="student_rank">

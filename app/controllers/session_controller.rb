@@ -1,5 +1,15 @@
 class SessionController < ApplicationController
-    
+    # layout :another_by_method
+    # private
+    # def another_by_method
+    #     if logged_as_student?
+    #         "application"
+    #     elsif logged_as_teacher
+    #         "teacher_layout"
+    #     else
+    #         "application"
+    #     end
+    # end
     def index
         if logged_as_teacher?
             redirect_to teacher_groups_path(session[:user_id])

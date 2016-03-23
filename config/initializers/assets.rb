@@ -2,11 +2,13 @@
 
 # Version of your assets, change this if you want to expire all your assets.
 Rails.application.config.assets.version = '1.0'
+Rails.application.config.assets.precompile += %w( bootstrap.css )
+Rails.application.config.assets.precompile += %w( bootstrap.min.css )
+Rails.application.config.assets.precompile += %w( simple-sidebar.css )
 Rails.application.config.assets.precompile += %w( login.sass )
 Rails.application.config.assets.precompile += %w( students.sass )
 Rails.application.config.assets.precompile += %w( students.css )
 Rails.application.config.assets.precompile += %w( login.css )
-Rails.application.config.assets.precompile += %w( indeks.png )
 
 
 # Add additional assets to the asset load path

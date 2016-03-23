@@ -22,8 +22,8 @@
         <div class="lesson_zad">
             <%= image_tag("/assets/lesson/zad#{@level}_#{i}.png")%>
             <div class="lesson_title">
-                <span style="font-size: 1.5em;">Zadanie <%=i%></span>
-                <span style="font-size: 2em;"><%= story.title %></span>
+                <span style="font-size: 1.2em;">Zadanie <%=i%></span>
+                <span style="font-size: 1.8em;"><%= story.title %></span>
             </div>
         </div>
         <%end%>
@@ -69,11 +69,11 @@
                     <%= f.hidden_field :reward, :value => zadanie.reward %>
                     <%= f.hidden_field :level, :value => @level %>
                     <%= f.hidden_field :number, :value => i %>
-                    <h4 class="modal_tag">Odpowiedź</h4>
+                    <h5 class="modal_tag">Odpowiedź</h5>
                     <%= f.text_area :solution, size: "100x5", :class => "modal_text_area" %>
-                    <h3>Nagroda:</h3>
-                    <h4> <%= pkt=zadanie.reward %> pkt exp<br>
-                        <%= pkt=zadanie.reward %> pkt rankingowych</h4>
+                    <h4>Nagroda:</h4>
+                    <h5> <%= pkt=zadanie.reward %> pkt exp<br>
+                        <%= pkt=zadanie.reward %> pkt rankingowych</h5>
                     <%= f.submit "Wyślij", :class => "modal_button button_send" %>
                 </div>
             <% end %>
