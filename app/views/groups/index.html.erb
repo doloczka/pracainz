@@ -1,55 +1,60 @@
-<h1>Grupy</h1>
-<%= render 'form'%>
-
-<table>
-  <thead>
-    <tr>
-      <th>Nazwa</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @groups.order(:created_at).each do |group| %>
-      <tr>
-        <td><%= group.name %></td>
-        <td><%= link_to 'Show', group %></td>
-        <td><%= link_to 'Edit', edit_group_path(group) %></td>
-        <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'napisz do wszystkich w grupie', new_message_path(:idg => group.id) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<h2>Ranking Światowy</h2>
-<table><thead>
-  <tr>
-    <th>Lp.</th>
-    <th>Punkty rankingowe</th>
-  <th>Imie</th>
-  <th>Nazwisko</th>
-  <th>nralbumu</th>
-  <th>Grupa</th>
-  </tr>
-</thead>
-  <tbody>
-    <% @students.each do |student|%>
+<div class="row">
+  <div class="col-lg-5">
+    <h1>Grupy</h1>
+    <table class="table table-striped">
+      <thead>
         <tr>
-          <td><%=@lp += 1%></td>
-        <td><%= student.progre.points%></td>
-        <td><%= student.name %></td>
-        <td><%= student.lastname %></td>
-        <td><%= student.album_number%></td>
-        
-        <td><%= student.group.name%></td>
-        <td><%= link_to 'Show', student_studentprofile_path(student, :results => "1") %></td>
-        <td><%= link_to 'Edit', edit_student_path(student) %></td>
-        <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'napisz', new_message_path(:iid => student.id) %></td>
-      </tr>
-    <%end%>
-  </tbody>
-</table>
+          <th>Nazwa</th>
+          <th colspan="4"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @groups.order(:created_at).each do |group| %>
+          <tr>
+            <td><%= group.name %></td>
+            <td><%= link_to 'Pokaż', group, :class => "btn btn-primary", :role =>"button" %></td>
+            <td><%= link_to 'Edytuj', edit_group_path(group), :class =>"btn btn-info", :role =>"button"%></td>
+            <td><%= link_to 'Usuń', group, method: :delete, data: { confirm: 'Czy na pewno chcesz usunąć grupę?' }, :class => "btn btn-danger", :role =>"button" %></td>
+            <td><%= link_to 'Napisz', new_message_path(:idg => group.id), :class =>"btn btn-default", :role =>"button" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <h3>Stwórz nową grupę</h3>
+    <%= render 'form'%>
+  </div>
+  <div class="col-lg-7">
+    <h1>Ranking Światowy</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Lp.</th>
+          <th>Pkt rankingowe</th>
+          <th>Imię</th>
+          <th>Nazwisko</th>
+          <th>Nr albumu</th>
+          <th>Grupa</th>
+          <th colspan="4"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @students.each do |student|%>
+          <tr>
+            <td><%=@lp += 1%></td>
+            <td><%= student.progre.points%></td>
+            <td><%= student.name %></td>
+            <td><%= student.lastname %></td>
+            <td><%= student.album_number%></td>
+            <td><%= student.group.name%></td>
+            <td><%= link_to 'Pokaż', student_studentprofile_path(student, :results => "1"), :class => "btn btn-primary" %></td>
+            <td><%= link_to 'Edytuj', edit_student_path(student), :class =>"btn btn-info" %></td>
+            <td><%= link_to 'Usuń', student, method: :delete, data: { confirm: 'Czy na pewno chcesz usunąć studenta?' }, :class =>"btn btn-danger" %></td>
+            <td><%= link_to 'Napisz', new_message_path(:iid => student.id), :class =>"btn btn-default" %></td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-<br>
 

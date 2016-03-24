@@ -20,9 +20,9 @@
             <%#= Message.where(teacher_id: session[:user_id], direction: "1", read: false).count%>
         </li>
         <li>
-            <%= link_to 'Edit', edit_teacher_path(session[:user_id]) %>
+            <%= link_to 'Edycja', edit_teacher_path(session[:user_id]) %>
         </li>
         <li>
-            <%= link_to "Log out", logout_path, method: "delete"%>
+            <%= link_to "Wyloguj", logout_path, method: "delete"%>
         </li>
 </ul>

@@ -1,33 +1,39 @@
-<p>
-  <%= @group.name %>
-</p>
-<p><strong>Daty spotkan</strong>
-</p>
-<%= form_for :clas, :url => classes_update_path, :html => { :method => :put } do %>
-  <table>
-    <tr>
-      <th>Nr zajec</th>
-      <th>Start</th>
-      <th>Koniec</th>
-    </tr>
-    <% @classes.each do |clas| %>
-     <%= fields_for "clas[]", clas do |clas_fields| %>
-     <tr>
-       <td><%= clas.classes_number %></td>
-       <td><%= clas_fields.datetime_select :start %> </td>
-       <td><%= clas_fields.datetime_select :end %></td>
-     </tr>
-     <%end%>
+<div class="row">
+  <div clas="col-lg-8">
+    <h1><%= @group.name %></h1>
+    <h4>Daty spotkań</h4>
+    <%= form_for :clas, :url => classes_update_path, :html => { :method => :put } do %>
+      <table class="table table-striped">
+        <tr>
+          <th>Lekcja</th>
+          <th>Start</th>
+          <th>Koniec</th>
+        </tr>
+        <% @classes.each do |clas| %>
+          <%= fields_for "clas[]", clas do |clas_fields| %>
+          <tr>
+            <td><%= clas.classes_number %></td>
+            <td><%= clas_fields.datetime_select :start %> </td>
+            <td><%= clas_fields.datetime_select :end %></td>
+          </tr>
+          <%end%>
+        <%end%>
+      </table>
+      <div class="actions">
+        <%= submit_tag "Zachowaj zmiany", :class =>"btn btn-primary"%>
+      </div>
     <%end%>
-  </table>
-  <div class="actions">
-    <%= submit_tag "Zachowaj zmiany dat spotkań "%>
+    
   </div>
-<%end%>
-<br></br>
-<%=render 'new_student' %>
-<br></br>
-<h3>Ranking Grupy</h3>
+  <div class="col-lg-4">
+    <%=render 'new_student' %>
+  </div>
+</div>
+
+
+  <div class="row">
+  <div class="col-lg-12">
+    <h3>Ranking Grupy</h3>
 <table>
   <thead>
     <tr>
@@ -80,3 +86,7 @@
   <% end %>
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', teacher_groups_path(session[:user_id]) %>
+
+  </div>
+</div>
+

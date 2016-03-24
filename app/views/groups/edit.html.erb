@@ -1,4 +1,5 @@
-<h1>Editing Group</h1>
+
+<h1>Edycja Grupy</h1>
 
 <%= form_for(@group) do |f| %>
   <% if @group.errors.any? %>
@@ -14,13 +15,11 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.label :name, "Nazwa"%><br>
+    <%= f.text_field :name, :class => "form-control", :placeholder => "Nazwa Grupy"  %>
   </div>
+  <br>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Edytuj", :class =>"btn btn-primary" %>
   </div>
 <% end %>
-
-<%= link_to 'Show', @group %> |
-<%= link_to 'Back', teacher_groups_path(session[:user_id]) %>
