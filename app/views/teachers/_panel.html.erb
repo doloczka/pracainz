@@ -12,12 +12,18 @@
             <%= link_to 'Wyzwania', sidequests_path %>
         </li>
         <li>
-           <%= link_to 'Rozwiązania', answers_path %>
-           <%#= Answer.where(teacher_id: session[:user_id], read: false).where.not(solution: nil).count%>
+            <% if Answer.where(teacher_id: session[:user_id], read: false).where.not(solution: nil).count >0%>
+                <strong><%= link_to 'Rozwiązania', answers_path, { :style =>"color: #FFE60B;"}%></strong>
+            <% else %>
+                <%= link_to 'Rozwiązania', answers_path%>
+            <% end %>
         </li>
         <li>
-            <%= link_to 'Wiadomosci', messages_path(session[:user_id]) %>
-            <%#= Message.where(teacher_id: session[:user_id], direction: "1", read: false).count%>
+            <% if Message.where(teacher_id: session[:user_id], direction: "1", read: false).count >0%>
+                <strong><%= link_to 'Wiadomości', messages_path(session[:user_id]), { :style =>"color: #FFE60B;"} %></strong>
+            <% else %>
+                <%= link_to 'Wiadomości', messages_path(session[:user_id]) %>
+            <% end %>
         </li>
         <li>
             <%= link_to 'Edycja', edit_teacher_path(session[:user_id]) %>
