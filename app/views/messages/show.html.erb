@@ -23,12 +23,19 @@
     </div>
 </div> 
 <% else %>
-    <h3>Wiadomość od <%=@student.name%> <%=@student.lastname%></h3>
-    <br><br>temat: <%= Message.find_by(id: params[:id]).subject %></br>
-    tresc: <%= Message.find_by(id: params[:id]).content %>
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2">
+        <center><h1>Wiadomości</h1></center>
+        <h3>Nadwca</h3>
+        <p><%=@student.name%> <%=@student.lastname%></p>
+        <h3>Temat</h3>
+        <p><%= Message.find_by(id: params[:id]).subject %></p>
+        <h3>Treść</h3>
+        <p><%= Message.find_by(id: params[:id]).content %></p>
         <% sid= Message.find(params[:id]) %>
-         <%= link_to 'Odpowiedz', new_message_path(:iid => sid.student_id ) %>
-    </br>
+        <center><%= link_to 'Odpowiedz', new_message_path(:iid => sid.student_id ), :class =>"btn btn-primary" %></center>
+      </div>
+    </div>
 <% end %>    
 
 

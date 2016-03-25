@@ -10,26 +10,28 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= f.label :content, "Treść ćwiczenia"%><br>
-    <%= f.text_area :content %>
+
+  <div class="form-group">
+    <%= f.label :content, "Treść zadania"%>
+    <%= f.text_area :content, :class =>"form-control", :rows =>"5",:placeholder =>"Treść zadania"  %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :hint, "Podpowiedź"%><br>
-    <%= f.text_area :hint %>
+    <%= f.text_area :hint , :class =>"form-control", :rows =>"3",:placeholder =>"Treść podpowiedzi"%>
   </div>
-    <div class="field">
+  <div class="form-group">
     <%= f.label :variant, "Wariant"%> <br>
-    <%=f.number_field :variant%>
+    <%=f.number_field :variant, :class =>"form-control"%>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :reward, "Nagroda"%><br>
-    <%= f.number_field :reward %>
+    <%= f.number_field :reward , :class =>"form-control"%>
   </div>
 
   <%= f.hidden_field :level, value: params[:lvl]  %>
   <%= f.hidden_field :number, value: params[:number]  %>
-  <div class="actions">
-    <%= f.submit "Akceptuj"%>
+  
+  <div class="form-group" style ="text-align:center;">
+    <%= f.submit "Akceptuj", :class =>"btn btn-primary btn-lg"%>
   </div>
 <% end %>

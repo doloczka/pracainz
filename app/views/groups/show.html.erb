@@ -1,8 +1,59 @@
+<!--RANKING GRUPOWY-->
 <div class="row">
-  <div clas="col-lg-8">
+  <div class="col-lg-12">
+    <h1>Ranking Grupowy</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Lp.</th>
+          <th>Pkt rankingowe</th>
+          <th>Imię</th>
+          <th>Nazwisko</th>
+          <th>Nr albumu</th>
+          <th>E-mail</th>
+          <th colspan="4"></th>
+          <th>Obecność</th>
+        </tr>
+      </thead>
+      <tbody>
+      <%= form_for :presence, :url => presences_update_path, :html => { :method => :put } do %>
+        <% @students.each do |student| %>
+          <tr>
+            <td><%=@nr+=1%></td>
+            <td><%=student.progre.points%></td>
+            <td><%= student.name %></td>
+            <td><%= student.lastname %></td>
+            <td><%= student.album_number %></td>
+            <td><%= student.email %></td>
+            <td><%= link_to 'Pokaż', student_studentprofile_path(student, :results => "1"), :class => "btn btn-primary" %></td>
+            <td><%= link_to 'Edytuj', edit_student_path(student), :class =>"btn btn-info" %></td>
+            <td><%= link_to 'Usuń', student, method: :delete, data: { confirm: 'Czy na pewno chcesz usunąć studenta?'}, :class =>"btn btn-danger" %></td>
+            <td><%= link_to 'Napisz', new_message_path(:iid => student.id), :class =>"btn btn-default" %></td>
+            <td>
+              <% @presence = Presence.where(student_id: student.id) %>
+              <% @presence.each do |presence| %>
+                <%= fields_for "presence[]", presence do |presence_fields| %>
+                  <%= presence_fields.check_box :present, :class =>"checkbox-inline" %>
+                <%end%>
+              <%end%>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="actions">
+      <%= submit_tag "Zapisz obecności", :class =>"btn btn-primary" %>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-lg-7">
     <h1><%= @group.name %></h1>
     <h4>Daty spotkań</h4>
-    <%= form_for :clas, :url => classes_update_path, :html => { :method => :put } do %>
+    <%= form_for :clas, :url => classes_update_path, :html => { :method => :put} do %>
       <table class="table table-striped">
         <tr>
           <th>Lekcja</th>
@@ -13,8 +64,13 @@
           <%= fields_for "clas[]", clas do |clas_fields| %>
           <tr>
             <td><%= clas.classes_number %></td>
-            <td><%= clas_fields.datetime_select :start %> </td>
+            <td><%= clas_fields.datetime_select :start, :class => "form-control datetimepicker4"%> </td>
             <td><%= clas_fields.datetime_select :end %></td>
+            <script type="text/javascript">
+              $(function () {
+                  $('.datetimepicker4').datetimepicker();
+              });
+            </script>
           </tr>
           <%end%>
         <%end%>
@@ -25,68 +81,7 @@
     <%end%>
     
   </div>
-  <div class="col-lg-4">
+  <div class="col-lg-5">
     <%=render 'new_student' %>
   </div>
 </div>
-
-
-  <div class="row">
-  <div class="col-lg-12">
-    <h3>Ranking Grupy</h3>
-<table>
-  <thead>
-    <tr>
-      <th>Lp.</th>
-      <th>Punkty</th>
-      <th>Imie</th>
-      <th>Nazwisko</th>
-      <th>nr albumu</th>
-      <th>Email</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th>obecnosc</th>
-      <th>Proponowana ocena</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-  <%= form_for :presence, :url => presences_update_path, :html => { :method => :put } do %>
-    <% @students.each do |student| %>
-      <tr>
-        <td><%=@nr+=1%></td>
-        <td><%=student.progre.points%></td>
-        <td><%= student.name %></td>
-        <td><%= student.lastname %></td>
-        <td><%= student.album_number %></td>
-        <td><%= student.email %></td>
-        <td><%= link_to 'Show', student_studentprofile_path(student, :results => "1") %></td>
-        <td><%= link_to 'Edit', edit_student_path(student) %></td>
-        <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'napisz', new_message_path(:iid => student.id) %></td>
-      <td>
-          <% @presence = Presence.where(student_id: student.id) %>
-          
-              <% @presence.each do |presence| %>
-                <%= fields_for "presence[]", presence do |presence_fields| %>
-                  <%= presence_fields.check_box :present %>
-                <%end%>
-              <%end%>
-      </td>
-      <td></td>
-      </tr>
-    <% end %>
-  </tbody>
-  </table>
-         <div class="actions">
-            <%= submit_tag "Zapisz zmiany obecności" %>
-          </div>
-  <% end %>
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', teacher_groups_path(session[:user_id]) %>
-
-  </div>
-</div>
-

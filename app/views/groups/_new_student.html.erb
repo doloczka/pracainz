@@ -1,3 +1,4 @@
+<h1>Dodaj nowego studenta</h1>
 <%= form_for @student, url: group_students_path(params[:id]) do |f| %>
   <% if @student.errors.any? %>
     <div id="error_explanation">
@@ -10,10 +11,11 @@
     </div>
   <% end %>
   <div class="field">
-  <%=f.label :Nr_albumu %>
-  <%=f.text_field :album_number %>
-</div>
+    <%=f.label :Nr_albumu %>
+    <%=f.text_field :album_number, :class => "form-control", :placeholder => "Nr_albumu" %>
+  </div>
+  <br>
   <div class="actions">
-    <%= f.submit "Dodaj studenta" %>
+    <%= f.submit "Dodaj studenta", :class =>"btn btn-primary"%>
   </div>
 <% end %>

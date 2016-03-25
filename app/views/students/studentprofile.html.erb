@@ -10,162 +10,214 @@
             }
      }
 </script>
-
+<!---------------------------------------widok nauczyciela---------------------------->
 <%if logged_as_teacher?%>
-    <h3>Student: <%=@student.name%> <%=@student.lastname%> , nr albumu: <%=@student.album_number%></h3>
-    <nav style="width: 30%">
-    <li><%= link_to "Wyniki zadań", student_studentprofile_path(session[:user_id], :results => "1") %></li>
-    <li><%= link_to "Wyniki zadań pobocznych", student_studentprofile_path(session[:user_id], :results => "2") %></li>
-    <li><%= link_to "Obecności", student_studentprofile_path(session[:user_id], :results => "3") %></li>
-    <li><%= link_to "Medale", student_studentprofile_path(session[:user_id], :results => "4") %></li>
-    <li><%= link_to "Ocena", student_studentprofile_path(session[:user_id], :results => "5") %></li>
-</nav>
-<br></br>
-<% if params["results"]=="1" %>
-    Wyniki z zadań:
-    <% suma=0%>
-    <% if @pkt.count!=0 %>
-        <table  border="1">
-          <thead>
-            <tr>
-                <td>Nr</td>
-                <td>Poziom</td>
-                <td>Numer</td>
-                <td>Wynik [%]</td>
-            </tr>
-          </thead>
-         <% i=0%>
-          <tbody>
-            <% @pkt.each do |pk| %>
-              <tr>
-                    <td><%= i=1+i %></td>
-                    <td><%= pk.level %></td>
-                    <td><%= Exercise.find_by(id: pk.exercise_id).number%></td>
-                    <td><%= pk.earned_points %>%</td>
-                    <td><button id='button' onclick="showhide(<%=i%>)">Szczegóły</button></td>
-                    <%suma=suma+pk.earned_points%>
-              </tr>
-              <tr id='<%=i%>' style="display: none" >
-                  <td colspan="6">
-                      <li>Treść zadania: <%= Exercise.find_by(id: pk.exercise_id).content %></li>
-                      <li>Odpowiedź: <%= Answer.find_by(exercise_id: pk.exercise_id).solution %></li>
-                    </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-        Srednia z zadań: <%= suma/i %>
-    <% else %>
-            <%=" brak ocenionych rozwiązań"%>
-    <%end%>
-<%end%>
-<% if params["results"]=="2" %>
-    Wyniki z zadań:
-    <% suma=0%>
-    <% if @sidequests.count!=0 %>
-        <table  border="1">
-          <thead>
-            <tr>
-                <td>Nr</td>
-                <td>Poziom</td>
+    <h1>Student: <%=@student.name%> <%=@student.lastname%></h1>
+    <h2>Nr albumu: <%=@student.album_number%></h2>
+    <div class="row">
+        <div class="col-lg-12">
+            <%= link_to "Wyniki zadań", student_studentprofile_path(@student.id, :results => "1"), :class =>"btn btn-primary" %>
+            <%= link_to "Wyniki wyzwań", student_studentprofile_path(@student.id, :results => "2"), :class =>"btn btn-primary" %>
+            <%= link_to "Obecności", student_studentprofile_path(@student.id, :results => "3"), :class =>"btn btn-primary" %>
+            <%= link_to "Medale", student_studentprofile_path(@student.id, :results => "4"), :class =>"btn btn-primary" %>
+            <%= link_to "Ocena", student_studentprofile_path(@student.id, :results => "5"), :class =>"btn btn-primary" %>
+        </div>
+    </div>
+<br>
+<div class="row">
+    <div class="col-lg-12">
+        <!--zadania główne-->
+        <% if params["results"]=="1" %>
+            <h3>Wyniki z zadań głównych</h3>
+            <% suma=0%>
+            <% if @pkt.count!=0 %>
+            <table class="table table-striped" >
+                <thead>
+                    <tr>
+                        <th>Nr</th>
+                        <th>Lekcja</th>
+                        <th>Numer zad</th>
+                        <th>Wynik [%]</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <% i=0%>
+                <tbody>
+                    <% @pkt.each do |pk| %>
+                    <tr>
+                        <td><%= i=1+i %></td>
+                        <td><%= pk.level %></td>
+                        <td><%= Exercise.find_by(id: pk.exercise_id).number%></td>
+                        <td><%= pk.earned_points %>%</td>
+                        <td><button id='button' onclick="showhide(<%=i%>)" class="btn btn-success">Szczegóły</button></td>
+                        <%suma=suma+pk.earned_points%>
+                    </tr>
+                    <tbody id='<%=i%>' style="display: none; text-align:center;">
+                        <tr>
+                            <td colspan="5">
+                                <strong>Treść zadania</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                <%= Exercise.find_by(id: pk.exercise_id).content %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                <strong>Odpowiedź</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                <%= Answer.find_by(exercise_id: pk.exercise_id).solution %>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <% end %>
+                </tbody>
+            </table>
+            <h3>Średnia z zadań: <%= suma/i %>%</h3>
+            <% else %>
+                <h3><%=" brak ocenionych rozwiązań"%></h3>
+            <%end%>
+        <%end%>
+    <!--wyzwania-->
+        <% if params["results"]=="2" %>
+            <h3>Wyniki z wyzwań</h3>
+            <% suma=0%>
+            <% if @sidequests.count!=0 %>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nr</th>
+                            <th>Poziom</th>
+                            <th>Wynik [%]</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <% i=0%>
+                    <tbody>
+                    <% @sidequests.each do |sq| %>
+                        <tr>
+                            <td><%= i=1+i %></td>
+                            <td><%= sq.level %></td>
+                            <td><%= sq.earned_points %>%</td>
+                            <%suma=suma+sq.earned_points%>
+                            <td><button id='button' onclick="showhide(<%=i%>)" class="btn btn-success">Szczegóły</button></td>
+                        </tr>
+                        <tbody id='<%=i%>' style="display:none; text-align:center;">
+                            <tr>
+                                <td colspan="5">
+                                    <strong>Treść zadania</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">
+                                    <%= Sidequest.find_by(id: sq.sidequest_id).content %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">
+                                    <strong>Odpowiedź</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">
+                                    <%= Sqanswer.find_by(id: sq.sidequest_id).solution %>
+                                </td>
+                            </tr>
+                        </tbody>
+                    <% end %>
+                    </tbody>
+                </table>
+                <h3>Średnia z wyzwań: <%= suma/i %>%</h3>
+            <% else %>
+                <h3><%=" brak ocenionych rozwiązań"%></h3>
+            <%end%>
+        <%end%>
+    <!--Obecnođci-->
+        <% if params["results"]=="3" %>
+            <h3>Obecności</h3>
+            <% if @prezences.count!=0 %>
+                <% stgr= Student.find(session[:user_id]).group_id %>
+                <table class="table table-striped">
+                    <% i=0%>
+                    <thead>
+                        <tr>
+                            <th>Nr</th>
+                            <th>Data</th>
+                            <th>Obecność</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% @prezences.each do |presence| %>
+                        <tr>
+                            <td><%= i=1+i %></td>
+                            <td><%= Classescalendar.find_by(group_id: stgr, classes_number: presence.classes_number).start.to_date %></td>
+                            <% if Time.new.in_time_zone("Warsaw").strftime("%Y-%m-%d %H:%M:%S").to_time.to_i<Classescalendar.find_by(group_id: stgr, classes_number: presence.classes_number).start.to_time.to_i%>
+                                <td>Nieznane</td>
+                            <%else%>
+                                <%if presence.present==true%>
+                                    <td>Obecny</td>
+                                <%else%>
+                                    <td>Nieobecny</td>
+                                <%end%>
+                            <%end%>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+            <% else %>
+                <h3><%="brak informacji"%></h3>
+            <%end%>
+        <%end%>
+<!--MEDALE-->
+        <% if params["results"]=="4" %>
+            <h3>Otrzymane medale</h3>
+            <% if @medals.count!=0 %>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Nazwa</th>
+                            <th>Opis</th>
+                            <th>Bonus</th>
+                        </tr>
+                    </thead>
+                    <% i=0%>
+                    <tbody>
+                    <% @medals.each do |medal| %>
+                        <tr>
+                            <td><%=image_tag(Medal.find_by(id: medal.medal_id).img)%></td>
+                            <td><%=Medal.find_by(id: medal.medal_id).name %></td>
+                            <td><%=Medal.find_by(id: medal.medal_id).description %></td>
+                            <td>+<%=Medal.find_by(id: medal.medal_id).value %> pkt rank</td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                </table>
+            <% else %>
+                <h3><%="brak medali"%></h3>
+            <%end%>
+        <%end%>
+<!--OCENA końcowa-->
+        <% if params["results"]=="5" %>
+            <%pr=Progre.find_by(student_id: session[:user_id])%>
+                <%if pr.rate!=nil%>
+                    <h4>Studentowi udało się zebrać: <%=pr.gained_points%> punktów.</h4>
+                    <h4>Ostateczny wynik to: <%=pr.points%> punktów.</h4>
+                    <h3>Proponowana ocena to: <%=pr.rate%></h3>
+                <%else%>
+                    <h4>Ocena zostanie wystawiona po ostatnich zajęciach.</h4>
+                 <%end%>
+        <% end %>
+    </div>
+</div>
 
-                <td>Wynik [%]</td>
-            </tr>
-          </thead>
-         <% i=0%>
-          <tbody>
-            <% @sidequests.each do |sq| %>
-              <tr>
-                    <td><%= i=1+i %></td>
-                    <td><%= sq.level %></td>
-                    
-                    <td><%= sq.earned_points %>%</td>
-                    <%suma=suma+sq.earned_points%>
-                    <td><button id='button' onclick="showhide(<%=i%>)">Szczegóły</button></td>
-              </tr>
-              <tr id='<%=i%>' style="display: none" >
-                  <td colspan="6">
-                      <li>Treść zadania: <%= Sidequest.find_by(id: sq.sidequest_id).content %></li>
-                      <li>Odpowiedź: <%= Sqanswer.find_by(id: sq.sidequest_id).solution %></li>
-                    </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-        Srednia z wyzwań: <%= suma/i %>
-    <% else %>
-            <%=" brak ocenionych rozwiązań"%>
-    <%end%>
-<%end%>
-<% if params["results"]=="3" %>
-Dziennnik obecności:
-    <% if @prezences.count!=0 %>
-        <% stgr= Student.find(session[:user_id]).group_id %>
-        <table  border="1">
-         <% i=0%>
-         <thead>
-            <tr>
-                <td>Nr</td>
-                <td>Data</td>
-                <td>Obecność</td>
-            </tr>
-          </thead>
-          <tbody>
-            <% @prezences.each do |presence| %>
-            
-              <tr>
-                    <td><%= i=1+i %></td>
-                    <td><%= Classescalendar.find_by(group_id: stgr, classes_number: presence.classes_number).start.to_date %></td>
-                    <% if Time.new.in_time_zone("Warsaw").strftime("%Y-%m-%d %H:%M:%S").to_time.to_i<Classescalendar.find_by(group_id: stgr, classes_number: presence.classes_number).start.to_time.to_i%>
-                        <td>Nieznane</td>
-                    <%else%>
-                        <%if presence.present==true%>
-                            <td>Obecny</td>
-                        <%else%>
-                            <td>Nieobecny</td>
-                        <%end%>
-                    <%end%>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-    <% else %>
-        <%="brak informacji"%>
-    <%end%>
-<%end%>
-<% if params["results"]=="4" %>
-Otrzymane medale:
-    <% if @medals.count!=0 %>
-        <table  border="1">
-         <% i=0%>
-          <tbody>
-            <% @medals.each do |medal| %>
-              <tr>
-                    <td><%= i=1+i %></td>
-                    <td><%=Medal.find_by(id: medal.medal_id).description %></td>
-                    <td><%=image_tag(Medal.find_by(id: medal.medal_id).img, size:"15x15")%></td>
-                    <td>+<%=Medal.find_by(id: medal.medal_id).value %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-    <% else %>
-        <%="brak medali"%>
-    <%end%>
-<%end%>
-<% if params["results"]=="5" %>
-<%pr=Progre.find_by(student_id: session[:user_id])%>
- <%if pr.rate!=nil%>
-     <br>Łącznie udało Ci się zebrać <%=pr.gained_points%> punktów rozwiązując zadania,</br> a twoj ostateczny
-     wynik to <%=pr.points%> punktów. 
-     Proponowana ocena to: <%=pr.rate%>
- <%else%>
-     Occena zostanie wystawiona po ostatnic zajęciach.
- <%end%>
+    
 
-<% end %>
-
-<!--student-->
+<!--------------------------------------widok student------------------------------------->
 <% else %>
 <div class="bg_profil">
     <% if logged_as_student? %>
@@ -361,16 +413,16 @@ Otrzymane medale:
             <%end%>
         <%end%>
         <% if params["results"]=="5" %>
-        <h1>Proponowana ocena końcowa</h1>
-        <%pr=Progre.find_by(student_id: session[:user_id])%>
-         <%if pr.rate!=nil%>
-             <h3>Łącznie udało Ci się zebrać <%=pr.gained_points%> punktów rozwiązując zadania, a twój ostateczny
-             wynik to <%=pr.points%> punktów. </h3>
-             <h2>Proponowana ocena to: <%=pr.rate%>.</h2>
-         <%else%>
-             <h3>Occena zostanie wystawiona po ostatnich zajęciach.</h3>
-         <%end%>
-        
+            <h1>Proponowana ocena końcowa</h1>
+            <%pr=Progre.find_by(student_id: session[:user_id])%>
+             <%if pr.rate!=nil%>
+                 <h3>Łącznie udało Ci się zebrać <%=pr.gained_points%> punktów rozwiązując zadania, a twój ostateczny
+                 wynik to <%=pr.points%> punktów. </h3>
+                 <h2>Proponowana ocena to: <%=pr.rate%>.</h2>
+             <%else%>
+                 <h3>Ocena zostanie wystawiona po ostatnich zajęciach.</h3>
+             <%end%>
+            
         <% end %>
     </div>
 </div>

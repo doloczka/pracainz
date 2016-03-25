@@ -1,3 +1,4 @@
+<% if logged_as_student? %>
 <div class="bg_login">
   <img class="bg" src="/assets/sign_in/bg_login2.jpg">
     <div class="form_login_first">
@@ -5,7 +6,6 @@
             <% if @student.errors.any? %>
               <div id="error_explanation">
                 <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
-          
                 <ul>
                 <% @student.errors.full_messages.each do |message| %>
                   <li><%= message %></li>
@@ -15,27 +15,27 @@
             <% end %>
           
             <div class="field">
-              <%= f.label :login, :class =>"label_font"%>
+              <%= f.label :login,"Login", :class =>"label_font"%>
               <%=f.text_field :login, :class =>"input_login"%>
             </div>
             <div class="field">
-              <%=f.label :password, "hasło" , :class =>"label_font"%>
+              <%=f.label :password, "Hasło" , :class =>"label_font"%>
               <%=f.password_field :password, :class =>"input_password"%>
             </div>
             <div class="field">
-              <%= f.label :password_confirmation, "potwierdzenie hasła" , :class =>"label_font" %>
+              <%= f.label :password_confirmation, "Potwierdź Hasło" , :class =>"label_font" %>
               <%= f.password_field :password_confirmation, :class =>"input_password" %>
             </div>
             <div class="field">
-              <%= f.label :email, :class =>"label_font"%><br>
+              <%= f.label :email,"E-mail", :class =>"label_font"%><br>
               <%= f.text_field :email, :class =>"input_email" %>
             </div>
             <div class="field">
-              <%= f.label :Imie, :class =>"label_font"%><br>
+              <%= f.label :Imie,"Imię", :class =>"label_font"%><br>
               <%= f.text_field :name, :class =>"input_name" %>
             </div>
             <div class="field">
-              <%= f.label :Nazwisko, :class =>"label_font"%><br>
+              <%= f.label :Nazwisko,"Nazwisko", :class =>"label_font"%><br>
               <%= f.text_field :lastname, :class =>"input_lastname"%>
             </div>
             <div class="actions">
@@ -47,3 +47,47 @@
           <% end %>
       </div>
 </div>
+<% elsif logged_as_teacher? %>
+  <div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+      <h1>Zmień dane studenta</h1>
+      <%= form_for @student do |f| %>
+        <% if @student.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
+              <ul>
+                <% @student.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+          </div>
+        <% end %>
+        <div class="form-group">
+          <%= f.label :login, "Login"%>
+          <%=f.text_field :login, :class =>"form-control"%>
+        </div>
+        <div >
+          <%=f.label :password, "Hasło"%>
+          <%=f.password_field :password, :class =>"form-control"%>
+        </div>
+        <div class="form-group">
+          <%= f.label :password_confirmation, "Potwierdź Hasło" %>
+          <%= f.password_field :password_confirmation, :class =>"form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :email, "E-mail"%>
+          <%= f.text_field :email, :class =>"form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :Imie, "Imię"%>
+          <%= f.text_field :name, :class =>"form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :Nazwisko, "Nazwisko"%>
+          <%= f.text_field :lastname, :class =>"form-control"%>
+        </div>
+        <%= f.submit "Zmień", :class =>"btn btn-primary btn-block"%>
+      <% end %>
+    </div>
+  </div>
+<% end%>

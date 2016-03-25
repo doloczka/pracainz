@@ -17,7 +17,7 @@ Medal.create!(name: "Medal za wytrwałość",
               value:5)
               
 Medal.create!(name: "Szybkie kopytko",
-              description: "Medalza najszybszą odpowiedź",
+              description: "Medal za najszybszą odpowiedź",
               img: "/assets/medal/medal_speed.png",
               value:6)
 Medal.create!(name: "Odważny jak niedźwiedź",

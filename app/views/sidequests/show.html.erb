@@ -35,33 +35,45 @@
     </div>
 </div>
 <%if logged_as_teacher?%>
-<h3>Treść:</h3>
-<p><%=@sidequest.content%></p>
-<h4>Odpowiedzi uczestników</h4>
-<table>
-    <thead>
-        <th>Imie</th>
-        <th>Nazwisko</th>
-        <th>Czas w sekundach</th>
-    </thead>
-    <tbody>
-        <% @sqanswers.each do |sqanswer| %>
-        <% student=Student.find(sqanswer.student_id)%>
-                <tr>
-                    <td>
-                        <%=student.name%>
-                    </td>
-                    <td>
-                        <%=student.lastname%>
-                    </td>
-                    <td>
-                        <%=sqanswer.time%>
-                    </td>
-                    <td>
-                        <%=link_to 'Show', sqanswer %>
-                    </td>
-                </tr>
-        <%end%>
-    </tbody>
-</table>
+    <div class="row">
+        <div class="col-lg-12">
+            <center><h1>Wyzwanie</h1></center>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-lg-offset-2">
+            <h3>Treść</h3>
+            <p><%=@sidequest.content%></p>
+        </div>
+        <div class="col-lg-4">
+            <center><h3>Odpowiedzi studentów</h3></center>
+            <table class="table table-striped">
+                <thead>
+                    <th>Imie</th>
+                    <th>Nazwisko</th>
+                    <th>Czas w sekundach</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    <% @sqanswers.each do |sqanswer| %>
+                    <% student=Student.find(sqanswer.student_id)%>
+                            <tr>
+                                <td>
+                                    <%=student.name%>
+                                </td>
+                                <td>
+                                    <%=student.lastname%>
+                                </td>
+                                <td>
+                                    <%=sqanswer.time%>
+                                </td>
+                                <td>
+                                    <%=link_to 'Pokaż', sqanswer, :class =>"btn btn-primary" %>
+                                </td>
+                            </tr>
+                    <%end%>
+                </tbody>
+            </table>
+        </div>
+    </div>
 <%end%>
