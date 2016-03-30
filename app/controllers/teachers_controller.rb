@@ -14,6 +14,7 @@ class TeachersController < ApplicationController
 
   # GET /teachers/1/edit
   def edit
+    
   end
 
   # POST /teachers
@@ -37,6 +38,7 @@ class TeachersController < ApplicationController
   def update
     respond_to do |format|
       if @teacher.update(teacher_params)
+      
         format.html { redirect_to @teacher, notice: 'Teacher was successfully updated.' }
         format.json { render :show, status: :ok, location: @teacher }
       else
@@ -64,6 +66,6 @@ class TeachersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def teacher_params
-      params.require(:teacher).permit(:name, :lastname, :login, :password_digest, :email)
+      params.require(:teacher).permit(:name, :lastname, :login, :password, :email)
     end
 end
