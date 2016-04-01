@@ -10,9 +10,11 @@
       <thead>
         <tr>
           <th>Student</th>
+          <th>Grupa</th>
           <th>Lekcja</th>
           <th>Ćwiczenie</th>
-          <th colspan="3"></th>
+          <th>Godzina przysłania</th>
+          <th colspan="2"></th>
         </tr>
       </thead>
     
@@ -21,8 +23,10 @@
           <tr>
             <%@exercise = Exercise.find(answer.exercise_id)%>
             <td><%= answer.student.name %> <%= answer.student.lastname %></td>
+            <td><%= answer.student.group.name %></td>
             <td><%= @exercise.level %></td> 
             <td><%= @exercise.number %></td>
+            <td><%= answer.updated_at.in_time_zone("Warsaw").strftime("%Y-%m-%d %H:%M:%S")%></td>
             <td><%= link_to 'Pokaż', answer , :class =>"btn btn-primary"%></td>
           </tr>
         <% end %>
@@ -35,9 +39,11 @@
       <thead>
         <tr>
           <th>Student</th>
+          <th>Grupa</th>
           <th>Ocena</th>
           <th>Lekcja</th>
           <th>Ćwiczenie</th>
+          <th>Godzina przysłania</th>
           <th colspan="3"></th>
         </tr>
       </thead>
@@ -48,9 +54,11 @@
             <%@exercise = Exercise.find(answer.exercise_id)%>
             <%@result = Result.find_by(exercise_id: @exercise.id, student_id: answer.student.id)%>
             <td><%= answer.student.name %> <%= answer.student.lastname %></td>
-           <td><%= @result.earned_points%></td>
+            <td><%= answer.student.group.name %></td>
+            <td><%= @result.earned_points%></td>
             <td><%= @exercise.level %></td> 
             <td><%= @exercise.number %></td>
+            <td><%= answer.updated_at.in_time_zone("Warsaw").strftime("%Y-%m-%d %H:%M:%S")%></td>
             <td><%= link_to 'Pokaż', answer , :class =>"btn btn-primary"%></td>
           </tr>
         <% end %>

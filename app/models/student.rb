@@ -15,7 +15,7 @@ class Student < ActiveRecord::Base
   validates :email, length: { maximum: 255 },
   format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }, allow_nil:true
-  validates :password, presence: true, length: { minimum: 6 }, allow_nil:true #TODO zmienic min na 6 po testach
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil:true 
   validates :album_number, :numericality => {:only_integer => true}
   def admit_medal(medal)
     awarded_medals.create(medal_id: medal)
