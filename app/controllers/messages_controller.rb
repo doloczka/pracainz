@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:edit, :update, :destroy]
-  before_action :logged_user, only: [:index, :new, :destroy,:edit, :update, :create]
+  before_action :logged_user, only: [:index, :new, :destroy, :edit, :update, :create, :show]
   
   # GET /wiadomoscis
   # GET /wiadomoscis.json
@@ -17,12 +17,15 @@ class MessagesController < ApplicationController
   # GET /wiadomoscis/1.json
   
   def show
+    
     @message =Message.find(params[:id])
     @student = Student.find(@message.student_id)
-    if logged_as_student? && @message.direction == 0
-      @message.read = true
-      @message.save
-    end
+    if check_student?(@student.id)
+      if logged_as_student? && @message.direction == 0
+        @message.read = true
+        @message.save
+      end
+    end  
     if logged_as_teacher? && @message.direction == 1
       @message.read = true
       @message.save
@@ -147,5 +150,4 @@ class MessagesController < ApplicationController
     def logged_user
       redirect_to root_url unless logged_as_student? || logged_as_teacher?
     end
-    
 end

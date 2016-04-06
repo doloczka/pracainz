@@ -15,4 +15,7 @@ module ApplicationHelper
     def correct_student
         redirect_to root_url unless logged_as_student?
     end
+    def check_student?(user_id)
+     redirect_to root_url unless user_id == curent_user_id
+    end
 end

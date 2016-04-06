@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :sqanswers
-  resources :sqresults
+
   get 'presence/update'
   get 'lesson' => 'exercises#lesson'
   post 'lesson' => 'exercises#lesson'
@@ -10,17 +9,20 @@ Rails.application.routes.draw do
   get 'login' => 'session#new'
   post 'login' => 'session#create'
   delete 'logout' => 'session#destroy'
-  resources :sidequests
   root 'session#index'
-  resources :answers
-  resources :messages
-  resources :teachers do
-    resources :groups, shallow: true do
-      resources :students
+  scope '/' do
+    resources :sidequests
+    resources :sqanswers
+    resources :sqresults
+    resources :answers
+    resources :messages
+    resources :teachers do
+      resources :groups, shallow: true do
+        resources :students
+      end
+      resources :exercises, shallow: true
     end
-    resources :exercises, shallow: true
   end
-
   get 'show_exe' => 'exercises#show_exe'
   get 'login' => 'session#new'
   post 'login' => 'session#create'

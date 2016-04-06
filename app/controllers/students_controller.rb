@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
-  before_action :correct_student, only: :show
+  before_action :correct_student, only: [:show, :edit, :update, :destroy, :studentprofile, :hppotion, :solution]
   before_action :correct_teacher, only: [:create, :destroy]
   
   # GET /students

@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
-  before_action :correct_teacher, only: :index
+  before_action :correct_teacher, only: [:index ,:show, :edit, :update, :destroy]
   
   # GET /answers
   # GET /answers.json
@@ -15,11 +15,6 @@ class AnswersController < ApplicationController
     @exercise = Exercise.find(@answer.exercise_id)
     @result = Result.new
   end
-
-  # GET /answers/new
-  # def new
-  #   @result = Result.new
-  # end
 
   # GET /answers/1/edit
   def edit

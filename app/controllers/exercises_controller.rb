@@ -2,6 +2,7 @@ class ExercisesController < ApplicationController
   before_action :set_exercise, only: [:show, :edit, :update, :destroy]
   before_action :correct_teacher, only: [:index, :show_exe, :destroy, :edit, :create, :new, :destroy]
   before_action :logged_user, only: [:show, :update,:lesson]
+  before_action :is_time, only: :lesson
   
   def lesson
     @level = params[:level]
@@ -106,5 +107,15 @@ class ExercisesController < ApplicationController
     def correct_teacher
       redirect_to root_url unless Teacher.find_by(login: current_user_login)
     end
-
+    def is_time
+      redirect_to root_url unless in_time?
+    end
+    def in_time?
+      student = Student.find(session[:user_id])
+      lesson_time = Classescalendar.find_by(group_id: student.group.id, classes_number: student.progre.lvl)
+      start = lesson_time.start.to_i
+      finish = lesson_time.end.to_i
+      now = Time.now.to_i
+      now < finish && now > start
+    end
 end
