@@ -14,6 +14,7 @@ class AnswersController < ApplicationController
   def show
     @exercise = Exercise.find(@answer.exercise_id)
     @result = Result.new
+    @edit_result = Result.find_by(student_id: @answer.student_id, exercise_id: @exercise.id) if @answer.read
   end
 
   # GET /answers/1/edit

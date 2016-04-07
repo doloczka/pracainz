@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
-  before_action :correct_student, only: [:show, :edit, :update, :destroy, :studentprofile, :hppotion, :solution]
+  before_action :correct_student, only: [:show, :edit, :update, :destroy]
   before_action :correct_teacher, only: [:create, :destroy]
   
   # GET /students
@@ -129,8 +129,10 @@ class StudentsController < ApplicationController
     end
     
     def correct_student
+      if logged_as_student?
         set_student
         redirect_to root_url unless @student == Student.find_by(login: session[:login])
+      end
     end
     def correct_teacher
       redirect_to root_url unless Teacher.find_by(login: current_user_login) 

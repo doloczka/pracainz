@@ -44,8 +44,23 @@ class ResultController < ApplicationController
     end
     end
     
-    private
+    def update
+      @result = Result.find_by(answer_id: params[:id])
+    respond_to do |format|
+      if @result.update(params[:edit_result][:earned_points])
+        format.html { redirect_to @result, notice: 'result was successfully updated.' }
+        format.json { render :show, status: :ok, location: @result }
+      else
+        format.html { render :edit }
+        format.json { render json: @result.errors, status: :unprocessable_entity }
+      end
     
+  end
+    end
+    private
+    def set_result
+      
+    end
     def result_params
       params.require(:result).permit(:student_id, :exercise_id, :level, :earned_points)
     end

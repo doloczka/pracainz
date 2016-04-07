@@ -112,10 +112,10 @@ class ExercisesController < ApplicationController
     end
     def in_time?
       student = Student.find(session[:user_id])
-      lesson_time = Classescalendar.find_by(group_id: student.group.id, classes_number: student.progre.lvl)
+      lesson_time = Classescalendar.find_by(group_id: student.group.id, classes_number: params[:level])
       start = lesson_time.start.to_i
       finish = lesson_time.end.to_i
       now = Time.now.to_i
-      now < finish && now > start
+      now > start && now < finish
     end
 end
