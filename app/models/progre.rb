@@ -32,7 +32,7 @@ class Progre < ActiveRecord::Base
           self.hp=40
           self.gained_points=self.gained_points*0.75 
           Message.create!(subject: "Zginąłeś",  
-                content: "Zginąłeś. Kontynuujesz grę tracąc 1/4 wszystkich punktów.",
+                content: "Zginąłeś. Kontynuujesz grę tracąc 1/4 punktów exp oraz od radzasz się z 40 punktami życia.",
                 read: false,
                 direction: 0,
                 student_id: self.id

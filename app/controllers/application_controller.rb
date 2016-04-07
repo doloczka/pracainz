@@ -124,7 +124,7 @@ class ApplicationController < ActionController::Base
                 progr.update_column(:hp, progr.hp-8)
                 progr.save
                 Message.create!(subject: "System",
-                      content: "nie wykonano zadania #{lvl}-#{i}. Tracisz 8hp.",
+                      content: "Nie wykonano zadania #{lvl}-#{i}. Tracisz 8hp.",
                       read: false,
                       direction: 0,
                       student_id: session[:user_id]
@@ -136,7 +136,7 @@ class ApplicationController < ActionController::Base
           progr.update_column(:hp, progr.points-20)
                 progr.save
                 Message.create!(subject: "System",
-                      content: "Nie rozwiązałeś zadań z poprzedniego levelu. Tracisz 20hp i 20 punktów rankingowych.",
+                      content: "Nie rozwiązałeś zadań z poprzedniej lekcji. Tracisz 20hp i 20 punktów rankingowych.",
                       read: false,
                       direction: 0,
                       student_id: session[:user_id]

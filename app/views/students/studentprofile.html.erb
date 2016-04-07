@@ -70,7 +70,7 @@
                         </tr>
                         <tr>
                             <td colspan="5">
-                                <%= Answer.find_by(exercise_id: pk.exercise_id).solution %>
+                                <%= Answer.find_by(student_id: @student.id, exercise_id: pk.exercise_id).solution %>
                             </td>
                         </tr>
                     </tbody>
@@ -140,7 +140,7 @@
         <% if params["results"]=="3" %>
             <h3>Obecności</h3>
             <% if @prezences.count!=0 %>
-                <% stgr= Student.find(session[:user_id]).group_id %>
+                <% stgr= @student.group.id %>
                 <table class="table table-striped">
                     <% i=0%>
                     <thead>
