@@ -36,15 +36,15 @@ Story.create!(level:1,
               title:"List")
 Story.create!(level:1,
               number:2,
-              content:"Bjorn ze strachu przed swoja teściową zaczął pakować wszystkie potrzebne i niepotrzebne rzeczy. Zastanawiał się długo, gdzie mógłby się przed nią schować. W końcu przyleciał drozd radząc, by wiał gdzie pieprz rośnie.",
+              content:"Bjorn ze strachu przed swoja Teściową zaczął pakować wszystkie potrzebne i niepotrzebne rzeczy. Zastanawiał się długo, gdzie mógłby się przed nią schować. W końcu przyleciał drozd radząc, by wiał gdzie pieprz rośnie.",
               title:"Panika")
 Story.create!(level:1,
               number:3,
-              content:"Bjorn postanowił zostawić małą niespodziankę swojej teściowej. Wiedział, że ta nie wytrzymałaby bez zaglądania do spiżarni, gdzie trzymał jej ukochany bigos, dlatego do każdego słoika dodał po kilka papryczek chili. W taki sposób teściowa posiadła umiejętność ziania ogniem.",
+              content:"Bjorn postanowił zostawić małą niespodziankę swojej Teściowej. Wiedział, że ta nie wytrzymałaby bez zaglądania do spiżarni, gdzie trzymał jej ukochany bigos, dlatego do każdego słoika dodał po kilka papryczek chili. W taki sposób Teściowa posiadła umiejętność ziania ogniem.",
               title:"Niespodzianka")
 Story.create!(level:1,
               number:4,
-              content:"Po długim marszu Bjorn i Drozd, postanowili uciąć sobie drzemkę pod drzewem. Przyśnił mu się dzień, w którym niespodziewanie odwiedziła go teściowa. Z hukiem wpadła do chatki, domagając się obiadku. Wyczyściła mu z bigosu całą spiżarnię, a Bjorn tylko biegał z garem, żeby dać jej dokładkę. Niestety, niechcący albo chcący wpadł mu do kotła czosnek. Staruszka zaczęła się dusić, bo okazało się, że jest na niego uczulona. Po przebudzeniu olśniło Bjorna i udał się na pobliskie pole z czosnkiem, aby w razie czego mieć coś do obrony.",
+              content:"Po długim marszu Bjorn i Drozd, postanowili uciąć sobie drzemkę pod drzewem. Przyśnił mu się dzień, w którym niespodziewanie odwiedziła go Teściowa. Z hukiem wpadła do chatki, domagając się obiadku. Wyczyściła mu z bigosu całą spiżarnię, a Bjorn tylko biegał z garem, żeby dać jej dokładkę. Niestety, niechcący albo chcący wpadł mu do kotła czosnek. Staruszka zaczęła się dusić, bo okazało się, że jest na niego uczulona. Po przebudzeniu olśniło Bjorna i udał się na pobliskie pole z czosnkiem, aby w razie czego mieć coś do obrony.",
               title:"Koszmar")
 Story.create!(level:1,
               number:5,
@@ -64,11 +64,11 @@ Story.create!(level:2,
               title:"Przechyły")
  Story.create!(level:2,
               number:4,
-              content:"Po kilku dniach ciągłej walki z wiatrem, jedni zrobili się zieloni na twarzy i zaczęli farbować wodę, drudzy nadal trzymali się masztu coraz bardziej trzęsąc portkami, a cała reszta z Bjornem na czele dzielnie prowadziła łajbą. Aż tu nagle, ni z gruchy ni z pietruchy obok nich wynurzył się dziwny stwór. Długi był na 100 metrów, do węża bardzo podobny, ale na łbie miał potężnego irokeza. Bjorn spytał go: „Kim jesteś i gdzie znajdę jakiś ląd?”, po czym ten odpowiedział: „Loko mówią mi, a ląd wiele mil ssssstąd jesssst”, po czym zanurzył się ochlapując wszystkich i odpłynął w nieznane.",
+              content:"Po kilku dniach ciągłej walki z wiatrem, jedni zrobili się zieloni na twarzy i zaczęli farbować wodę, drudzy nadal trzymali się masztu coraz bardziej trzęsąc portkami, a cała reszta z Bjornem na czele dzielnie prowadziła łajbę. Aż tu nagle, ni z gruchy ni z pietruchy obok nich wynurzył się dziwny stwór. Długi był na 100 metrów, do węża bardzo podobny, ale na łbie miał potężnego irokeza. Bjorn spytał go: „Kim jesteś i gdzie znajdę jakiś ląd?”, po czym ten odpowiedział: „Loko mówią mi, a ląd wiele mil ssssstąd jesssst”, po czym zanurzył się ochlapując wszystkich i odpłynął w nieznane.",
               title:"Wąż Loko")
 Story.create!(level:2,
               number:5,
-              content:"Po rozmowie z wężem Lokiem na niebie zebrały się czarne chmury. Wtedy już cała załoga zaczęła panikować i miała pełne gacie. Jedynie Bjornowi pozostały resztki rozumu i krzyknął do załogi: „Czego się bardziej boicie – podmuchu wiaterku, czy oddechu teściowej?!” Wtedy wszyscy bez chwili namysłu ruszyli dalej. Wpłynęli w wielką burzę, miotało nimi jak szatan na lewo i prawo, aż w końcu fala zepchnęła ich na skałę i cała łódź poszła w drzazgi. Bjorn w ostatniej chwili złapał ocalałą deskę i próbował dostrzec resztę swojej załogi. Niestety, nikogo nie zobaczył. Jedynie w oddali słyszał słowa Drozda „BJORN come back, come back…”",
+              content:"Po rozmowie z wężem Lokiem na niebie zebrały się czarne chmury. Wtedy już cała załoga zaczęła panikować i miała pełne gacie. Jedynie Bjornowi pozostały resztki rozumu i krzyknął do załogi: „Czego się bardziej boicie – podmuchu wiaterku, czy oddechu Teściowej?!” Wtedy wszyscy bez chwili namysłu ruszyli dalej. Wpłynęli w wielką burzę, miotało nimi jak szatan na lewo i prawo, aż w końcu fala zepchnęła ich na skałę i cała łódź poszła w drzazgi. Bjorn w ostatniej chwili złapał ocalałą deskę i próbował dostrzec resztę swojej załogi. Niestety, nikogo nie zobaczył. Jedynie w oddali słyszał słowa Drozda „BJORN come back, come back…”",
               title:"Sztorm")
 Story.create!(level:3,
               number:1,
@@ -105,15 +105,15 @@ Story.create!(level:4,
               title:"Pieprz")
 Story.create!(level:4,
               number:4,
-              content:"Gdy fascynacja pieprzem minęła, spostrzegli dym, do którego chcieli dojść. Znajdował się on na końcu wielkiego pola. Przeszli przez pieprzowe krzaki ciągle kichając, aż w końcu dotarli do małej chatki. Zapukali, a z domku wybiegł dziadek, który celował do nich z procy nabitej pieprzem. Starzec miał wielkie oczy i nos oraz czoło wjeżdżające na potylice (zakola :)). Po krótkiej rozmowie z nim dowiedzieli się, że on również uciekał wiele lat temu od swojej teściowej gdzie pieprz rośnie. Po kilku godzinach gadania, Bjorn zapytał dziadka z ciekawości, dlaczego ma takie wielkie oczy. Ten odparł mu na to, że musi dobrze widzieć intruzów na swoim polu. Bjorn z jeszcze większym zainteresowaniem zapytał: „A dlaczego masz taki duży nos?” – ten śmiejąc się odparł – „A to przez ciągłe kichanie od pieprzu.”",
+              content:"Gdy fascynacja pieprzem minęła, spostrzegli dym, do którego chcieli dojść. Znajdował się on na końcu wielkiego pola. Przeszli przez pieprzowe krzaki ciągle kichając, aż w końcu dotarli do małej chatki. Zapukali, a z domku wybiegł dziadek, który celował do nich z procy nabitej pieprzem. Starzec miał wielkie oczy i nos oraz czoło wjeżdżające na potylice (zakola :)). Po krótkiej rozmowie z nim dowiedzieli się, że on również uciekał wiele lat temu od swojej Teściowej gdzie pieprz rośnie. Po kilku godzinach gadania, Bjorn zapytał dziadka z ciekawości, dlaczego ma takie wielkie oczy. Ten odparł mu na to, że musi dobrze widzieć intruzów na swoim polu. Bjorn z jeszcze większym zainteresowaniem zapytał: „A dlaczego masz taki duży nos?” – ten śmiejąc się odparł – „A to przez ciągłe kichanie od pieprzu.”",
               title:"Dziadek")
 Story.create!(level:4,
               number:5,
-              content:"Cała trójka rozmawiała ze sobą do późnej nocy o wszystkim i niczym. Dziadek przypomniał sobie, że w ostatnim czasie na wyspie działo się coś dziwnego. Opowiadał im o tym jak wulkan zaczął sobie popierdywać, pogoda zrobiła się kapryśna jak baba, a pieprzowe krzaki zaczęły więdnąć. W tym momencie staruszek zaczął trząść się ze strachu i rozpoczął opowiadać o tym, jak szedł sobie w nocy do wychodka, a tu nagle zobaczył jakąś postać w krzakach, w której okularach odbijał się księżyc i przypomniał sobie o wieczorach, kiedy światło lampki odbijało się od szkieł teściowej w podobny sposób. Dziadek powiedział, że po tych wydarzeniach niebezpiecznie jest chodzić po nocy, więc zaproponował im żeby zostali na kilka kolejnych dni.",
+              content:"Cała trójka rozmawiała ze sobą do późnej nocy o wszystkim i niczym. Dziadek przypomniał sobie, że w ostatnim czasie na wyspie działo się coś dziwnego. Opowiadał im o tym jak wulkan zaczął sobie popierdywać, pogoda zrobiła się kapryśna jak baba, a pieprzowe krzaki zaczęły więdnąć. W tym momencie staruszek zaczął trząść się ze strachu i rozpoczął opowiadać o tym, jak szedł sobie w nocy do wychodka, a tu nagle zobaczył jakąś postać w krzakach, w której okularach odbijał się księżyc i przypomniał sobie o wieczorach, kiedy światło lampki odbijało się od szkieł Teściowej w podobny sposób. Dziadek powiedział, że po tych wydarzeniach niebezpiecznie jest chodzić po nocy, więc zaproponował im żeby zostali na kilka kolejnych dni.",
               title:"Zła nowina")
 Story.create!(level:5,
               number:1,
-              content:"Po kilku dniach mieszkania z dziadkiem, Bjorn wyszedł pozwiedzać trochę okolicę. Usłyszał jakieś dziwne głosy, krzyki i ryki, które brzmiały znajomo. Nie zastanawiał się długo co to mogło być, tylko od razu uciekł do ich kryjówki. Opowiedział towarzyszom o tym co się stało. Drozda nagle olśniło. Poskładał wszystkie fakty w całość i okazało się, że bardzo prawdopodobnie teściowe mają spisek i próbują odnaleźć zięciów.",
+              content:"Po kilku dniach mieszkania z dziadkiem, Bjorn wyszedł pozwiedzać trochę okolicę. Usłyszał jakieś dziwne głosy, krzyki i ryki, które brzmiały znajomo. Nie zastanawiał się długo co to mogło być, tylko od razu uciekł do ich kryjówki. Opowiedział towarzyszom o tym co się stało. Drozda nagle olśniło. Poskładał wszystkie fakty w całość i okazało się, że bardzo prawdopodobnie Teściowe mają spisek i próbują odnaleźć zięciów.",
               title:"Spisek")
 Story.create!(level:5,
               number:2,
@@ -121,28 +121,28 @@ Story.create!(level:5,
               title:"Trudna decyzja")
 Story.create!(level:5,
               number:3,
-              content:"Przyjaciele nie wiedząc co robić, siedzieli zamyśleni przy stole. Po chwili Drozd wskoczył na stół i powiedział: „Gdy teściowa zły humor ma, to wtedy bigos na nic się zda”. Następnie opowiedział , jak można zwabić, ją pięknym zwierzęcym futrem.",
+              content:"Przyjaciele nie wiedząc co robić, siedzieli zamyśleni przy stole. Po chwili Drozd wskoczył na stół i powiedział: „Gdy Teściowa zły humor ma, to wtedy bigos na nic się zda”. Następnie opowiedział , jak można zwabić, ją pięknym zwierzęcym futrem.",
               title:"Misterny plan")
 Story.create!(level:5,
               number:4,
-              content:"W końcu po wielu namysłach, postanowili wyruszyć w stronę pieczary teściowej. Bjorn zakłopotany myślą o spotkaniu ze staruszką, powiedział do Drozda: „Ani mi się śni rozmawiać z nią gdy jest na wolności!” Pomyśleli, że mogliby ją schwytać, więc zaczęli szukać potrzebnych materiałów.",
+              content:"W końcu po wielu namysłach, postanowili wyruszyć w stronę pieczary Teściowej. Bjorn zakłopotany myślą o spotkaniu ze staruszką, powiedział do Drozda: „Ani mi się śni rozmawiać z nią gdy jest na wolności!” Pomyśleli, że mogliby ją schwytać, więc zaczęli szukać potrzebnych materiałów.",
               title:"Pułapka")
 Story.create!(level:5,
               number:5,
-              content:"Na niebie były już gwiazdy, gdy dotarli pod pieczarę teściowej. Rozejrzeli się i na szczęście nie było jej w środku. Ukryli się w krzakach, aby przemyśleć dokładnie plan działania. Dziadziuś zaczął dygotać ze strachu i oznajmił im, że nie może iść z nimi dalej, tłumacząc to tym, że mógłby dostać zawału na widok teściowej. W ramach przeprosin podarował Bjornowi swoją procę z pieprzem. Drozd także postanowił opuścić przyjaciela mówiąc, że tylko on może pokonać teściową. Dał mu swoje różowe pióro na szczęście i życzył powodzenia.",
+              content:"Na niebie były już gwiazdy, gdy dotarli pod pieczarę Teściowej. Rozejrzeli się i na szczęście nie było jej w środku. Ukryli się w krzakach, aby przemyśleć dokładnie plan działania. Dziadziuś zaczął dygotać ze strachu i oznajmił im, że nie może iść z nimi dalej, tłumacząc to tym, że mógłby dostać zawału na widok Teściowej. W ramach przeprosin podarował Bjornowi swoją procę z pieprzem. Drozd także postanowił opuścić przyjaciela mówiąc, że tylko on może pokonać Teściową. Dał mu swoje różowe pióro na szczęście i życzył powodzenia.",
               title:"Tchórz")
 Story.create!(level:6,
               number:1,
-              content:"Bjorn niepewnym krokiem udał się w stronę pieczary. Jeszcze raz się upewnił, że nie ma w środku teściowej, po czym zaczął szybko kopać dziurę. Gdy była już gotowa przykrył ją liśćmi, a futro ułożył obok pułapki. Aż tu nagle, usłyszał kroki teściowej. Szybko schował się za pobliskie drzewo, aby obserwować sytuację.
+              content:"Bjorn niepewnym krokiem udał się w stronę pieczary. Jeszcze raz się upewnił, że nie ma w środku Teściowej, po czym zaczął szybko kopać dziurę. Gdy była już gotowa przykrył ją liśćmi, a futro ułożył obok pułapki. Aż tu nagle, usłyszał kroki Teściowej. Szybko schował się za pobliskie drzewo, aby obserwować sytuację.
 ",
               title:"Dziura")
 Story.create!(level:6,
               number:2,
-              content:"Coraz bardziej było słychać kroki teściowej, aż w końcu Bjorn wychylając się zza drzewa, zobaczył ją. Staruszka, wracając do swojej pieczary, dostrzegła piękne futro leżące na ziemi i zaryczała: „Muuuuuuszę to mieć!” Zaczęła biec w jego stronę, a ziemia trzęsła się tak, że aż biedny wiking zaczął podskakiwać. W końcu wpadła w pułapkę Bjorna i krzyknęła tak głośno, że staruszek siedzący w krzakach osiwiał, a Drozd stracił wszystkie pióra.",
+              content:"Coraz bardziej było słychać kroki Teściowej, aż w końcu Bjorn wychylając się zza drzewa, zobaczył ją. Staruszka, wracając do swojej pieczary, dostrzegła piękne futro leżące na ziemi i zaryczała: „Muuuuuuszę to mieć!” Zaczęła biec w jego stronę, a ziemia trzęsła się tak, że aż biedny wiking zaczął podskakiwać. W końcu wpadła w pułapkę Bjorna i krzyknęła tak głośno, że staruszek siedzący w krzakach osiwiał, a Drozd stracił wszystkie pióra.",
               title:"Futro")
 Story.create!(level:6,
               number:3,
-              content:"Bjorn nie odważył się od razu porozmawiać z teściową, więc postanowił poczekać do rana. Kiedy pokonał strach, podszedł do dziury i cieniutkim głosikiem powiedział „Hop hop, nic mamusi nie jest?” Wtedy ta zionęła ogniem w jego stronę, przypalając mu brodę, Bjorn strasznie się zezłościł, bo bardzo kochał swoją rudą brodę i strzelił pieprzem w jej oczy.",
+              content:"Bjorn nie odważył się od razu porozmawiać z Teściową, więc postanowił poczekać do rana. Kiedy pokonał strach, podszedł do dziury i cieniutkim głosikiem powiedział „Hop hop, nic mamusi nie jest?” Wtedy ta zionęła ogniem w jego stronę, przypalając mu brodę, Bjorn strasznie się zezłościł, bo bardzo kochał swoją rudą brodę i strzelił pieprzem w jej oczy.",
               title:"Spalony")
 Story.create!(level:6,
               number:4,
@@ -150,7 +150,7 @@ Story.create!(level:6,
               title:"Salwa śmiechu")
 Story.create!(level:6,
               number:5,
-              content:"Zaniepokojeni ciszą Staruszek z ptakiem wybiegli ze swojej kryjówki, aby zobaczyć co się dzieje. Gdy Drozd zobaczył ich razem uśmiechnął się i powiedział: „ A morał z tej bajki jest krótki i niektórym znany: gdy teściowa swój nos wtyka, tylko bigos jej usta zamyka!”  ",
+              content:"Zaniepokojeni ciszą Staruszek z ptakiem wybiegli ze swojej kryjówki, aby zobaczyć co się dzieje. Gdy Drozd zobaczył ich razem uśmiechnął się i powiedział: „ A morał z tej bajki jest krótki i niektórym znany: gdy Teściowa swój nos wtyka, tylko bigos jej usta zamyka!”  ",
               title:"Happy End")
 for j in 1..6
     for i in 1..5

@@ -36,16 +36,6 @@
         <%= f.submit "Oceń", :class =>"btn btn-primary btn-lg"%>
       </div>
       <% end %>
-    <% else %>
-      <h3>Ocena</h3>
-      <%= form_for (@edit_result) do |f| %>
-          <%= f.number_field "earned_points", in: 0...101, :class =>"form-control"%>
-          <%= f.hidden_field :student_id, :value => @answer.student_id %>
-          <%= f.hidden_field :exercise_id, :value => @exercise.id %>
-          <div class="form-group" style="text-align:center;">
-            <%=f .submit "Oceń", :class=>"btn btn-primary btn-lg"%>
-          </div>
-      <%end%>
     <% end %>
   </div>
 </div>
