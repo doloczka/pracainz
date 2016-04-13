@@ -20,7 +20,7 @@
         </li>
         <li>
             <% if Message.where(teacher_id: session[:user_id], direction: "1", read: false).count >0%>
-                <strong><%= link_to 'Wiadomości', messages_path(session[:user_id]), { :style =>"color: #FFE60B;"} %></strong>
+                <strong><%= link_to 'Wiadomości', messages_path(session[:user_id]), { :style =>"color: #FFE60B;"}, {:class =>"dropdown-toggle", :data {toggle: "dropdown"}, :aria{haspopup: "true", expanded: "false"}} %></strong>
             <% else %>
                 <%= link_to 'Wiadomości', messages_path(session[:user_id]) %>
             <% end %>

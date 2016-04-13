@@ -1,0 +1,23 @@
+<%= form_for @edit_result, url: {controller: "result", action: "update"} do |form| %>
+        <% if @edit_result.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@edit_result.errors.count, "error") %> prohibited this result from being saved:</h2>
+            <ul>
+            <% @edit_result.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+        
+      <div class="form-group">
+        <%= form.label :earned_points, "Przyznaj punkty"%>
+        <%= form.number_field "earned_points", in: 0...101, :class =>"form-control", :value => @edit_result.earned_points %>
+      </div>
+      <%= form.hidden_field :student_id, :value => @answer.student_id %>
+      <%= form.hidden_field :level, :value => @exercise.level %>
+      <%= form.hidden_field :exercise_id, :value => @exercise.id %>
+      <div class="form-group" style ="text-align:center;">
+        <%= form.submit "Oceń", :class =>"btn btn-primary btn-lg"%>
+      </div>
+<% end %>

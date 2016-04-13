@@ -43,6 +43,14 @@ class ResultController < ApplicationController
       end
     end
     end
+    def update
+      byebug
+      @result = Result.find_by(student_id: params[:result][:student_id], exercise_id: params[:result][:exercise_id])
+      @result.update_column(:earned_points, params[:result][:earned_points])
+      if @result.save
+          redirect_to :back
+      end
+    end
     private
     def set_result
       

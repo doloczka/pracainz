@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   get 'student/edit' => 'students#edit'
   get 'faq' => 'students#faq'
   patch 'student/solution' => 'students#solution'
+  patch 'result/update' => 'result#update'
   get 'student/challenge' =>'students#challenge'
   get 'student/chosechallenge' =>'students#chosechallenge'
   get 'student/challengeodp' =>'students#challengeodp'

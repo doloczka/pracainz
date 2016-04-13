@@ -12,9 +12,16 @@ class AnswersController < ApplicationController
   # GET /answers/1
   # GET /answers/1.json
   def show
-    @exercise = Exercise.find(@answer.exercise_id)
-    @result = Result.new
-    @edit_result = Result.find_by(student_id: @answer.student_id, exercise_id: @exercise.id) if @answer.read
+    if @answer.read
+      @edit_result = Result.find_by(student_id: @answer.student_id, exercise_id: @exercise.id)
+      render 'answers/rated_form'
+    else
+      @exercise = Exercise.find(@answer.exercise_id)
+      @result = Result.new
+      render 'answers/unrated_form'
+    end
+    
+     
   end
 
   # GET /answers/1/edit
