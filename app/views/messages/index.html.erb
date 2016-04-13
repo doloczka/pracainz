@@ -46,33 +46,76 @@
 <div class="row">
   <div class="col-lg-8 col-lg-offset-2">
     <center><h1>Wiadomości</h1></center>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Nr</th>
-          <th>Temat</th>
-          <th colspan="2"></th>
-        </tr>
-      </thead>
-     <% i=0%>
-      <tbody>
-        <% @messages.each do |message| %>
-          <tr>
-            <td><%= i=1+i %></td>
-            <%if message.read%>
-              <td><%= message.subject %></td>
-            <%else%>
-              <td><strong><%=message.subject%></strong></td>
-            <%end%>
-            <td><%= link_to 'Otworz', message_path(:id => message.id), :class =>"btn btn-primary" %></td>
-            <td><%= link_to 'Usuń', message, method: :delete, data: { confirm: 'Czy na pewno chcesz usunąć wiadomość?' }, :class =>"btn btn-danger" %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <div>
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#odebrane" aria-controls="home" role="tab" data-toggle="tab">Odebrane</a></li>
+        <li role="presentation"><a href="#wyslane" aria-controls="profile" role="tab" data-toggle="tab">Wysłane</a></li>
+      </ul>
+      <div class="tab-content">
+        <!--ODEBRANE-->
+        <div role="tabpanel" class="tab-pane fade in active" id="odebrane">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Nr</th>
+                <th>Temat</th>
+                <th colspan="2"></th>
+              </tr>
+            </thead>
+           <% i=0%>
+            <tbody>
+              <% @messages.each do |message| %> <!--TODO -->
+                <tr>
+                  <td><%= i=1+i %></td>
+                  <%if message.read%>
+                    <td><%= message.subject %></td>
+                  <%else%>
+                    <td><strong><%=message.subject%></strong></td>
+                  <%end%>
+                  <td><%= link_to 'Otworz', message_path(:id => message.id), :class =>"btn btn-primary" %></td>
+                  <td><%= link_to 'Usuń', message, method: :delete, data: { confirm: 'Czy na pewno chcesz usunąć wiadomość?' }, :class =>"btn btn-danger" %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <!--WYSŁANE-->
+        <div role="tabpanel" class="tab-pane fade in active" id="wyslane">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Nr</th>
+                <th>Temat</th>
+                <th colspan="2"></th>
+              </tr>
+            </thead>
+           <% i=0%>
+            <tbody>
+              <% @messages.each do |message| %> <!--TODO -->
+                <tr>
+                  <td><%= i=1+i %></td>
+                  <%if message.read%>
+                    <td><%= message.subject %></td>
+                  <%else%>
+                    <td><strong><%=message.subject%></strong></td>
+                  <%end%>
+                  <td><%= link_to 'Otworz', message_path(:id => message.id), :class =>"btn btn-primary" %></td>
+                  <td><%= link_to 'Usuń', message, method: :delete, data: { confirm: 'Czy na pewno chcesz usunąć wiadomość?' }, :class =>"btn btn-danger" %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 <% end  %>
-
+<script>
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    e.target // newly activated tab
+    e.relatedTarget // previous active tab
+  })
+</script>
 
