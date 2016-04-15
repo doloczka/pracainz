@@ -1,29 +1,28 @@
-  <div class="col-lg-6">
-    <center><h2>Nie ocenione</h2></center>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Student</th>
-          <th>Grupa</th>
-          <th>Lekcja</th>
-          <th>Ćwiczenie</th>
-          <th>Godzina przysłania</th>
-          <th colspan="2"></th>
-        </tr>
-      </thead>
-    
-      <tbody>
-        <% @answers.each do |answer| %>
-          <tr>
-            <%@exercise = Exercise.find(answer.exercise_id)%>
-            <td><%= answer.student.name %> <%= answer.student.lastname %></td>
-            <td><%= answer.student.group.name %></td>
-            <td><%= @exercise.level %></td> 
-            <td><%= @exercise.number %></td>
-            <td><%= answer.updated_at.in_time_zone("Warsaw").strftime("%Y-%m-%d %H:%M:%S")%></td>
-            <td><%= link_to 'Pokaż', answer , :class =>"btn btn-primary"%></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+        <div role="tabpanel" class="tab-pane fade in active" id="nieocenione">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>Grupa</th>
+                <th>Lekcja</th>
+                <th>Ćwiczenie</th>
+                <th>Godzina przysłania</th>
+                <th colspan="2"></th>
+              </tr>
+            </thead>
+          
+            <tbody>
+              <% @answers.each do |answer| %>
+                <tr>
+                  <%@exercise = Exercise.find(answer.exercise_id)%>
+                  <td><%= answer.student.name %> <%= answer.student.lastname %></td>
+                  <td><%= answer.student.group.name %></td>
+                  <td><%= @exercise.level %></td> 
+                  <td><%= @exercise.number %></td>
+                  <td><%= answer.updated_at.in_time_zone("Warsaw").strftime("%Y-%m-%d %H:%M:%S")%></td>
+                  <td><%= link_to 'Pokaż', answer , :class =>"btn btn-primary"%></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          </div>
