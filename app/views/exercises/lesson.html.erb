@@ -30,7 +30,7 @@
     <%end%>
 </div>
 
-
+<%time = Time.new.in_time_zone("Warsaw").strftime("%Y-%m-%d %H:%M:%S") %>
 <%for i in 1..5 %>
 <!-- MODAl-->
     <%= content_tag(:div, :id =>"zad#{@level}_#{i}", :class =>"modal_dialog") do %>
@@ -70,11 +70,15 @@
                     <%= f.hidden_field :level, :value => @level %>
                     <%= f.hidden_field :number, :value => i %>
                     <h5 class="modal_tag">Odpowiedź</h5>
-                    <%= f.text_area :solution, size: "100x5", :class => "modal_text_area" %>
+                    <%if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id , classes_number: params[:level]).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: params[:level]).end.to_time.to_i %>
+                        <%= f.text_area :solution, size: "100x5", :class => "modal_text_area" %>
+                    <%end%>
                     <h4>Nagroda:</h4>
                     <h5> <%= pkt=zadanie.reward %> pkt exp<br>
                         <%= pkt=zadanie.reward %> pkt rankingowych</h5>
-                    <%= f.submit "Wyślij", :class => "modal_button button_send" %>
+                        <%if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id , classes_number: params[:level]).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: params[:level]).end.to_time.to_i %>
+                            <%= f.submit "Wyślij", :class => "modal_button button_send" %>
+                        <% end %>
                 </div>
             <% end %>
         </div>
