@@ -7,6 +7,7 @@ class Student < ActiveRecord::Base
   has_many :results, dependent: :destroy
   has_many :answers, dependent: :destroy
   has_many :awarded_medals, dependent: :destroy
+  has_many :messages
   has_secure_password
   before_save :downcase_email
   

@@ -1,0 +1,45 @@
+<div class="bg_message">
+    
+    <div class="student_message_title">
+        <h1>Wiadomości</h1>
+    </div>
+    <%= link_to student_path(session[:user_id]) do%>
+      <div class="back_msg tooltip">
+        <span>Kliknij aby przejść do mapy świata</span>
+      </div>
+    <% end %>
+    <div class="student_new_message">
+      <%= link_to new_message_path(session[:user_id]) do%>
+          <span>zadaj pytanie wykładowcy</span>
+      <%end%>
+    </div>
+
+<div class="student_message_content">
+      <%= link_to "Odebrane", messages_path(session[:user_id])%>
+    <%= link_to "Wysłane", messages_path(session[:user_id], :send => 1)%>
+  <table>
+      <thead>
+        <tr>
+          <th>Nr.</th>
+          <th>Temat</th>
+        </tr>
+      </thead>
+    <% i=0%>
+    <tbody>
+
+      <% @messages.each do |message| %>
+      <tr>
+          <td><%= i=1+i %></td>
+          <%if message.read%>
+          <td><%= message.subject %></td>
+          <%else%>
+          <td><strong><%=message.subject%></strong></td>
+          <%end%>
+          <td class="table_button"><%= link_to 'Otwórz', message_path(:id => message.id) %></td>
+          <td class="table_button"><%= link_to 'Usuń', message, method: :delete, data: { confirm: 'Czy napewno chcesz usunąć wiadomość?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+</div>

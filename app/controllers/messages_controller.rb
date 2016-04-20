@@ -6,10 +6,10 @@ class MessagesController < ApplicationController
   # GET /wiadomoscis.json
   def index
     if logged_as_student?
-        @messages = Message.where(student_id: session[:user_id], direction: "0").order("created_at DESC")
+        params[:send].to_i == 1 ? @messages= Student.find(curent_user_id).messages.where(direction: 1) : @messages = Message.where(student_id: session[:user_id], direction: "0").order("created_at DESC")
     end
     if logged_as_teacher?
-       @messages = Message.where(teacher_id: session[:user_id], direction: "1").order("created_at DESC")
+       params[:send].to_i == 1 ? @messages = Message.where(teacher_id: session[:user_id], direction: "0").where.not(subject: ["Twoje rozwiązanie zostało ocenione !", "Dostałeś nagrodę specjalną !"]).order("created_at DESC") : @messages = Message.where(teacher_id: session[:user_id], direction: "1").order("created_at DESC")
     end
   end
 

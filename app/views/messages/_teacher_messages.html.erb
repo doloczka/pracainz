@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-lg-8 col-lg-offset-2">
+    <center><h1>Wiadomości</h1></center>
+      <%= link_to "Odebrane", messages_path(session[:user_id])%>
+    <%= link_to "Wysłane", messages_path(session[:user_id], :send => 1)%>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Nr</th>
+                <th>Temat</th>
+                <th colspan="2"></th>
+              </tr>
+            </thead>
+           <% i=0%>
+            <tbody>
+              <% @messages.each do |message| %>
+                <tr>
+                  <td><%= i=1+i %></td>
+                  <%if message.read%>
+                    <td><%= message.subject %></td>
+                  <%else%>
+                    <td><strong><%=message.subject%></strong></td>
+                  <%end%>
+                  <td><%= link_to 'Otworz', message_path(:id => message.id), :class =>"btn btn-primary" %></td>
+                  <td><%= link_to 'Usuń', message, method: :delete, data: { confirm: 'Czy na pewno chcesz usunąć wiadomość?' }, :class =>"btn btn-danger" %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        </div>
