@@ -5,8 +5,9 @@ class ExercisesController < ApplicationController
   # before_action :is_time, only: :lesson
   
   def lesson
-    @level = params[:level]
+    @level = params[:level].to_i
     @student = Student.find_by(login: session[:login])
+    redirect_to root_url if @student.progre.lvl < @level
   end
   # GET /exercises
   # GET /exercises.json
