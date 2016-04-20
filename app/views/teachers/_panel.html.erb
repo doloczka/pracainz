@@ -13,14 +13,14 @@
         </li>
         <li>
             <% if Answer.where(teacher_id: session[:user_id], read: false).where.not(solution: nil).count >0%>
-                <strong><%= link_to 'Rozwiązania', answers_path, { :style =>"color: #FFE60B;"}%></strong>
+                <strong><%= link_to 'Rozwiązania', answers_path(read: false), { :style =>"color: #FFE60B;"}%></strong>
             <% else %>
-                <%= link_to 'Rozwiązania', answers_path%>
+                <%= link_to 'Rozwiązania', answers_path(read: false)%>
             <% end %>
         </li>
         <li>
             <% if Message.where(teacher_id: session[:user_id], direction: "1", read: false).count >0%>
-                <strong><%= link_to 'Wiadomości', messages_path(session[:user_id]), { :style =>"color: #FFE60B;"} %></strong>
+                <strong><%= link_to 'Wiadomości', messages_path(session[:user_id]), { :style =>"color: #FFE60B;"}, {:class =>"dropdown-toggle", 'data-toggle' => "dropdown" } %></strong>
             <% else %>
                 <%= link_to 'Wiadomości', messages_path(session[:user_id]) %>
             <% end %>

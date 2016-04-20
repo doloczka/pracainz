@@ -5,16 +5,32 @@ class AnswersController < ApplicationController
   # GET /answers
   # GET /answers.json
   def index
-    @answers = Answer.where(teacher_id: session[:user_id],read: false,).where.not(solution: nil).order(:updated_at)
-    @read_answers = Answer.where(teacher_id: session[:user_id],read: true).where.not(solution: nil).order(:updated_at)
+      @param = params[:read]
+      
+      @answers = Answer
+      .joins(:student, :group)
+      .where(teacher_id: session[:user_id],read: false,)
+      .where.not(solution: nil)
+      .merge(Group.order(:name)) if @param == "false"
+      
+      @read_answers = Answer
+      .joins(:student, :group)
+      .where(teacher_id: session[:user_id],read: true)
+      .where.not(solution: nil)
+      .merge(Group.order(:name)) if @param == "true"
   end
 
   # GET /answers/1
   # GET /answers/1.json
   def show
-    @exercise = Exercise.find(@answer.exercise_id)
-    @result = Result.new
-    @edit_result = Result.find_by(student_id: @answer.student_id, exercise_id: @exercise.id) if @answer.read
+    if @answer.read
+      @edit_result = Result.find_by(student_id: @answer.student_id, exercise_id: @exercise.id)
+    else
+      @exercise = Exercise.find(@answer.exercise_id)
+      @result = Result.new
+    end
+    
+     
   end
 
   # GET /answers/1/edit
