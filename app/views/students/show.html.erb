@@ -54,7 +54,9 @@ $(document).ready(function() {
             <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:2).start.to_time.to_i%>
             <%else%>
                 <div>
-                    <img src="/assets/student/okmark.png" class="mark_lesson2 okmark">
+                    <%=link_to lesson_path(:level => 2), method: :post, :class => "xmark" do%>
+                        <img src="/assets/student/okmark.png" class="mark_lesson2 okmark">
+                    <% end %>
                 </div>
             <%end%>
         </div>
@@ -73,7 +75,9 @@ $(document).ready(function() {
             <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:3).start.to_time.to_i%>
             <%else%>
                 <div>
-                    <img src="/assets/student/okmark.png" class="mark_lesson3 okmark">
+                    <%=link_to lesson_path(:level => 3), method: :post, :class => "xmark" do%>
+                        <img src="/assets/student/okmark.png" class="mark_lesson3 okmark">
+                    <% end %>
                 </div>
             <% end %>
         </div>
@@ -92,7 +96,9 @@ $(document).ready(function() {
             <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:4).start.to_time.to_i%>
             <%else%>
                 <div>
-                    <img src="/assets/student/okmark.png" class="mark_lesson4_ok okmark">
+                    <%=link_to lesson_path(:level => 4), method: :post, :class => "xmark" do%>
+                        <img src="/assets/student/okmark.png" class="mark_lesson4 okmark">
+                    <% end %>
                 </div>
             <% end %>
         </div>
@@ -111,7 +117,9 @@ $(document).ready(function() {
             <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:5).start.to_time.to_i%>
             <%else%>
                 <div>
-                    <img src="/assets/student/okmark.png" class="mark_lesson5 okmark">
+                    <%=link_to lesson_path(:level => 5), method: :post, :class => "xmark" do%>
+                        <img src="/assets/student/okmark.png" class="mark_lesson5 okmark">
+                    <% end %>
                 </div>
             <% end %>
         </div>
@@ -130,7 +138,9 @@ $(document).ready(function() {
             <%if time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number:6).start.to_time.to_i%>
             <%else%>
                 <div>
-                    <img src="/assets/student/okmark.png" class="mark_lesson6 okmark">
+                    <%=link_to lesson_path(:level => 6), method: :post, :class => "xmark" do%>
+                        <img src="/assets/student/okmark.png" class="mark_lesson6 okmark">
+                    <% end %>
                 </div>
             <% end %>
         </div>
