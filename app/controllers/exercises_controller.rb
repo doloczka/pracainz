@@ -2,7 +2,7 @@ class ExercisesController < ApplicationController
   before_action :set_exercise, only: [:show, :edit, :update, :destroy]
   before_action :correct_teacher, only: [:index, :show_exe, :destroy, :edit, :create, :new, :destroy]
   before_action :logged_user, only: [:show, :update,:lesson]
-  before_action :is_time, only: :lesson
+  # before_action :is_time, only: :lesson
   
   def lesson
     @level = params[:level]

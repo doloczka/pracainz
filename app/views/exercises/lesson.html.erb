@@ -36,6 +36,7 @@
     <%= content_tag(:div, :id =>"zad#{@level}_#{i}", :class =>"modal_dialog") do %>
         <div class="modal_content">
             <% zadanie=Exercise.find_by(id: Drawnexercise.find_by(student_id: session[:user_id], level: params[:level], number: i).exercise_id)%>
+            <% @zad = Answer.find_by(student_id: @student.id, exercise_id: zadanie.id)%>
             <% story = Story.find_by(level: @level, number: i)%>
             <div class="modal_header">
                 <div class="modal_title">
@@ -55,7 +56,7 @@
                 <p><%= zadanie.content %></p>
             </div>
             
-            <%@zad = Answer.find_by(student_id: @student.id, exercise_id: zadanie.id)%>
+
             <div class="hint">
                 <button id='button' onclick="showhide(<%=i%>)" class="modal_button button_hint">
                     <img src="/assets/lesson/drozd.png">
@@ -72,13 +73,23 @@
                     <h5 class="modal_tag">Odpowiedź</h5>
                     <%if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id , classes_number: params[:level]).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: params[:level]).end.to_time.to_i %>
                         <%= f.text_area :solution, size: "100x5", :class => "modal_text_area" %>
-                    <%end%>
-                    <h4>Nagroda:</h4>
+                        <h4>Nagroda:</h4>
                     <h5> <%= pkt=zadanie.reward %> pkt exp<br>
                         <%= pkt=zadanie.reward %> pkt rankingowych</h5>
                         <%if time.to_time.to_i>Classescalendar.find_by(group_id: @student.group_id , classes_number: params[:level]).start.to_time.to_i && time.to_time.to_i<Classescalendar.find_by(group_id: @student.group_id, classes_number: params[:level]).end.to_time.to_i %>
                             <%= f.submit "Wyślij", :class => "modal_button button_send" %>
                         <% end %>
+                    <%else%>
+                        <% result = Result.find_by(student_id: session[:user_id], exercise_id: zadanie.id) 
+                            earned_points = 0
+                            earned_points = result.earned_points unless result.nil?
+                        %>
+                        <%= @zad.solution%>
+                        <br>
+                        <br></br>
+                        Wynik : <%=earned_points%>/<%=zadanie.reward%>
+                    <%end%>
+                    
                 </div>
             <% end %>
         </div>
