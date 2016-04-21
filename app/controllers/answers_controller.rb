@@ -23,10 +23,10 @@ class AnswersController < ApplicationController
   # GET /answers/1
   # GET /answers/1.json
   def show
+    @exercise = Exercise.find(@answer.exercise_id)
     if @answer.read
-      @edit_result = Result.find_by(student_id: @answer.student_id, exercise_id: @exercise.id)
+      @result = Result.find_by(exercise_id: @exercise.id, student_id: @answer.student_id)
     else
-      @exercise = Exercise.find(@answer.exercise_id)
       @result = Result.new
     end
     

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-
+  root 'session#index'
   get 'presence/update'
   get 'lesson' => 'exercises#lesson'
   post 'lesson' => 'exercises#lesson'
@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'login' => 'session#new'
   post 'login' => 'session#create'
   delete 'logout' => 'session#destroy'
-  root 'session#index'
+
   scope '/' do
     resources :sidequests
     resources :sqanswers
@@ -33,17 +33,6 @@ Rails.application.routes.draw do
   get 'student/edit' => 'students#edit'
   get 'faq' => 'students#faq'
   patch 'student/solution' => 'students#solution'
-  get 'student/challenge' =>'students#challenge'
-  get 'student/chosechallenge' =>'students#chosechallenge'
-  get 'student/challengeodp' =>'students#challengeodp'
-  get 'student/challengeodp2' =>'students#challengeodp2'
-  get 'student/challengeinbox' =>'students#challengeinbox'
-  post 'student/challengeconfirm' =>'students#challengeconfirm'
-  post 'student/challengeconfirm2' =>'students#challengeconfirm2'
-  get 'challenges' => 'challenge#index'
-  post 'challenge_win' => 'challenge#win'
-  post 'challenge_draw' => 'challenge#draw'
-  get 'student/surender' =>  'students#surender'
   get 'student/studentprofile' =>  'students#studentprofile'
   get 'student/hppotion' =>  'students#hppotion'
   get 'contact', to: 'my_mail#new', as: 'contact'

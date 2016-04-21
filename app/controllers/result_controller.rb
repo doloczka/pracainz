@@ -1,7 +1,8 @@
 class ResultController < ApplicationController
-    before_action :correct_teacher, :create
+    before_action :correct_teacher, only: :create
     include ResultHelper
-    def create
+    
+  def create
       @result = Result.new(result_params)
       exercise = Exercise.find(params[:result][:exercise_id])
       @reward = @result.exercise.reward
@@ -42,11 +43,24 @@ class ResultController < ApplicationController
         format.json { render json: @result.errors, status: :unprocessable_entity }
       end
     end
-    end
+  end
+  
+  def update
+    old_result = params[:result][:old_result].to_i
+    new_result = params[:result][:earned_points].to_i
+    @result = Result.find(params[:result][:id])
+    @result.student.progre.gained_points -= old_result
+    @result.student.progre.gained_points += new_result
+    @result.student.progre.points -= old_result
+    @result.student.progre.points += new_result
+    @result.student.progre.save
+    @result.update_column(:earned_points, new_result)
+     redirect_to :back if @result.save
+     
+  end
+  
     private
-    def set_result
-      
-    end
+  
     def result_params
       params.require(:result).permit(:student_id, :exercise_id, :level, :earned_points)
     end

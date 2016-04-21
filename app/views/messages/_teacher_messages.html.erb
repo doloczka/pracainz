@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-lg-8 col-lg-offset-2">
     <center><h1>Wiadomości</h1></center>
-      <%= link_to "Odebrane", messages_path(session[:user_id])%>
-    <%= link_to "Wysłane", messages_path(session[:user_id], :send => 1)%>
+      <%= link_to "Odebrane", messages_path(session[:user_id]),:class =>"btn btn-primary"%>
+    <%= link_to "Wysłane", messages_path(session[:user_id], :send => 1),:class =>"btn btn-primary"%>
           <table class="table table-striped">
             <thead>
               <tr>

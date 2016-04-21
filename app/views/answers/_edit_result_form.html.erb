@@ -1,0 +1,6 @@
+<%= form_for @result, url: {controller: "result", action: "update"} do |f|%>
+    <%= f.hidden_field :id, :value => @result.id %>
+    <%= f.hidden_field :old_result, :value => @result.earned_points%>
+    <%= f.number_field "earned_points", in: 0...101, :class =>"form-control"%>
+    <%= f.submit "Oceń", :class =>"btn btn-primary btn-lg"%>
+<%end%>
