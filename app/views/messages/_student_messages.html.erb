@@ -13,10 +13,14 @@
           <span>zadaj pytanie wykładowcy</span>
       <%end%>
     </div>
-
-<div class="student_message_content">
-      <%= link_to "Odebrane", messages_path(session[:user_id])%>
+    <div class="odebrane_btn">
+    <%= link_to "Odebrane", messages_path(session[:user_id])%>
+  </div>
+  <div class="wyslane_btn">
     <%= link_to "Wysłane", messages_path(session[:user_id], :send => 1)%>
+  </div>
+<div class="student_message_content">
+  
   <table>
       <thead>
         <tr>

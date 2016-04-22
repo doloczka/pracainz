@@ -261,6 +261,10 @@ body
             position: relative
             margin-top: 260px
             margin-left: 178px
+            display: block
+            width: 70px
+            height: 40px
+            z-index: 10
     .student_lesson2
         float: right
         background: url('<%= asset_path("student/lesson2.png")%>')
@@ -273,6 +277,10 @@ body
             position: relative
             margin-top: 125px
             margin-left: 580px
+            display: block
+            width: 70px
+            height: 40px
+            z-index: 10
     .student_lesson3
         float: right
         background: url('<%= asset_path("student/lesson3.png")%>')
@@ -285,6 +293,10 @@ body
             position: relative
             margin-top: 190px
             margin-left: 680px
+            display: block
+            width: 70px
+            height: 40px
+            z-index: 10
     .student_lesson4
         float: left
         background: url('<%= asset_path("student/lesson4.png")%>')
@@ -297,10 +309,18 @@ body
             position: relative
             margin-top: 340px
             margin-left: -115px
+            display: block
+            width: 70px
+            height: 40px
+            z-index: 10
         .mark_lesson4_ok
             position: relative
             margin-top: 340px
             margin-left: 200px
+            display: block
+            width: 70px
+            height: 40px
+            z-index: 10
     .student_lesson5
         float: left
         background: url('<%= asset_path("student/lesson5.png")%>')
@@ -313,6 +333,10 @@ body
             position: relative
             margin-top: 135px
             margin-left: 290px
+            display: block
+            width: 70px
+            height: 40px
+            z-index: 10
     .student_lesson6
         float: right
         background: url('<%= asset_path("student/lesson6.png")%>')
@@ -325,11 +349,14 @@ body
             position: relative
             margin-top: 236px
             margin-left: 190px
-.okmark, .xmark
-    display: block
-    width: 70px
-    height: 40px
-    z-index: 10
+            display: block
+            width: 70px
+            height: 40px
+            z-index: 10
+    .mark
+        display: block
+        width: 70px
+        height: 40px
 // CSS do lesson.html.erb
 .student_map
     .back_button
@@ -577,15 +604,37 @@ body
             font-weight: bold
             font-size: 1.2em
             padding-top: 10px
-    .student_new_message:hover
+    .student_new_message:hover, .odebrane_btn:hover, .wyslane_btn:hover
         border-radius: 45px
         -moz-box-shadow: 0 0 15px #000
         -webkit-box-shadow: 0 0 15px #000
         box-shadow: 0 0 15px #000
-
+    .odebrane_btn
+        margin-left: 326px
+    .wyslane_btn
+        margin-left: 613px
+    .odebrane_btn, .wyslane_btn
+        position: absolute
+        display: inline-block
+        margin-top: 260px
+        width: 260px
+        height: 38px
+        text-align: center
+        background-color: #FDAB37
+        border-radius: 23px
+        border: solid 3px
+        a
+            display: block
+            width: 100%
+            height: 100%
+            text-decoration: none
+            color: #000
+            font-weight: bold
+            font-size: 1.2em
+            padding-top: 10px
     .student_message_content, .student_sidequest_content
         position: absolute
-        margin-top: 250px
+        margin-top: 303px
         left: 50%
         margin-left: -309px
         right: 0

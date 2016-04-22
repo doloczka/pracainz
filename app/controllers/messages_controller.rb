@@ -26,7 +26,7 @@ class MessagesController < ApplicationController
       @message.read = true
       @message.save
     else
-      redirect_to root_url
+      
     end
   end
 

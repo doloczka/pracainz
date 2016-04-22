@@ -1,6 +1,7 @@
 class Progre < ActiveRecord::Base
   belongs_to :student
   before_update :zerohp
+  validates :hp, :inclusion => 0..100
   def expe
     if self.total == 0
       return 0
