@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
         @progr=Progre.find_by(student_id: session[:user_id])
         student = Student.find_by(login: session[:login])
         progr=Progre.find_by(student_id: session[:user_id])
-              time = Time.new.in_time_zone("Warsaw").strftime("%Y-%m-%d %H:%M:%S") 
+        time = Time.new.in_time_zone("Warsaw").strftime("%Y-%m-%d %H:%M:%S") 
         
         if @progr.variant.nil?
           teacher=Group.find(student.group_id)
@@ -118,9 +118,10 @@ class ApplicationController < ActionController::Base
       progr=Progre.find_by(student_id: session[:user_id])
       for i in 1..5 do
         drawn=Drawnexercise.find_by(student_id: session[:user_id], level: lvl, number: i)
+        
         if drawn!=nil
-          if Answer.find_by(student_id: session[:user_id], exercise_id: drawn.id)!=nil
-            if Answer.find_by(student_id: session[:user_id], exercise_id: drawn.id).solution.nil? 
+          if Answer.find_by(student_id: session[:user_id], exercise_id: drawn.exercise_id)!=nil
+            if Answer.find_by(student_id: session[:user_id], exercise_id: drawn.exercise_id).solution.nil? 
                 progr.update_column(:hp, progr.hp-8)
                 progr.save
                 Message.create!(subject: "System",
@@ -133,7 +134,7 @@ class ApplicationController < ActionController::Base
           end
         else
           progr.update_column(:hp, progr.hp-20)
-          progr.update_column(:hp, progr.points-20)
+          progr.update_column(:points, progr.points-20)
                 progr.save
                 Message.create!(subject: "System",
                       content: "Nie rozwiązałeś zadań z poprzedniej lekcji. Tracisz 20hp i 20 punktów rankingowych.",

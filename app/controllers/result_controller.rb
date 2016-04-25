@@ -36,7 +36,7 @@ class ResultController < ApplicationController
       give_a_medal_and_send_message(precision_medal, student) if params[:result][:earned_points] = 100 && !student.has_medal?(precision_medal) 
     respond_to do |format|
       if @result.save
-        format.html { redirect_to answers_path, notice: 'result was successfully created.' }
+        format.html { redirect_to answers_path(read: false), notice: 'result was successfully created.' }
         format.json { render :show, status: :created, location: @result }
       else
         format.html { render :new }
@@ -48,12 +48,15 @@ class ResultController < ApplicationController
   def update
     old_result = params[:result][:old_result].to_i
     new_result = params[:result][:earned_points].to_i
+    
     @result = Result.find(params[:result][:id])
     @result.student.progre.gained_points -= old_result
     @result.student.progre.gained_points += new_result
+    
     @result.student.progre.points -= old_result
     @result.student.progre.points += new_result
     @result.student.progre.save
+    
     @result.update_column(:earned_points, new_result)
      redirect_to :back if @result.save
      
