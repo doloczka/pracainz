@@ -45,6 +45,12 @@ group :production do
   gem 'pg',             '0.17.1'
   gem 'rails_12factor', '0.0.2'
 end
+group :assets do
+  gem 'jquery-datatables-rails', '~> 3.4.0', github: 'rweng/jquery-datatables-rails'
+  gem 'jquery-ui-rails'
+end
+
+gem 'will_paginate'
 
 
 

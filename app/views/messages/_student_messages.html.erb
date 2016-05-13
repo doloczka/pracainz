@@ -1,5 +1,4 @@
 <div class="bg_message">
-    
     <div class="student_message_title">
         <h1>Wiadomości</h1>
     </div>
@@ -20,7 +19,6 @@
     <%= link_to "Wysłane", messages_path(session[:user_id], :send => 1)%>
   </div>
 <div class="student_message_content">
-  
   <table>
       <thead>
         <tr>
@@ -30,7 +28,6 @@
       </thead>
     <% i=0%>
     <tbody>
-
       <% @messages.each do |message| %>
       <tr>
           <td><%= i=1+i %></td>
@@ -45,5 +42,4 @@
       <% end %>
     </tbody>
   </table>
-  
 </div>
