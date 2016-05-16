@@ -47,14 +47,23 @@ class StudentsController < ApplicationController
     end
     
     def solution
-        idzadania=Drawnexercise.find_by(student_id: session[:user_id], level: params[:answer][:level], number: params[:answer][:number])
+        lvl = params[:answer][:level].to_i
+        nr = params[:answer][:number].to_i
+        idzadania=Drawnexercise.find_by(student_id: session[:user_id], level: lvl, number: nr)
         tre=Exercise.find_by(id: idzadania.exercise_id)
         @zad=Answer.find_by(student_id: session[:user_id], exercise_id: tre.id )
         @zad.update_column(:solution, params[:answer][:solution])
         @zad.update_column(:reward , params[:answer][:reward])
         if @zad.save
-          redirect_to :back
+          if lvl == 6 && nr == 5
+            redirect_to ankieta_path
+          else
+            redirect_to :back
+          end
         end
+    end
+    def ankieta
+      @ankieta_url = "https://docs.google.com/forms/d/1TnpuJC8tpXOQoikrvUTVwa4UODt4PTggi9NE4UXt1wk/viewform"
     end
  
   def create

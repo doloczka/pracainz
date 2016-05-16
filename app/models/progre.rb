@@ -27,6 +27,7 @@ class Progre < ActiveRecord::Base
       return i if student == self.student
     end
   end
+  
   private
       def zerohp
         if self.hp<=0
